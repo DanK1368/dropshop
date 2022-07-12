@@ -1,16 +1,7 @@
-import React from 'react';
-import AddItem from "./seller/components/BoardLayout/DisplayBoard/Items/AddItem";
-import Header from './seller/components/BoardLayout/Header';
-import SideBoard from './seller/components/BoardLayout/SideBoard';
+import React from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <SideBoard />
-      <AddItem />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
