@@ -1,5 +1,5 @@
 import React from "react";
-import {Page, Columns} from "../../../../styles/InventoryColumn";
+import {Page, Columns} from "../../../../styles/SellerColumns";
 
 const DiscountColumn = () => {
     return(

@@ -8,11 +8,15 @@ export const Main = styled.div`
 
 export const Board = styled.div`
     width: 100%;
+    display:flex;
+    flex-direction:column;
     `
 
 
 export const InnerPage = styled.div`
-    height: 90vh;
+    height: 100%;
     width:100%;
+    display:flex;
+    flex-direction:row;
     background-color:#000112;
     `
