@@ -1,3 +1,4 @@
+import React from 'react';
 import AddItem from "./seller/components/BoardLayout/DisplayBoard/Items/AddItem";
 
 function App() {
