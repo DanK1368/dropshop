@@ -6,7 +6,7 @@ export const StyledSideBar = styled.div`
     background: #2B2C37;
     width: 20%;
     height: 100vh;
-    border: 0.5px solid #828FA3;
+    border-right: 0.5px solid #828FA3;
 `
 
 export const StyledSideHeader = styled.div`

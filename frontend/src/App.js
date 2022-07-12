@@ -1,7 +1,10 @@
 import React from "react";
+import SellerPage from "./seller/pages/SellerPage";
 
 function App() {
-  return <div className="App"></div>;
+  return <div>
+    <SellerPage/>
+  </div>;
 }
 
 export default App;
