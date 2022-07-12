@@ -1,12 +1,7 @@
-import React from 'react';
-import AddItem from "./seller/components/BoardLayout/DisplayBoard/Items/AddItem";
+import React from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <AddItem />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
