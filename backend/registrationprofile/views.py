@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 
 from rest_framework.generics import CreateAPIView, GenericAPIView, get_object_or_404
 from rest_framework.mixins import UpdateModelMixin
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from .serializers import RegisterUserSerializer, ValidateUserSerializer
@@ -11,7 +12,7 @@ UserModel = get_user_model()
 
 
 class RegisterUserView(CreateAPIView):
-    permission_classes = []
+    permission_classes = [AllowAny]
     queryset = UserModel.objects.all()
     serializer_class = RegisterUserSerializer
 
@@ -21,7 +22,7 @@ class RegisterUserView(CreateAPIView):
 
 # TODO Add a is_validated boolean field to the User model
 class ValidateUserView(GenericAPIView, UpdateModelMixin):
-    permission_classes = []
+    permission_classes = [AllowAny]
     queryset = UserModel.objects.all()
     serializer_class = ValidateUserSerializer
 
