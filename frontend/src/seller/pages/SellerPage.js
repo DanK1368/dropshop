@@ -6,6 +6,7 @@ import InventoryColumn from "../components/BoardLayout/DisplayBoard/Columns/Inve
 import ForSaleColumn from "../components/BoardLayout/DisplayBoard/Columns/ForSaleColumn";
 import DiscountColumn from "../components/BoardLayout/DisplayBoard/Columns/DiscountColumn";
 
+
 const SellerPage = () => {
     return (
         <Main>
@@ -18,7 +19,6 @@ const SellerPage = () => {
                     <DiscountColumn/>
                 </InnerPage>
             </Board>
-            
         </Main>
 
     )

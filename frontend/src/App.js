@@ -1,12 +1,12 @@
 import React from "react";
-import Header from "./seller/components/BoardLayout/Header";
 import SellerPage from "./seller/pages/SellerPage";
-
+import Header from "./buyer/components/Header"
 
 function App() {
   return <div>
-    <SellerPage/>
+    <Header/>
   </div>;
 }
 
 export default App;
+
