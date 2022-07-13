@@ -1,12 +1,17 @@
 import React from "react";
 import Header from "./seller/components/BoardLayout/Header";
 import SellerPage from "./seller/pages/SellerPage";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend"
+
 
 
 function App() {
-  return <div>
+  return (
+  <DndProvider backend={HTML5Backend}>
     <SellerPage/>
-  </div>;
+  </DndProvider>
+  )
 }
 
 export default App;

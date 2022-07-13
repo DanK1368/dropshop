@@ -1,10 +1,20 @@
 import React from "react";
 import {Page, Columns} from "../../../../styles/SellerColumns";
+import SingleItem from "../Items/SingleItem";
 
 const InventoryColumn = () => {
+
+
     return(
         <Page>
-        <Columns><h4>Inventory</h4></Columns>
+            <Columns>
+                <h4>Inventory</h4>
+                <SingleItem />
+            </Columns>
+            <Columns>
+                <h4>On Sale</h4>
+                <SingleItem />
+            </Columns>
         </Page>
     )
 }

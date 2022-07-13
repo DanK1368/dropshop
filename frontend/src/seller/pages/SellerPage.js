@@ -14,8 +14,10 @@ const SellerPage = () => {
                 <Header/>
                 <InnerPage>
                     <InventoryColumn/>
+                    {/*
                     <ForSaleColumn/>
                     <DiscountColumn/>
+                    */}
                 </InnerPage>
             </Board>
             
