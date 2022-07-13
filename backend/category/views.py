@@ -1,3 +1,16 @@
-from django.shortcuts import render
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 
-# Create your views here.
+from .models import CategoryModel
+
+from .serializers import CategorySerializer
+
+
+class ListCreateCategoriesView(ListCreateAPIView):
+    queryset = CategoryModel
+    serializer_class = CategorySerializer
+
+
+class RetrieveUpdateDestroyCategoryView(RetrieveUpdateDestroyAPIView):
+    queryset = CategoryModel
+    serializer_class = CategorySerializer
+    lookup_url_kwarg = 'category_id'
