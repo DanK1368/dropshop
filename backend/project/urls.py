@@ -22,6 +22,8 @@ urlpatterns = [
     path('backend/api/user/', include('users.urls')),
     path('backend/api/registration/', include('registrationprofile.urls')),
     path('backend/api/categories/', include('category.urls')),
+    path('backend/api/items/', include('item.urls')),
+
 
     # JWT
     path('backend/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),

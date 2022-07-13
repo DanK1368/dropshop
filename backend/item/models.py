@@ -1,5 +1,7 @@
 from django.db import models
 
+from category.models import CategoryModel
+
 
 class ItemModel(models.Model):
     # TODO figure out how ImageFields and FileFields work
@@ -8,7 +10,11 @@ class ItemModel(models.Model):
     features = models.TextField()
     box_items = models.TextField()
     stock = models.PositiveIntegerField()
-    price = models.PositiveIntegerField()
-    image = models.ImageField()
-    video = models.FileField()
-    # TODO Relations: SellerProfile, Category, Wishlist
+    price = models.FloatField()
+    image = models.ImageField(blank=True, null=True)
+    video = models.FileField(blank=True, null=True)
+    category = models.ForeignKey(to=CategoryModel, on_delete=models.PROTECT)
+    # TODO Relations: SellerProfile, Wishlist
+
+    def __str__(self):
+        return f"{self.name}"
