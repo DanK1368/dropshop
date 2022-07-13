@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { Columns, Grid } from "../../../../styles/SellerColumns";
-import { useDrop } from "react-dnd";
 
 const ForSaleColumn = () => {
   return (
