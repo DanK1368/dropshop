@@ -1,10 +1,20 @@
+import { useContext } from "react";
 import { StyledBackdrop } from "../../../../styles/AddItem";
 import {
   StyledCard,
   StyledButtonContainer,
 } from "../../../../styles/DeleteItem";
+import productContext from "../../../../context/products/ProductContext";
 
-const DeleteItem = () => {
+// the props passed down come from the SingleItem Component
+const DeleteItem = ({ showWarning, setShowWarning, productId }) => {
+  const { dispatch } = useContext(productContext);
+
+  // this will delete the item from the Online Column
+  const handleDeleteItem = () => {
+    dispatch({ type: "DELETE_FROM_COLUMN", payload: productId });
+  };
+
   return (
     <StyledBackdrop>
       <StyledCard>
@@ -14,8 +24,8 @@ const DeleteItem = () => {
           reveresed!
         </p>
         <StyledButtonContainer>
-          <button>Delete</button>
-          <button>Cancel</button>
+          <button onClick={handleDeleteItem}>Delete</button>
+          <button onClick={() => setShowWarning(!showWarning)}>Cancel</button>
         </StyledButtonContainer>
       </StyledCard>
     </StyledBackdrop>

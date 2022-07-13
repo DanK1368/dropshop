@@ -1,12 +1,14 @@
-import React from "react";
-import {Page, Columns} from "../../../../styles/SellerColumns";
+import React, { useState } from "react";
+import { Columns, Grid } from "../../../../styles/SellerColumns";
+import { useDrop } from "react-dnd";
 
 const ForSaleColumn = () => {
-    return(
-        <Page>
-            <Columns><h4>For Sale</h4></Columns>
-        </Page>
-    )
-}
+  return (
+    <Columns>
+      <h4>For Sale</h4>
+      <Grid></Grid>
+    </Columns>
+  );
+};
 
 export default ForSaleColumn;
