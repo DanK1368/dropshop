@@ -1,10 +1,10 @@
 import React from "react";
 import SellerPage from "./seller/pages/SellerPage";
-import Header from "./buyer/components/Header"
+import Footer from "./buyer/components/Footer"
 
 function App() {
   return <div>
-    <Header/>
+    <Footer/>
   </div>;
 }
 
