@@ -1,7 +1,7 @@
 import React from "react";
-import Headphones from "../../assets/headphones-store-link.png";
-import Speakers from "../../assets/speakers-store-link.png";
-import Earphones from "../../assets/earphones-store-link.png";
+import Headphones from "../../assets/shared/image-category-thumbnail-headphones.png";
+import Speakers from "../../assets/shared/image-category-thumbnail-speakers.png";
+import Earphones from "../../assets/shared/image-category-thumbnail-earphones.png";
 import {
     StyledAllLinks,
     StyledHeadphones,
