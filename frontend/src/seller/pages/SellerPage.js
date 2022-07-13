@@ -7,22 +7,17 @@ import ForSaleColumn from "../components/BoardLayout/DisplayBoard/Columns/ForSal
 import DiscountColumn from "../components/BoardLayout/DisplayBoard/Columns/DiscountColumn";
 
 const SellerPage = () => {
-    return (
-        <Main>
-            <SideBoard/>
-            <Board>
-                <Header/>
-                <InnerPage>
-                    <InventoryColumn/>
-                    <ForSaleColumn/>
-                    <DiscountColumn/>
-                </InnerPage>
-            </Board>
-            
-        </Main>
-
-    )
-}
-
+  return (
+    <Main>
+      <SideBoard />
+      <Board>
+        <Header />
+        <InnerPage>
+          <InventoryColumn />
+        </InnerPage>
+      </Board>
+    </Main>
+  );
+};
 
 export default SellerPage;
