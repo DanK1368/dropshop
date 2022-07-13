@@ -8,3 +8,11 @@ class IsStaffOrReadOnly(BasePermission):
             request.user and
             request.user.is_staff
         )
+
+
+# class IsStaff(BasePermission):
+#     def has_permission(self, request, view):
+#         return bool(
+#             request.user and
+#             request.user.is_staff
+#         )
