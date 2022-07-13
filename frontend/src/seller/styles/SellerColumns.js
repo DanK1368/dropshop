@@ -8,8 +8,7 @@ export const Page = styled.div`
 export const Columns = styled.div`
     display:grid;
     grid-template-columns: repeat(1, 1fr);
-    //grid:;
-    //gap:;
+    gap:10px;
     color:white;
     background-color:#000112;
     padding:5px 10px;
