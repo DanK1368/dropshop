@@ -45,25 +45,22 @@ class RetrieveUpdateDestroyAPIViewReview(RetrieveUpdateDestroyAPIView):
         return Response(serializer.data)
 
 
-class GetReviewsFromSpecificUser(GenericAPIView):
+class RetrieveUpdateDestroyReviewView(RetrieveUpdateDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
-    lookup_url_kwarg = "user_id"
+    lookup_url_kwarg = 'review_id'
+
+
+class GetAllReviews(GenericAPIView):
+    serializer_class = ReviewSerializer
+    queryset = Review.objects.all()
+    #permission_classes = [IsStaffOrReadOnly]
 
     def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset().filter(user=self.kwargs.get("user_id"))
+
+        #current_restaurant = self.request.user
+        queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
 
-class UpdateSpecificReview(GenericAPIView):
-    def get_object(self, pk):
-        return Review.objcets.get(pk=pk)
-
-    def patch(self, request, pk, *args, **kwargs):
-        review_objects = self.get_object(pk)
-        serializer = ReviewSerializer(review_objects, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(code=201, data=serializer.data)
-        return JsonResponse(code=400, data="wrong parameters")
