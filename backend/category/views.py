@@ -6,11 +6,11 @@ from .serializers import CategorySerializer
 
 
 class ListCreateCategoriesView(ListCreateAPIView):
-    queryset = CategoryModel
+    queryset = CategoryModel.objects.all()
     serializer_class = CategorySerializer
 
 
 class RetrieveUpdateDestroyCategoryView(RetrieveUpdateDestroyAPIView):
-    queryset = CategoryModel
+    queryset = CategoryModel.objects.all()
     serializer_class = CategorySerializer
     lookup_url_kwarg = 'category_id'
