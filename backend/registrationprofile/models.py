@@ -23,6 +23,7 @@ class RegistrationProfileModel(models.Model):
         return f"Registration Profile for: {self.user}"
 
 
+# Signal
 @receiver(post_save, sender=UserModel)
 def create_registration_profile(sender, instance, *args, **kwargs):
     profile, created = RegistrationProfileModel.objects.get_or_create(user=instance)
@@ -33,9 +34,9 @@ def create_registration_profile(sender, instance, *args, **kwargs):
         validation_code = profile.code
 
         send_mail(
-            'Registration Code for DropShop',
-            f'Validation Code: {validation_code}',
-            'alphadelta566@gmail.com',
-            [f'{user_email}'],
+            'Registration Code for DropShop', # Email Subject
+            f'Validation Code: {validation_code}', # Email Content
+            'alphadelta566@gmail.com', # Sender Address
+            [f'{user_email}'], # Receiver Address
             fail_silently=False,
         )
