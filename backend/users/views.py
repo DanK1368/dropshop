@@ -7,10 +7,12 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView, GenericAPIView, get_object_or_404
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
-from users.serializers import UserSerializer
-
+from users.serializers import UserSerializer, UserProfileSerializer
 from project.permissions import IsStaffOrReadOnly
+from users.permission import IsUser, IsNotUser
+
 
 User = get_user_model()
 
@@ -34,13 +36,35 @@ class ListCreateUser(ListCreateAPIView):
     serializer_class = UserSerializer
 
 
-class GetSpecificUser(GenericAPIView):
-    permission_classes = [IsStaffOrReadOnly]
+class RetrieveUpdateDestroyAPIViewUser(RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
     serializer_class = UserSerializer
-    lookup_url_kwarg = 'user_id'
+    lookup_url_kwarg = "user_id"
+    permission_classes = [IsUser]
+
+
+class ListOfAllUsers(GenericAPIView):
+    serializer_class = UserProfileSerializer
+    queryset = User.objects.all()
+    permission_classes = [IsAdminUser]
 
     def get(self, request, *args, **kwargs):
-        user_profile = get_object_or_404(User, pk=kwargs.get('user_id'))
-        queryset = User.objects.filter(id=user_profile.id)
+        # current_restaurant = self.request.user
+        queryset = self.get_queryset()
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+
+# class DeleteUserUserProfile(GenericAPIView):
+#     queryset = User.objects.all()
+#     permission_classes = [IsStaffOrReadOnly]
+#     serializer_class = UserSerializer
+#     lookup_url_kwarg = "user_id"
+#
+#     def delete(self, request, *args, **kwargs):
+#         user = self.request.user
+#         user_tode = get_object_or_404(User, pk=kwargs.get("user_id"))  # getting post id by int in endpoint
+#         if Response(status=204):
+#             user_tode.remove(user.id)
+#             return Response(status=203)
+
