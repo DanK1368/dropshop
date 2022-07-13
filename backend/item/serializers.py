@@ -10,3 +10,9 @@ class ItemSerializer(ModelSerializer):
     class Meta:
         model = ItemModel
         fields = '__all__'
+
+
+class CreateItemSerializer(ModelSerializer):
+    class Meta:
+        model = ItemModel
+        fields = '__all__'
