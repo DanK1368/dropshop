@@ -1,113 +1,55 @@
 import styled from "styled-components";
 import productImage from "../../assets/product-xx99-mark-two-headphones/desktop/image-product.jpg";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { useState } from "react";
+import {
+  StyledGoBackBtnContainer,
+  StyledProductContainer,
+  StyledProductDetails,
+  StyledCartContainer,
+  StyledBtnContainer,
+  StyledAddToCartBtn,
+  StyledFeaturesContainer,
+  StyledFeatures,
+  StyledBoxItems,
+  StyledPictureGrid,
+} from "../styles/ProductDetails";
+import { Link } from "react-router-dom";
+import image1 from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg";
+import image2 from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg";
+import image3 from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg";
 
 export const StyledOuterContainer = styled.div`
-  background: rgba(0, 0, 0, 0.1);
+  /* background: rgba(0, 0, 0, 0.1); */
   min-height: 100vh;
   width: clamp(500px, 80%, 1450px);
   margin: 0 auto;
   margin-block: 4rem;
 `;
 
-const StyledProductContainer = styled.div`
-  display: flex;
-
-  img {
-    max-width: 500px;
-    object-fit: cover;
-  }
-`;
-
-const StyledProductDetails = styled.div`
-  padding: 3rem;
-  background-color: aliceblue;
-  padding-inline: 5rem;
-
-  h2 {
-    font-size: 12px;
-    font-weight: 200;
-    text-transform: uppercase;
-    letter-spacing: 8px;
-    color: #d87d4a;
-  }
-`;
-
-const StyledCartContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  h3 {
-    font-size: 30px;
-    text-transform: uppercase;
-    max-width: 10ch;
-    font-weight: 500;
-  }
-
-  p {
-    line-height: 1.7;
-  }
-`;
-
-const StyledBtnContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 2rem;
-  padding-top: 1rem;
-
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    background: #f1f1f1;
-    padding-inline: 0.5rem;
-
-    button {
-      background: none;
-      border: none;
-      padding-inline: 1rem;
-    }
-  }
-`;
-
-const StyledAddToCartBtn = styled.button`
-  background: none;
-  border: none;
-  padding: 1rem 2rem;
-  background-color: #d87d4a;
-  color: white;
-`;
-
-const StyledFeaturesContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StyledFeatures = styled.div`
-  flex: 2;
-  background-color: aqua;
-
-  p {
-    max-width: 50ch;
-    line-height: 1.7;
-  }
-`;
-
-const StyledBoxItems = styled.div`
-  flex: 1;
-`;
-
+// sample array of pictures -> should always be 3 pictures for this layout
 const ProductDetails = () => {
+  const [pics, setPics] = useState([
+    {
+      id: 1,
+      imageUrl: image1,
+    },
+    {
+      id: 2,
+      imageUrl: image2,
+    },
+    {
+      id: 3,
+      imageUrl: image3,
+    },
+  ]);
+
   return (
     <section>
       {/* Button Container */}
-      <div>
-        <button>Go Back</button>
-      </div>
+      <StyledGoBackBtnContainer>
+        <Link to="/">Go Back</Link>
+      </StyledGoBackBtnContainer>
       {/* Container with Picture and details about product */}
       <StyledProductContainer>
         <img src={productImage} alt="" />
@@ -182,6 +124,11 @@ const ProductDetails = () => {
         </StyledBoxItems>
       </StyledFeaturesContainer>
       {/* Picture Gallery */}
+      <StyledPictureGrid>
+        {pics.map(pic => (
+          <img key={pic.id} src={pic.imageUrl} alt="" />
+        ))}
+      </StyledPictureGrid>
     </section>
   );
 };
