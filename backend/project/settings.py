@@ -41,13 +41,11 @@ INSTALLED_APPS = [
 
     #own app
     'users',
-    'buyerprofile',
     'item',
     'review',
     'order',
     'wishlist',
     'registrationprofile',
-    'sellerprofile',
     'category',
 
     # 3rd party

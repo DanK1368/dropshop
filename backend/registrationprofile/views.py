@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
+from django.contrib.auth.hashers import make_password
 
 from rest_framework.generics import CreateAPIView, GenericAPIView, get_object_or_404
 from rest_framework.mixins import UpdateModelMixin
@@ -17,7 +18,7 @@ class RegisterUserView(CreateAPIView):
     serializer_class = RegisterUserSerializer
 
     def perform_create(self, serializer):
-        serializer.save(is_active=False)
+        serializer.save(is_active=False, password=make_password(serializer.validated_data['password']))
 
 
 # TODO Add a is_validated boolean field to the User model

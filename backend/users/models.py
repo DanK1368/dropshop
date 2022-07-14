@@ -16,23 +16,26 @@ class User(AbstractUser):
 
 
 class BuyerProfileModel(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    street = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
-    zip = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=100)
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE, null=True, blank=True)
+    first_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=100, blank=True)
+    street = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100, blank=True)
+    zip = models.CharField(max_length=100, blank=True)
+    country = models.CharField(max_length=100, blank=True)
+    phone_number = models.CharField(max_length=100, blank=True)
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE, null=True, blank=True, related_name='buyer_profile')
     favourite_items = models.ManyToManyField(to=ItemModel)
     # TODO Relations: wish_list, orders, reviews
 
+    def __str__(self):
+        return f"BuyerProfile | Username: {self.user.username} | Email: {self.user.email}"
+
 
 class SellerProfileModel(models.Model):
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE, null=True, blank=True)
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE, null=True, blank=True, related_name='seller_profile')
 
 
-# Create seller or buyer profile when UserModel is created
+# Create seller profile or buyer profile when UserModel is created
 @receiver(post_save, sender=User)
 def create_buyer_seller_profile(sender, instance, *args, **kwargs):
     user_instance = instance

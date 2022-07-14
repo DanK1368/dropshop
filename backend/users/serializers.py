@@ -1,16 +1,17 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
+from .models import BuyerProfileModel
 UserModel = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
-        fields = '__all__'
+        fields = ['email', 'username']
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class BuyerProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserModel
-        fields = ['email', 'username', 'first_name', 'last_name']
+        model = BuyerProfileModel
+        fields = '__all__'
