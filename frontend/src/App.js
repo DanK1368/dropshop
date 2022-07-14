@@ -1,18 +1,19 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import BottomPicture from "./buyer/components/BottomPicture";
 import ItemForSale from "./buyer/components/ItemForSale";
 import ShopLinks from "./buyer/components/ShopLinks";
 import SellerPage from "./seller/pages/SellerPage";
+import Recomended from "./buyer/components/Recomended";
 
 function App() {
   return (
     <div>
-      <ItemForSale />
-      {/**
-      <Routes>
-        <Route path="/" element={<SellerPage />} />
-      </Routes>
-       */}
+      
+      {/* <Routes> */}
+        {/* <Route path="/" element={<SellerPage />} /> */}
+      {/* </Routes> */}
+      
     </div>
   );
 }

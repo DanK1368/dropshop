@@ -1,7 +1,5 @@
 from django.db import models
 
-from item.models import ItemModel
-
 
 class CategoryModel(models.Model):
     name = models.CharField(max_length=50)
