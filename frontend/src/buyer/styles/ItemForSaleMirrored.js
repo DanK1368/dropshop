@@ -23,16 +23,4 @@ export const StyledInnerDescriptionBox = styled.div`
     justify-content: center;
     align-items: flex-start;
     width: 75%;
-
-    button {
-        background: #d87d4a;
-        border: none;
-        padding: 15px 25px;
-        color: white;
-
-        :hover {
-            background: #fbaf85;
-            color: white;
-        }
-    }
 `

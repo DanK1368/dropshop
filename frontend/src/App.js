@@ -12,11 +12,10 @@ import SharedLayout from "./buyer/pages/SharedLayout";
 function App() {
   return (
     <div>
-      {/* <ItemForSale /> */}
       <Routes>
-        {/* Seller Side Below */}
+        {/* Seller Side Below  */}
         <Route path="seller" element={<SellerPage />} />
-        {/* Buyer Side below */}
+        {/* Buyer Side below  */}
         <Route path="/" element={<SharedLayout />}>
           <Route path="productdetails" element={<ProductDetails />} />
         </Route>

@@ -5,6 +5,7 @@ import {
     StyledDescriptionBox,
     StyledInnerDescriptionBox,
 } from "../styles/ItemForSaleMirrored";
+import { StyledSeeProduct } from "../styles/SeeProductButton";
 
 const ItemForSale = () => {
     return (
@@ -14,7 +15,7 @@ const ItemForSale = () => {
                     <h5>NEW PRODUCTS</h5>
                     <h2>XX99 MARK I HEADPHONES</h2>
                     <p>The new XX99 Mark I headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.</p>
-                    <button>SEE PRODUCT</button>
+                    <StyledSeeProduct>SEE PRODUCT</StyledSeeProduct>
                 </StyledInnerDescriptionBox>
             </StyledDescriptionBox>
             <img src={XX99} alt="Headphones" />
