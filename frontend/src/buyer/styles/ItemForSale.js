@@ -6,10 +6,33 @@ export const StyledWholeItem = styled.div`
 
     img {
         width: 50%;
+        border-radius: 10px;
     }
 `
 
 export const StyledDescriptionBox = styled.div`
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
 
+export const StyledInnerDescriptionBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+
+    button {
+        background: #d87d4a;
+        border: none;
+        padding: 10px;
+        color: white;
+
+        :hover {
+            background: #fbaf85;
+            color: white;
+        }
+    }
+`
