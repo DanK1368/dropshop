@@ -16,6 +16,7 @@ const Header = () => {
         <p>HEADPHONES</p>
         <p>SPEAKERS</p>
         <p>EARPHONES</p>
+        <p>LOGIN</p>
       </PageLinks>
       <div>
         <RiShoppingCartLine />

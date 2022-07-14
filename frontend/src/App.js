@@ -1,7 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import BottomPicture from "./buyer/components/BottomPicture";
 import ItemForSale from "./buyer/components/ItemForSale";
 import SellerPage from "./seller/pages/SellerPage";
+import Recomended from "./buyer/components/Recomended";
 import ProductDetails from "./buyer/pages/ProductDetails";
 import SharedLayout from "./buyer/pages/SharedLayout";
 
