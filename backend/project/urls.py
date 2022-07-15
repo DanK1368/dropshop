@@ -22,6 +22,7 @@ urlpatterns = [
     path('backend/api/user/', include('users.urls')),
     path('backend/api/registration/', include('registrationprofile.urls')),
     path('backend/api/categories/', include('category.urls')),
+    path('backend/api/reviews/', include('review.urls')),
     path('backend/api/items/', include('item.urls')),
 
     # JWT

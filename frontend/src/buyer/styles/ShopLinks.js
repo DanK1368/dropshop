@@ -20,6 +20,7 @@ export const StyledHeadphones = styled.div`
     img {
         width: 100px;
         height: 100px;
+        position: relative;
     }
 
     button {
