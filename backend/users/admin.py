@@ -3,7 +3,10 @@ from django.contrib import admin
 # Register your models here.
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import get_user_model
+
+from .models import BuyerProfileModel, SellerProfileModel
 User = get_user_model()
+
 
 class MyUserAdmin(UserAdmin):   # using the built-in class 'UserAdmin' from django authentication
     readonly_fields = ('date_joined',)  # show in the admin when the user was created
@@ -18,8 +21,6 @@ class MyUserAdmin(UserAdmin):   # using the built-in class 'UserAdmin' from djan
     # fields when reading / updating an instance
     fieldsets = (
         (None, {'fields': ('email', 'username', 'password')}),
-        # fields asked when trying to create the user
-        ('Personal info', {'fields': ('first_name', 'last_name')}),
         # different sections when editing the profile
         ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'user_permissions')}),
         # permissions supplied when creating the user
@@ -28,16 +29,12 @@ class MyUserAdmin(UserAdmin):   # using the built-in class 'UserAdmin' from djan
         ('Groups', {'fields': ('groups',)}),
     )
     # fields which are shown when looking at a list of instances
-    list_display = ('id', 'email', 'first_name', 'last_name', 'street','city','zip','country','phone_number')
+    list_display = ('id', 'username', 'email')
     # display when going to the user section of admin
     ordering = ('email',) # order users by email in alphabetic order
 
 
+# TODO Write custom implementation admin implementation where necessary
 admin.site.register(User, MyUserAdmin)  # applying the configuration
-
-
-
-
-
-
-
+admin.site.register(BuyerProfileModel)
+admin.site.register(SellerProfileModel)

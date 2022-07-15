@@ -2,16 +2,19 @@ import styled from "styled-components";
 
 export const Main = styled.div`
   width: 100%;
-  height: 100%;
+
   display: flex;
   flex-direction: row;
+  align-items: center;
   font-size: 13px;
   margin-top: 2rem;
+  gap: 3rem;
 
   img {
     /* width: 288px;
     height: 300px; */
-    max-width: 500px;
+    width: clamp(400px, 100%, 700px);
+    height: 100%;
     border-radius: 5px;
     object-fit: cover;
   }
@@ -22,9 +25,7 @@ export const LeftText = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5rem;
   line-height: 2em;
-  flex: 1;
 
   h3 {
     font-size: 50px;
@@ -34,6 +35,7 @@ export const LeftText = styled.div`
 
   p {
     font-size: 16px;
+    max-width: 100ch;
   }
 
   span {
