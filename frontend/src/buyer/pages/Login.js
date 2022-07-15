@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { StyledContainer, StyledForm } from "../styles/Login";
+import CheckOutModal from "../components/CheckOutModal";
 
 const Login = () => {
   return (
     <StyledContainer>
       <h1>
-        <span>Login</span> To Your Account
+        <span>Login</span> <br /> To Your Account
       </h1>
       <StyledForm>
         <label>
@@ -15,7 +16,7 @@ const Login = () => {
             id="email"
             placeholder="E-Mail Address"
           />
-          <Link to="/register">Don't have an account? Sing up here</Link>
+          <Link to="/register">Don't have an account? Sign up here</Link>
         </label>
         <button>SUBMIT</button>
       </StyledForm>
