@@ -1,11 +1,10 @@
 from django.urls import path
-from django.urls import path
 
-from review.views import ReviewCreateView, RetrieveUpdateDestroyReviewView, GetAllReviews
+from review.views import CreateReviewView, ListReviewView, RetrieveUpdateReviewView
 
 urlpatterns = [
-    # create a review
-    path('', ReviewCreateView.as_view()),
-    path('<int:review_id>/', RetrieveUpdateDestroyReviewView.as_view()),
-    path('', GetAllReviews.as_view()),
+    path('', ListReviewView.as_view()),
+    path('new/<int:item_id>/', CreateReviewView.as_view()),
+    path('<int:review_id>/', RetrieveUpdateReviewView.as_view()),
+
 ]
