@@ -26,7 +26,6 @@ urlpatterns = [
     path('backend/api/items/', include('item.urls')),
     path('backend/api/wishlist/', include('wishlist.urls')),
 
-
     # JWT
     path('backend/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('backend/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),

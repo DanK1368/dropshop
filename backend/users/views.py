@@ -1,70 +1,69 @@
-from django.shortcuts import render
-
-# Create your views here.
-from django.test import TestCase
-
-# Create your tests here.
 from django.contrib.auth import get_user_model
-from django.shortcuts import render
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView, GenericAPIView, get_object_or_404
-from rest_framework.permissions import IsAdminUser
+
+from rest_framework import status
 from rest_framework.response import Response
-from users.serializers import UserSerializer, UserProfileSerializer
-from project.permissions import IsStaffOrReadOnly
-from users.permission import IsUser, IsNotUser
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, RetrieveUpdateAPIView
+
+from users.serializers import UserSerializer, BuyerProfileSerializer
+
+from .models import BuyerProfileModel
+UserModel = get_user_model()
 
 
-User = get_user_model()
-
-
-class CurrentUserProfile(RetrieveUpdateDestroyAPIView):
+class RetrieveUpdateDestroyMeView(RetrieveUpdateDestroyAPIView):
+    queryset = UserModel.objects.all()
     serializer_class = UserSerializer
 
-    def get(self, request, *args, **kwargs):
-        current_user = self.request.user.id
-        queryset = User.objects.filter(id=current_user)
-        serializer = self.serializer_class(queryset, many=True)
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.request.user
+        serializer = self.get_serializer(instance)
         return Response(serializer.data)
 
-    def get_object(self):
-        return self.request.user
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.request.user
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
 
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
 
-class ListCreateUser(ListCreateAPIView):
-    queryset = User.objects.all()
-    permission_classes = [IsStaffOrReadOnly]
-    serializer_class = UserSerializer
-
-
-class RetrieveUpdateDestroyAPIViewUser(RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    lookup_url_kwarg = "user_id"
-    permission_classes = [IsUser]
-
-
-class ListOfAllUsers(GenericAPIView):
-    serializer_class = UserProfileSerializer
-    queryset = User.objects.all()
-    permission_classes = [IsAdminUser]
-
-    def get(self, request, *args, **kwargs):
-        # current_restaurant = self.request.user
-        queryset = self.get_queryset()
-        serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
+    def put(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED, data="Use 'PATCH' to update User")
 
-# class DeleteUserUserProfile(GenericAPIView):
-#     queryset = User.objects.all()
-#     permission_classes = [IsStaffOrReadOnly]
-#     serializer_class = UserSerializer
-#     lookup_url_kwarg = "user_id"
-#
-#     def delete(self, request, *args, **kwargs):
-#         user = self.request.user
-#         user_tode = get_object_or_404(User, pk=kwargs.get("user_id"))  # getting post id by int in endpoint
-#         if Response(status=204):
-#             user_tode.remove(user.id)
-#             return Response(status=203)
+    def destroy(self, request, *args, **kwargs):
+        instance = self.request.user
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
+
+class RetrieveUpdateBuyerProfileView(RetrieveUpdateAPIView):
+    queryset = BuyerProfileModel.objects.all()
+    serializer_class = BuyerProfileSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.request.user.buyer_profile
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.request.user.buyer_profile
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+
+    def put(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED, data="Use 'PATCH' to update Buyer Profile")

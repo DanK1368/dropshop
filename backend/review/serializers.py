@@ -1,24 +1,17 @@
 from rest_framework import serializers
-from rest_framework.fields import SerializerMethodField
 
-from review.models import Review
-from users.serializers import UserSerializer
+from review.models import ReviewModel
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    #posted_by = UserSerializer(read_only=True)
-
-    # like_count: SerializerMethodField = serializers.SerializerMethodField()
-
-    # def get_like_count(self, obj):
-    #     return obj.liked_by.count()
-
     class Meta:
-        model = Review
+        model = ReviewModel
         fields = '__all__'
 
 
-class ReviewCreateSerializer(serializers.ModelSerializer):
+class ListRetrieveReviewSerializer(serializers.ModelSerializer):
+    item = serializers.StringRelatedField()
+
     class Meta:
-        model = Review
+        model = ReviewModel
         fields = '__all__'
