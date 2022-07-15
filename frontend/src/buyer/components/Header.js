@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React from "react";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { Main, PageLinks, StyledShowCartBtn } from "../styles/Header";
-import cartContext from "../context/cart/CartContext";
 import CartSummary from "./CartSummary";
+import { useDispatch, useSelector } from "react-redux";
+import { TOGGLE_CART_MODAL } from "../../redux/cartSlice";
 
 // not forget to take a look at the border-bottom
 const Header = () => {
-  const { showCartSummary, dispatch } = useContext(cartContext);
-
-  // Function to show the cart summary when we click the cart
-  const handleShowCartSummary = () => dispatch({ type: "TOGGLE_CART_SUMMARY" });
+  const { showCartModal } = useSelector(state => state.cart);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -26,11 +25,11 @@ const Header = () => {
           <p>EARPHONES</p>
           <p>LOGIN</p>
         </PageLinks>
-        <StyledShowCartBtn onClick={handleShowCartSummary}>
+        <StyledShowCartBtn onClick={() => dispatch(TOGGLE_CART_MODAL())}>
           <RiShoppingCartLine color="white" size={20} />
         </StyledShowCartBtn>
       </Main>
-      {showCartSummary && <CartSummary />}
+      {showCartModal && <CartSummary />}
     </>
   );
 };
