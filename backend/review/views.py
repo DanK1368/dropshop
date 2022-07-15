@@ -1,8 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
-from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
 
 from rest_framework.generics import GenericAPIView,ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from rest_framework.response import Response

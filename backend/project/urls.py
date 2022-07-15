@@ -24,6 +24,7 @@ urlpatterns = [
     path('backend/api/categories/', include('category.urls')),
     path('backend/api/reviews/', include('review.urls')),
     path('backend/api/items/', include('item.urls')),
+    path('backend/api/wishlist/', include('wishlist.urls')),
 
 
     # JWT
