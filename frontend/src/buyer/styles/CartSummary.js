@@ -28,6 +28,21 @@ export const StyledCartContainer = styled.div`
     object-fit: cover;
     border-radius: 10px;
   }
+
+  a {
+    padding-block: 1rem;
+    border: none;
+    background-color: #d87d4a;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+      background: #fbaf85;
+    }
+  }
 `;
 
 export const StyledFlexContainer = styled.div`
