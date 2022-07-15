@@ -1,18 +1,21 @@
-import { useContext } from "react";
 import { StyledBackdrop } from "../../../../styles/AddItem";
 import {
   StyledCard,
   StyledButtonContainer,
 } from "../../../../styles/DeleteItem";
-import productContext from "../../../../context/products/ProductContext";
+import { useDispatch } from "react-redux";
+import {
+  DELETE_ITEM_FROM_COLUMN,
+  TOGGLE_WARNING_MESSAGE,
+} from "../../../../../redux/productSlice";
 
 // the props passed down come from the SingleItem Component
-const DeleteItem = ({ showWarning, setShowWarning, productId }) => {
-  const { dispatch } = useContext(productContext);
+const DeleteItem = ({ productId }) => {
+  const dispatch = useDispatch();
 
   // this will delete the item from the Online Column
   const handleDeleteItem = () => {
-    dispatch({ type: "DELETE_FROM_COLUMN", payload: productId });
+    dispatch(DELETE_ITEM_FROM_COLUMN(productId));
   };
 
   return (
@@ -25,7 +28,9 @@ const DeleteItem = ({ showWarning, setShowWarning, productId }) => {
         </p>
         <StyledButtonContainer>
           <button onClick={handleDeleteItem}>Delete</button>
-          <button onClick={() => setShowWarning(!showWarning)}>Cancel</button>
+          <button onClick={() => dispatch(TOGGLE_WARNING_MESSAGE())}>
+            Cancel
+          </button>
         </StyledButtonContainer>
       </StyledCard>
     </StyledBackdrop>

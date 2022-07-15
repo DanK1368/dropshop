@@ -10,15 +10,16 @@ import {
 } from "../styles/CartSummary";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import image1 from "../../assets/product-xx59-headphones/desktop/image-product.jpg";
-import { useContext, useEffect, useRef } from "react";
-import cartContext from "../context/cart/CartContext";
+import { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { TOGGLE_CART_MODAL } from "../../redux/cartSlice";
 
 const CartSummary = () => {
   const ref = useRef();
-  const { dispatch } = useContext(cartContext);
+  const dispatch = useDispatch();
 
   // Function to close the modal when we click outside the cart summary
-  useOnClickOutside(ref, () => dispatch({ type: "TOGGLE_CART_SUMMARY" }));
+  useOnClickOutside(ref, () => dispatch(TOGGLE_CART_MODAL()));
 
   return (
     <StyledBackdrop>
