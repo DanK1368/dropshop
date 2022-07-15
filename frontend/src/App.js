@@ -10,6 +10,8 @@ import ProductDetails from "./buyer/pages/ProductDetails";
 import SharedLayout from "./buyer/pages/SharedLayout";
 import Login from "./buyer/pages/Login";
 import Register from "./buyer/pages/Register";
+import CheckoutLayout from "./buyer/pages/CheckoutLayout";
+import Checkout from "./buyer/pages/Checkout";
 
 function App() {
   return (
@@ -22,6 +24,9 @@ function App() {
           <Route path="productdetails" element={<ProductDetails />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+        </Route>
+        <Route path="checkout" element={<CheckoutLayout />}>
+          <Route path="details" element={<Checkout />} />
         </Route>
       </Routes>
     </div>
