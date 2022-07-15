@@ -6,6 +6,7 @@ import SellerPage from "./seller/pages/SellerPage";
 import Recomended from "./buyer/components/Recomended";
 import ProductDetails from "./buyer/pages/ProductDetails";
 import SharedLayout from "./buyer/pages/SharedLayout";
+import Home from "./buyer/pages/Home";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         {/* Buyer Side below */}
         <Route path="/" element={<SharedLayout />}>
           <Route path="productdetails" element={<ProductDetails />} />
+          <Route path="home/" element={<Home />} />
         </Route>
       </Routes>
     </div>
