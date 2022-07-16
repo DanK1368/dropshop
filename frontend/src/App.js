@@ -9,7 +9,8 @@ import Recomended from "./buyer/components/Recomended";
 import ProductDetails from "./buyer/pages/ProductDetails";
 import SharedLayout from "./buyer/pages/SharedLayout";
 import Login from "./buyer/pages/Login";
-import Register from "./buyer/pages/Register";
+import Validate from "./buyer/pages/Validate";
+import Registration from "./buyer/pages/Registration";
 import CheckoutLayout from "./buyer/pages/CheckoutLayout";
 import Checkout from "./buyer/pages/Checkout";
 
@@ -23,7 +24,8 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route path="productdetails" element={<ProductDetails />} />
           <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+          <Route path="registration" element={<Registration />} />
+          <Route path="validation" element={<Validate />} />
         </Route>
         <Route path="checkout" element={<CheckoutLayout />}>
           <Route path="details" element={<Checkout />} />

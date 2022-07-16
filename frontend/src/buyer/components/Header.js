@@ -2,6 +2,7 @@ import React from "react";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { Main, PageLinks, StyledShowCartBtn } from "../styles/Header";
 import CartSummary from "./CartSummary";
+import { NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { TOGGLE_CART_MODAL } from "../../redux/cartSlice";
 
@@ -15,15 +16,17 @@ const Header = () => {
       <Main>
         <div>
           <h2>
-            <b>dropshop</b>
+            <Link to="/">
+              <b>dropshop</b>
+            </Link>
           </h2>
         </div>
         <PageLinks>
-          <p>HOME</p>
-          <p>HEADPHONES</p>
-          <p>SPEAKERS</p>
-          <p>EARPHONES</p>
-          <p>LOGIN</p>
+          <NavLink to="/">HOME</NavLink>
+          <NavLink to="/headphones">HEADPHONES</NavLink>
+          <NavLink to="/speakers">SPEAKERS</NavLink>
+          <NavLink to="/earphones">EARPHONES</NavLink>
+          <NavLink to="/login">LOGIN</NavLink>
         </PageLinks>
         <StyledShowCartBtn onClick={() => dispatch(TOGGLE_CART_MODAL())}>
           <RiShoppingCartLine color="white" size={20} />

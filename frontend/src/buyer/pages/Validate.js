@@ -5,11 +5,11 @@ import {
   StyledFormGrid,
 } from "../styles/Register";
 
-const Register = () => {
+const Validate = () => {
   return (
     <StyledContainer>
       <h1>
-        <span>Register</span> Here
+        <span>Validate</span> <br /> your account
       </h1>
       <StyledForm>
         <StyledFormGrid>
@@ -57,11 +57,10 @@ const Register = () => {
             />
           </label>
         </StyledFormGrid>
-        <Link to="/login">Do you have an account? Login here</Link>
         <button>SUBMIT</button>
       </StyledForm>
       {/* <p>Please check your Email, we have sent you a registration code.</p> */}
     </StyledContainer>
   );
 };
-export default Register;
+export default Validate;
