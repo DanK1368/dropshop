@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { StyledOuterContainer } from "./ProductDetails";
 
-const CheckoutLayout = () => {
+const Layout = () => {
   return (
     <>
       <Header />
@@ -14,4 +14,4 @@ const CheckoutLayout = () => {
     </>
   );
 };
-export default CheckoutLayout;
+export default Layout;
