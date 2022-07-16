@@ -44,6 +44,7 @@ export const StyledInputContainer = styled.div`
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     cursor: pointer;
+    color: gray;
 
     &:focus {
       outline: none;
