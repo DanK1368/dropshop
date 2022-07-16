@@ -12,6 +12,11 @@ export const Main = styled.div`
   font-family: "Plus Jakarta Sans", sans-serif;
   border-bottom: #ffffff;
   position: relative;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
 `;
 
 export const PageLinks = styled.div`
@@ -21,8 +26,18 @@ export const PageLinks = styled.div`
   width: 40%;
   margin-right: 100px;
 
-  p {
-    font-size: 12px;
+  a {
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+
+    &:hover {
+      color: #d87d4a;
+    }
+  }
+
+  .active {
+    color: #d87d4a;
   }
 `;
 
