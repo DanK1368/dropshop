@@ -29,6 +29,12 @@ export const StyledForm = styled.form`
   justify-content: center;
   gap: 3rem;
 
+  a {
+    text-decoration: none;
+    color: #d87d4a;
+    cursor: pointer;
+  }
+
   input {
     padding: 1rem;
     width: 400px;
@@ -53,14 +59,6 @@ export const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-  }
-
-  a {
-    text-decoration: none;
-    color: gray;
-    font-weight: 300;
-    text-align: center;
-    font-size: 14px;
   }
 
   button {
