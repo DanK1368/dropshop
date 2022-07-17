@@ -11,8 +11,9 @@ import SharedLayout from "./buyer/pages/SharedLayout";
 import Login from "./buyer/pages/Login";
 import Validate from "./buyer/pages/Validate";
 import Registration from "./buyer/pages/Registration";
-import CheckoutLayout from "./buyer/pages/CheckoutLayout";
+import Layout from "./buyer/pages/Layout";
 import Checkout from "./buyer/pages/Checkout";
+import Profile from "./buyer/pages/Profile";
 
 function App() {
   return (
@@ -27,8 +28,11 @@ function App() {
           <Route path="registration" element={<Registration />} />
           <Route path="validation" element={<Validate />} />
         </Route>
-        <Route path="checkout" element={<CheckoutLayout />}>
+        <Route path="checkout" element={<Layout />}>
           <Route path="details" element={<Checkout />} />
+        </Route>
+        <Route path="user" element={<Layout />}>
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </div>
