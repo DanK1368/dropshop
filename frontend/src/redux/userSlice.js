@@ -17,34 +17,48 @@ export const userSlice = createSlice({
   },
   pending: false,
   error: false,
-  status: null,
 
   reducers: {
     UPDATE_USER_INFO: (state, action) => {
       console.log(action.payload);
       state.userInfo = { ...action.payload };
-      toast.success("Profile successfully updated");
     },
 
     // this will handle the user registration request
-    UPDATE_START: state => {
+    REGISTER_START: state => {
       state.pending = true;
     },
-    UPDATE_SUCCESS: (state, action) => {
+    REGISTER_SUCCESS: state => {
       state.pending = false;
       state.error = false;
-      state.status = action.payload;
-      toast.success("Success! Please check your email");
     },
-    UPDATE_ERROR: (state, action) => {
+    REGISTER_ERROR: state => {
       state.error = true;
       state.pending = false;
-      state.status = action.payload;
-      // toast.error("Oops! Something went wrong");
+    },
+
+    // this will handle the validation of the user
+    VALIDATE_START: state => {
+      state.pending = true;
+    },
+    VALIDATE_SUCCESS: state => {
+      state.pending = false;
+      state.error = false;
+    },
+    VALIDATE_ERROR: state => {
+      state.error = true;
+      state.pending = false;
     },
   },
 });
 
-export const { UPDATE_USER_INFO, UPDATE_START, UPDATE_SUCCESS, UPDATE_ERROR } =
-  userSlice.actions;
+export const {
+  UPDATE_USER_INFO,
+  REGISTER_START,
+  REGISTER_SUCCESS,
+  REGISTER_ERROR,
+  VALIDATE_START,
+  VALIDATE_SUCCESS,
+  VALIDATE_ERROR,
+} = userSlice.actions;
 export default userSlice.reducer;
