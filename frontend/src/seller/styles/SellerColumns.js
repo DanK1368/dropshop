@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const Columns = styled.div`
   max-width: 300px;
   height: 80%;
