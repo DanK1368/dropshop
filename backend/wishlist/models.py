@@ -1,8 +1,9 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
+from buyer_profile.models import BuyerProfileModel
 from item.models import ItemModel
-from users.models import BuyerProfileModel
+
 
 User = get_user_model()
 
