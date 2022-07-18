@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { StyledContainer, StyledForm } from "../styles/Login";
 import { registerUser } from "../../redux/apiCalls";
 
 const Registration = () => {
   const navigate = useNavigate();
-  const { status } = useSelector(store => store.user);
   const [registrationValues, setRegistrationValues] = useState({
     email: "",
     username: "",
