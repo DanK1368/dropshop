@@ -1,12 +1,13 @@
-import styled from "styled-components";
 import { StyledCard } from "../../../../styles/SingleItem";
 import { useDrag } from "react-dnd";
-import { useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import DeleteItem from "../../../../components/BoardLayout/DisplayBoard/Items/DeleteItem";
+import { useDispatch, useSelector } from "react-redux";
+import { TOGGLE_WARNING_MESSAGE } from "../../../../../redux/productSlice";
 
 const SingleItem = ({ id, name, price, stock, showDeleteButton }) => {
-  const [showWarning, setShowWarning] = useState(false);
+  const { showWarning } = useSelector(state => state.product);
+  const dispatch = useDispatch();
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "productItem",
@@ -22,7 +23,7 @@ const SingleItem = ({ id, name, price, stock, showDeleteButton }) => {
     <>
       <StyledCard ref={drag}>
         {showDeleteButton && (
-          <button onClick={() => setShowWarning(!showWarning)}>
+          <button onClick={() => dispatch(TOGGLE_WARNING_MESSAGE())}>
             <TiDelete size={25} color="#EA5555" />
           </button>
         )}
@@ -32,13 +33,7 @@ const SingleItem = ({ id, name, price, stock, showDeleteButton }) => {
           <p>Stock: {stock} </p>
         </div>
       </StyledCard>
-      {showWarning && (
-        <DeleteItem
-          showWarning={showWarning}
-          setShowWarning={setShowWarning}
-          productId={id}
-        />
-      )}
+      {showWarning && <DeleteItem showWarning={showWarning} productId={id} />}
     </>
   );
 };

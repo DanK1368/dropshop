@@ -9,11 +9,29 @@ import Recomended from "./buyer/components/Recomended";
 import ProductDetails from "./buyer/pages/ProductDetails";
 import SharedLayout from "./buyer/pages/SharedLayout";
 import Login from "./buyer/pages/Login";
-import Register from "./buyer/pages/Register";
+import Validate from "./buyer/pages/Validate";
+import Registration from "./buyer/pages/Registration";
+import Layout from "./buyer/pages/Layout";
+import Checkout from "./buyer/pages/Checkout";
+import Profile from "./buyer/pages/Profile";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div>
+      {/* Below component is for the notifications */}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Routes>
         {/* Seller Side Below  */}
         <Route path="seller" element={<SellerPage />} />
@@ -21,7 +39,14 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route path="productdetails" element={<ProductDetails />} />
           <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+          <Route path="registration" element={<Registration />} />
+          <Route path="validation" element={<Validate />} />
+        </Route>
+        <Route path="checkout" element={<Layout />}>
+          <Route path="details" element={<Checkout />} />
+        </Route>
+        <Route path="user" element={<Layout />}>
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </div>

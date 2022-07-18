@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { StyledContainer, StyledForm } from "../styles/Login";
 
-const Login = () => {
+const Registration = () => {
   return (
     <StyledContainer>
       <h1>
-        <span>Login</span> <br /> To Your Account
+        <span>Register</span> <br /> your new account
       </h1>
       <StyledForm>
         <label>
@@ -16,20 +16,13 @@ const Login = () => {
             placeholder="E-Mail Address"
           />
         </label>
-        <label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-          />
-        </label>
+
         <button>SUBMIT</button>
         <p>
-          Don't have an account? Sign up <Link to="/registration">here</Link>
+          Already have an account? Login <Link to="/login">here</Link>
         </p>
       </StyledForm>
     </StyledContainer>
   );
 };
-export default Login;
+export default Registration;
