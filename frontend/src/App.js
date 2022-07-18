@@ -38,9 +38,9 @@ function App() {
         <Route path="seller" element={<SellerPage />} />
         {/* Buyer Side below  */}
         <Route path="/" element={<SharedLayout />}>
-          <Route path="home/" element={<Home />} />
+          <Route path="home" element={<Home />} />
           <Route path="productdetails" element={<ProductDetails />} />
-          <Route path="category-headphones" element={<HeadphonesPage />} />
+          <Route path="headphones" element={<HeadphonesPage />} />
           <Route path="login" element={<Login />} />
           <Route path="registration" element={<Registration />} />
           <Route path="validation" element={<Validate />} />
