@@ -46,3 +46,27 @@ export const StyledShowCartBtn = styled.button`
   border: none;
   cursor: pointer;
 `;
+
+export const StyledProfileContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  p {
+    text-align: center;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+  }
+`;
