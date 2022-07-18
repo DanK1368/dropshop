@@ -40,7 +40,7 @@ export const userSlice = createSlice({
       state.error = true;
       state.pending = false;
       state.status = action.payload;
-      toast.error("Oops! Something went wrong");
+      // toast.error("Oops! Something went wrong");
     },
   },
 });
