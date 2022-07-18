@@ -1,14 +1,5 @@
-<<<<<<< HEAD
 
-from rest_framework.generics import GenericAPIView,ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
-from rest_framework.response import Response
-
-from project.permissions import IsStaffOrReadOnly
-from review.models import Review
-=======
 from rest_framework.generics import RetrieveUpdateAPIView, CreateAPIView, ListAPIView
-
->>>>>>> 4458a1837ce5291ba674935910d4a690e4b4d2dc
 from django.contrib.auth import get_user_model
 
 from review.serializers import ReviewSerializer, ListRetrieveReviewSerializer
