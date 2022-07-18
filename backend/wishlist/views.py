@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, get_object_or_404, \
     GenericAPIView
+from rest_framework.views import APIView
 
 from item.models import ItemModel
 from wishlist.models import WishListModel
@@ -8,21 +9,22 @@ from wishlist.serializers import WishlistSerializer
 from wishlist.permission import IsUser, IsNotUser
 
 
-class AddToWishListView(GenericAPIView):
-    queryset = WishListModel.objects.all()
+class AddToWishListView(APIView):
 
-    permission_classes = [IsUser]
-    serializer_class = WishlistSerializer
+    #permission_classes = [IsUser]
+    # serializer_class = WishlistSerializer
 
     def post(self, request, *args, **kwargs):
         buyer_profile = self.request.user.buyer_profile
-        wishlist = self.queryset.filter(buyer_profile=buyer_profile)
+        wishlist = WishListModel.objects.get(buyer_profile=buyer_profile.id)
         item_id = self.kwargs["item_id"]
         item = get_object_or_404(ItemModel, pk=item_id)  # getting post id by int in endpoint
-        if item not in wishlist:
-            buyer_profile.wishlist.add(item)
+
+        if item not in list(wishlist.item.all()):
+            wishlist.item.add(item)
         else:
-            wishlist.remove(item)
+            wishlist.item.remove(item)
+
         return HttpResponse(status=201)
 
 
