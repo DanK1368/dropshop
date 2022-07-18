@@ -12,13 +12,12 @@ const SpeakersZX7 = () => {
         <StyledWholeItem>
             <StyledDescriptionBox>
                 <StyledInnerDescriptionBox>
-                    <h5>NEW PRODUCTS</h5>
-                    <h2>XX99 MARK I HEADPHONES</h2>
-                    <p>The new XX99 Mark I headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.</p>
+                    <h2>ZX7 SPEAKER</h2>
+                    <p>Stream high quality sound wirelessly with minimal loss. The ZX7 bookshelf speaker uses high-end audiophile components that represents the top of the line powered speakers for home or studio use.</p>
                     <StyledSeeProduct>SEE PRODUCT</StyledSeeProduct>
                 </StyledInnerDescriptionBox>
             </StyledDescriptionBox>
-            <img src={ZX7} alt="Headphones" />
+            <img src={ZX7} alt="Speakers" />
         </StyledWholeItem>
     );
 };

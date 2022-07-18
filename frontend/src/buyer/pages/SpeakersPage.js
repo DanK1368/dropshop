@@ -11,9 +11,6 @@ const SpeakersPage = () => {
         <SecondHeader>
             <h1><span></span><br></br>SPEAKERS</h1>
         </SecondHeader>
-        {/* <ItemForSale/> */}
-        {/* <ItemForSaleMirrored/> */}
-        {/* <ItemForSale/> */}
         <SpeakersZX9/>
         <SpeakersZX7/>
         <BottomComponent>
