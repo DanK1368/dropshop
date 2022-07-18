@@ -8,6 +8,7 @@ import {
     StyledSpeakers,
     StyledEarphones,
 } from "../styles/ShopLinks";
+import { HiChevronRight } from "react-icons/hi";
 
 const ShopLinks = () => {
     return (
@@ -16,17 +17,17 @@ const ShopLinks = () => {
             <StyledHeadphones>
                 <img src={Headphones} alt="Headphone Icon" />
                 <h4>HEADPHONES</h4>
-                <button>SHOP</button>
+                <button>SHOP<HiChevronRight size={20}/></button>
             </StyledHeadphones>
             <StyledSpeakers>
                 <img src={Earphones} alt="Speaker Icon" />
                 <h4>HEADPHONES</h4>
-                <button>SHOP</button>
+                <button>SHOP<HiChevronRight size={20} /></button>
             </StyledSpeakers>
             <StyledEarphones>
                 <img src={Speakers} alt="Earphone Icon" />
                 <h4>HEADPHONES</h4>
-                <button>SHOP</button>
+                <button>SHOP<HiChevronRight size={20}/></button>
             </StyledEarphones>
         </StyledAllLinks>
     );
