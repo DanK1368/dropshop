@@ -15,6 +15,9 @@ export const userSlice = createSlice({
       country: "Switzerland",
     },
   },
+  pending: false,
+  error: false,
+  status: null,
 
   reducers: {
     UPDATE_USER_INFO: (state, action) => {
@@ -22,8 +25,26 @@ export const userSlice = createSlice({
       state.userInfo = { ...action.payload };
       toast.success("Profile successfully updated");
     },
+
+    // this will handle the user registration request
+    UPDATE_START: state => {
+      state.pending = true;
+    },
+    UPDATE_SUCCESS: (state, action) => {
+      state.pending = false;
+      state.error = false;
+      state.status = action.payload;
+      toast.success("Success! Please check your email");
+    },
+    UPDATE_ERROR: (state, action) => {
+      state.error = true;
+      state.pending = false;
+      state.status = action.payload;
+      toast.error("Oops! Something went wrong");
+    },
   },
 });
 
-export const { UPDATE_USER_INFO } = userSlice.actions;
+export const { UPDATE_USER_INFO, UPDATE_START, UPDATE_SUCCESS, UPDATE_ERROR } =
+  userSlice.actions;
 export default userSlice.reducer;
