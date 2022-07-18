@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import AddColumn from "../../components/BoardLayout/DisplayBoard/Items/AddColumn";
 import {
   StyledSideBar,
   StyledSideHeader,
   StyledSideBody,
   StyledSideMenu,
+  StyledAddButton
 } from "../../styles/SideBoard";
 
 const SideBoard = () => {
+
+  const [showAddNewColumn, setShowAddNewColumn] = useState(false);
+
+  const handleShowAddNewColumn = () => setShowAddNewColumn(!showAddNewColumn);
+
   return (
     <>
       <StyledSideBar>
@@ -15,14 +22,13 @@ const SideBoard = () => {
         </StyledSideHeader>
         <StyledSideBody>
           <StyledSideMenu>
-            <button>Inventory Column</button>
-            <button>On Sale Column</button>
-            <button>10% Column</button>
-            <button>25% Column</button>
-            <button>Create New Column</button>
+            <StyledAddButton onClick={handleShowAddNewColumn}>
+              {showAddNewColumn ? "Cancel" : "Create New Column"}
+            </StyledAddButton>
           </StyledSideMenu>
         </StyledSideBody>
       </StyledSideBar>
+      {showAddNewColumn && <AddColumn />}
     </>
   );
 };
