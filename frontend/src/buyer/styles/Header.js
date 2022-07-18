@@ -12,6 +12,11 @@ export const Main = styled.div`
   font-family: "Plus Jakarta Sans", sans-serif;
   border-bottom: #ffffff;
   position: relative;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
 `;
 
 export const PageLinks = styled.div`
@@ -21,8 +26,18 @@ export const PageLinks = styled.div`
   width: 40%;
   margin-right: 100px;
 
-  p {
-    font-size: 12px;
+  a {
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+
+    &:hover {
+      color: #d87d4a;
+    }
+  }
+
+  .active {
+    color: #d87d4a;
   }
 `;
 
@@ -30,4 +45,28 @@ export const StyledShowCartBtn = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+`;
+
+export const StyledProfileContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  p {
+    text-align: center;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+  }
 `;

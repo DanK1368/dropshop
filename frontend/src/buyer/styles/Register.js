@@ -13,6 +13,8 @@ export const StyledContainer = styled.div`
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 500;
+    text-align: center;
+    line-height: 1.5;
   }
 
   span {
@@ -27,6 +29,12 @@ export const StyledForm = styled.form`
   justify-content: center;
   gap: 3rem;
 
+  a {
+    text-decoration: none;
+    color: #d87d4a;
+    cursor: pointer;
+  }
+
   input {
     padding: 1rem;
     border: none;
@@ -38,6 +46,7 @@ export const StyledForm = styled.form`
     &:focus {
       outline: none;
       border-bottom: 2px solid #fbaf85;
+      margin-bottom: -1px;
     }
 
     &::placeholder {
@@ -50,12 +59,6 @@ export const StyledForm = styled.form`
     flex-direction: column;
   }
 
-  a {
-    text-decoration: none;
-    color: gray;
-    font-weight: 300;
-  }
-
   button {
     padding: 1rem 2rem;
     background-color: #d87d4a;
@@ -63,6 +66,10 @@ export const StyledForm = styled.form`
     color: white;
     cursor: pointer;
     font-size: 18px;
+
+    &:hover {
+      background: #fbaf85;
+    }
   }
 `;
 
