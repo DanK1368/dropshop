@@ -7,12 +7,16 @@ import { registerUser } from "../../redux/apiCalls";
 const Registration = () => {
   const navigate = useNavigate();
   const { pending, status } = useSelector(store => store.user);
-  const [email, setEmail] = useState("");
+  const [registrationValues, setRegistrationValues] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
   const dispatch = useDispatch();
 
   const handleRegistration = e => {
     e.preventDefault();
-    registerUser(email, dispatch);
+    registerUser(registrationValues, dispatch);
   };
 
   // navigate to validation page if registration is successfull
@@ -36,8 +40,43 @@ const Registration = () => {
             name="email"
             id="email"
             placeholder="E-Mail Address"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            required
+            value={registrationValues.email}
+            onChange={e =>
+              setRegistrationValues(prevState => {
+                return { ...prevState, [e.target.name]: e.target.value };
+              })
+            }
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            required
+            value={registrationValues.username}
+            onChange={e =>
+              setRegistrationValues(prevState => {
+                return { ...prevState, [e.target.name]: e.target.value };
+              })
+            }
+          />
+        </label>
+        <label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            required
+            value={registrationValues.password}
+            onChange={e =>
+              setRegistrationValues(prevState => {
+                return { ...prevState, [e.target.name]: e.target.value };
+              })
+            }
           />
         </label>
 
