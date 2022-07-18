@@ -10,15 +10,24 @@ import {
 } from "../styles/CartSummary";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import image1 from "../../assets/product-xx59-headphones/desktop/image-product.jpg";
-import { useContext, useEffect, useRef } from "react";
-import cartContext from "../context/cart/CartContext";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { TOGGLE_CART_MODAL } from "../../redux/cartSlice";
 
 const CartSummary = () => {
   const ref = useRef();
-  const { dispatch } = useContext(cartContext);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // used to navigate to the checkout on button click, and close the modal after
+  const handleNavigate = () => {
+    navigate("/checkout/details");
+    dispatch(TOGGLE_CART_MODAL());
+  };
 
   // Function to close the modal when we click outside the cart summary
-  useOnClickOutside(ref, () => dispatch({ type: "TOGGLE_CART_SUMMARY" }));
+  useOnClickOutside(ref, () => dispatch(TOGGLE_CART_MODAL()));
 
   return (
     <StyledBackdrop>
@@ -51,7 +60,7 @@ const CartSummary = () => {
           <p>TOTAL</p>
           <span>$ 5,396</span>
         </StyledTotalAmount>
-        <StyledCheckOutBtn>CHECKOUT</StyledCheckOutBtn>
+        <StyledCheckOutBtn onClick={handleNavigate}>CHECKOUT</StyledCheckOutBtn>
       </StyledCartContainer>
     </StyledBackdrop>
   );
