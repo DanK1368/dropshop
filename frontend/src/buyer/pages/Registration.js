@@ -6,7 +6,7 @@ import { registerUser } from "../../redux/apiCalls";
 
 const Registration = () => {
   const navigate = useNavigate();
-  const { pending, status } = useSelector(store => store.user);
+  const { status } = useSelector(store => store.user);
   const [registrationValues, setRegistrationValues] = useState({
     email: "",
     username: "",
@@ -16,17 +16,8 @@ const Registration = () => {
 
   const handleRegistration = e => {
     e.preventDefault();
-    registerUser(registrationValues, dispatch);
+    registerUser(registrationValues, dispatch, navigate);
   };
-
-  // navigate to validation page if registration is successfull
-  useEffect(() => {
-    if (status === 201) {
-      navigate("/validation");
-    } else {
-      return;
-    }
-  }, [status]);
 
   return (
     <StyledContainer onSubmit={handleRegistration}>
