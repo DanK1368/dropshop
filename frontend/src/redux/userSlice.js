@@ -14,9 +14,11 @@ export const userSlice = createSlice({
       city: "Schindellegi",
       country: "Switzerland",
     },
+
+    pending: false,
+    error: false,
+    isAuthenticatedUser: false,
   },
-  pending: false,
-  error: false,
 
   reducers: {
     UPDATE_USER_INFO: (state, action) => {
@@ -49,6 +51,11 @@ export const userSlice = createSlice({
       state.error = true;
       state.pending = false;
     },
+
+    // this will handle the login of the user
+    UPDATE_USER_STATUS: state => {
+      state.isAuthenticatedUser = !state.isAuthenticatedUser;
+    },
   },
 });
 
@@ -60,5 +67,6 @@ export const {
   VALIDATE_START,
   VALIDATE_SUCCESS,
   VALIDATE_ERROR,
+  UPDATE_USER_STATUS,
 } = userSlice.actions;
 export default userSlice.reducer;
