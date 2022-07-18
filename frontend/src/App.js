@@ -14,10 +14,24 @@ import Registration from "./buyer/pages/Registration";
 import Layout from "./buyer/pages/Layout";
 import Checkout from "./buyer/pages/Checkout";
 import Profile from "./buyer/pages/Profile";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <div>
+      {/* Below component is for the notifications */}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Routes>
         {/* Seller Side Below  */}
         <Route path="seller" element={<SellerPage />} />
