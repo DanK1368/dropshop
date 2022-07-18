@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 export const userSlice = createSlice({
   name: "user",
@@ -19,6 +20,7 @@ export const userSlice = createSlice({
     UPDATE_USER_INFO: (state, action) => {
       console.log(action.payload);
       state.userInfo = { ...action.payload };
+      toast.success("Profile successfully updated");
     },
   },
 });
