@@ -8,6 +8,7 @@ export const StyledWholeItem = styled.div`
     img {
         width: 50%;
         border-radius: 10px;
+        background: #f1f1f1;
     }
 `
 
