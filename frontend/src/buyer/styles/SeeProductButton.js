@@ -6,6 +6,7 @@ export const StyledSeeProduct = styled.button`
     padding: 15px 25px;
     color: white;
     
+    
     :hover {
         background: #fbaf85;
         color: white;

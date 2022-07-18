@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Main = styled.div`
   width: 100%;
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -13,7 +12,7 @@ export const Main = styled.div`
   img {
     /* width: 288px;
     height: 300px; */
-    width: clamp(400px, 100%, 700px);
+    width: clamp(400px, 100%, 100px);
     height: 100%;
     border-radius: 5px;
     object-fit: cover;

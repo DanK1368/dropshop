@@ -8,6 +8,7 @@ import SellerPage from "./seller/pages/SellerPage";
 import Recomended from "./buyer/components/Recomended";
 import ProductDetails from "./buyer/pages/ProductDetails";
 import SharedLayout from "./buyer/pages/SharedLayout";
+import Home from "./buyer/pages/Home";
 import Login from "./buyer/pages/Login";
 import Validate from "./buyer/pages/Validate";
 import Registration from "./buyer/pages/Registration";
@@ -38,6 +39,7 @@ function App() {
         {/* Buyer Side below  */}
         <Route path="/" element={<SharedLayout />}>
           <Route path="productdetails" element={<ProductDetails />} />
+          <Route path="home/" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="registration" element={<Registration />} />
           <Route path="validation" element={<Validate />} />
