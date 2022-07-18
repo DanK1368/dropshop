@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledWholeItem = styled.div`
     display: flex;
     flex-direction: row;
+    margin-bottom:10%;
 
     img {
         width: 50%;

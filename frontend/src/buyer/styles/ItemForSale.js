@@ -3,10 +3,12 @@ import styled from "styled-components";
 export const StyledWholeItem = styled.div`
     display: flex;
     flex-direction: row;
+    margin-bottom:10%;
 
     img {
         width: 50%;
         border-radius: 10px;
+        background: #f1f1f1;
     }
 `
 

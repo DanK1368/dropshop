@@ -11,14 +11,12 @@ import store from "./store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <GlobalStyle />
-      <BrowserRouter>
-        <DndProvider backend={HTML5Backend}>
-          <App />
-        </DndProvider>
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <GlobalStyle />
+    <BrowserRouter>
+      <DndProvider backend={HTML5Backend}>
+        <App />
+      </DndProvider>
+    </BrowserRouter>
+  </Provider>
 );

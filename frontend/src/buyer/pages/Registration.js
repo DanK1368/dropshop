@@ -1,28 +1,22 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { StyledContainer, StyledForm } from "../styles/Login";
 import { registerUser } from "../../redux/apiCalls";
 
 const Registration = () => {
   const navigate = useNavigate();
-  const { pending, status } = useSelector(store => store.user);
-  const [email, setEmail] = useState("");
+  const [registrationValues, setRegistrationValues] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
   const dispatch = useDispatch();
 
   const handleRegistration = e => {
     e.preventDefault();
-    registerUser(email, dispatch);
+    registerUser(registrationValues, dispatch, navigate);
   };
-
-  // navigate to validation page if registration is successfull
-  useEffect(() => {
-    if (status === 201) {
-      navigate("/validation");
-    } else {
-      return;
-    }
-  }, [status]);
 
   return (
     <StyledContainer onSubmit={handleRegistration}>
@@ -36,8 +30,43 @@ const Registration = () => {
             name="email"
             id="email"
             placeholder="E-Mail Address"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            required
+            value={registrationValues.email}
+            onChange={e =>
+              setRegistrationValues(prevState => {
+                return { ...prevState, [e.target.name]: e.target.value };
+              })
+            }
+          />
+        </label>
+        <label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            required
+            value={registrationValues.username}
+            onChange={e =>
+              setRegistrationValues(prevState => {
+                return { ...prevState, [e.target.name]: e.target.value };
+              })
+            }
+          />
+        </label>
+        <label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            required
+            value={registrationValues.password}
+            onChange={e =>
+              setRegistrationValues(prevState => {
+                return { ...prevState, [e.target.name]: e.target.value };
+              })
+            }
           />
         </label>
 

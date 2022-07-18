@@ -1,19 +1,40 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { StyledContainer, StyledForm } from "../styles/Login";
+import { loginUser } from "../../redux/apiCalls";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [loginValues, setLoginValues] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleLogin = e => {
+    e.preventDefault();
+    loginUser(loginValues, dispatch, navigate);
+  };
+
   return (
     <StyledContainer>
       <h1>
         <span>Login</span> <br /> To Your Account
       </h1>
-      <StyledForm>
+      <StyledForm onSubmit={handleLogin}>
         <label>
           <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="E-Mail Address"
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            value={loginValues.username}
+            onChange={e =>
+              setLoginValues(prevState => {
+                return { ...prevState, [e.target.name]: e.target.value };
+              })
+            }
           />
         </label>
         <label>
@@ -22,6 +43,12 @@ const Login = () => {
             name="password"
             id="password"
             placeholder="Password"
+            value={loginValues.password}
+            onChange={e =>
+              setLoginValues(prevState => {
+                return { ...prevState, [e.target.name]: e.target.value };
+              })
+            }
           />
         </label>
         <button>SUBMIT</button>
