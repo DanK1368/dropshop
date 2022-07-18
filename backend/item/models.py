@@ -1,7 +1,7 @@
 from django.db import models
 
 from category.models import CategoryModel
-from users.models import SellerProfileModel
+from seller_profile.models import SellerProfileModel
 
 
 class ItemModel(models.Model):

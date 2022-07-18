@@ -27,34 +27,21 @@ export const StyledSideMenu = styled.div`
   align-items: flex-start;
   gap: 1rem;
   padding-top: 5rem;
+`;
 
-  button {
-    color: white;
-    padding: 5px;
-    background: transparent;
-    border: none;
-    border-radius: 90px;
-    font-weight: bold;
-    cursor: pointer;
 
-    :hover {
-      background: #635fc7;
-    }
+export const StyledAddButton = styled.button`
+padding: 10px 15px;
+  color: white;
+  border: none;
+  border-radius: 90px;
+  background-color: #635fc7;
+  cursor: pointer;
+  z-index: 2;
 
-    :active {
-      transform: scale(103%);
-    }
+  :hover {
+    background-color: #a8a4ff;
   }
-
-  button:nth-child(5) {
-    background: transparent;
-    border: none;
-    color: #635fc7;
-
-    :hover {
-      color: white;
-      background: #635fc7;
-    }
 
     :active {
       transform: scale(103%);

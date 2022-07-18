@@ -1,9 +1,8 @@
 from django.urls import path
 
-from users.views import RetrieveUpdateDestroyMeView, RetrieveUpdateBuyerProfileView
+from users.views import RetrieveUpdateDestroyMeView
 
 urlpatterns = [
-    path('me/', RetrieveUpdateDestroyMeView.as_view()),
-    path('me/buyer/', RetrieveUpdateBuyerProfileView.as_view())
+    path('', RetrieveUpdateDestroyMeView.as_view()),
 
 ]
