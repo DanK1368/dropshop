@@ -15,11 +15,11 @@ export const SecondHeader = styled.div`
     margin-bottom:20%;
 
     h1{
-        width:60%;
+        width:57%;
         height:30%;
         position:absolute;
         margin-top: -63px;
-        padding-left: 120%;
+        padding-left: 123%;
         align-items:center;
         background-color:#000000;       
     }
