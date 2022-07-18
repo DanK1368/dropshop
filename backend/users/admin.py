@@ -4,7 +4,9 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth import get_user_model
 
-from .models import BuyerProfileModel, SellerProfileModel
+# from .models import BuyerProfileModel, SellerProfileModel
+from users.models import BuyerProfileModel
+
 User = get_user_model()
 
 
@@ -37,4 +39,4 @@ class MyUserAdmin(UserAdmin):   # using the built-in class 'UserAdmin' from djan
 # TODO Write custom implementation admin implementation where necessary
 admin.site.register(User, MyUserAdmin)  # applying the configuration
 admin.site.register(BuyerProfileModel)
-admin.site.register(SellerProfileModel)
+# admin.site.register(SellerProfileModel)

@@ -31,20 +31,20 @@ class BuyerProfileModel(models.Model):
         return f"BuyerProfile | Username: {self.user.username} | Email: {self.user.email}"
 
 
-class SellerProfileModel(models.Model):
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE, null=True, blank=True, related_name='seller_profile')
+# class SellerProfileModel(models.Model):
+#     user = models.OneToOneField(to=User, on_delete=models.CASCADE, null=True, blank=True, related_name='seller_profile')
 
 
 # Create seller profile or buyer profile when UserModel is created
-@receiver(post_save, sender=User)
-def create_buyer_seller_profile(sender, instance, *args, **kwargs):
-    user_instance = instance
-    if user_instance.is_superuser:
-        seller_profile, seller_created = SellerProfileModel.objects.get_or_create(user=instance)
-        if seller_created:
-            seller_profile.save()
-
-    elif not user_instance.is_superuser:
-        buyer_profile, buyer_created = BuyerProfileModel.objects.get_or_create(user=instance)
-        if buyer_created:
-            buyer_profile.save()
+# @receiver(post_save, sender=User)
+# def create_buyer_seller_profile(sender, instance, *args, **kwargs):
+#     user_instance = instance
+#     if user_instance.is_superuser:
+#         seller_profile, seller_created = SellerProfileModel.objects.get_or_create(user=instance)
+#         if seller_created:
+#             seller_profile.save()
+#
+#     elif not user_instance.is_superuser:
+#         buyer_profile, buyer_created = BuyerProfileModel.objects.get_or_create(user=instance)
+#         if buyer_created:
+#             buyer_profile.save()
