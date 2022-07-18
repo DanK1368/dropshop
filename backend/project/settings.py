@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'wishlist',
     'registrationprofile',
     'category',
+    'seller_profile',
+    'buyer_profile',
 
     # 3rd party
     'rest_framework',
