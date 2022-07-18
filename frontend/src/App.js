@@ -39,7 +39,7 @@ function App() {
         <Route path="seller" element={<SellerPage />} />
         {/* Buyer Side below  */}
         <Route path="/" element={<SharedLayout />}>
-          <Route path="home" element={<Home />} />
+          <Route index element={<Home />} />
           <Route path="productdetails" element={<ProductDetails />} />
           <Route path="category-headphones" element={<HeadphonesPage />} />
           <Route path="category-speakers" element={<SpeakersPage />} />
