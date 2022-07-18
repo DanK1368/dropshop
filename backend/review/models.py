@@ -1,8 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from users.models import BuyerProfileModel
-
+from buyer_profile.models import BuyerProfileModel
 from item.models import ItemModel
 
 RATE_CHOICES = (
