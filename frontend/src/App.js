@@ -5,7 +5,6 @@ import ItemForSale from "./buyer/components/ItemForSale";
 import ItemForSaleMirrored from "./buyer/components/ItemForSaleMirrored";
 import ShopLinks from "./buyer/components/ShopLinks";
 import SellerPage from "./seller/pages/SellerPage";
-import Recomended from "./buyer/components/Recomended";
 import ProductDetails from "./buyer/pages/ProductDetails";
 import SharedLayout from "./buyer/pages/SharedLayout";
 import Home from "./buyer/pages/Home";
@@ -17,6 +16,7 @@ import Checkout from "./buyer/pages/Checkout";
 import Profile from "./buyer/pages/Profile";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import HeadphonesPage from "./buyer/pages/HeadphonesPage";
 
 function App() {
   return (
@@ -38,8 +38,9 @@ function App() {
         <Route path="seller" element={<SellerPage />} />
         {/* Buyer Side below  */}
         <Route path="/" element={<SharedLayout />}>
-          <Route path="productdetails" element={<ProductDetails />} />
           <Route path="home/" element={<Home />} />
+          <Route path="productdetails" element={<ProductDetails />} />
+          <Route path="category-headphones" element={<HeadphonesPage />} />
           <Route path="login" element={<Login />} />
           <Route path="registration" element={<Registration />} />
           <Route path="validation" element={<Validate />} />
