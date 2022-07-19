@@ -15,7 +15,8 @@ class ItemModel(models.Model):
     image = models.ImageField(blank=True, null=True)
     video = models.FileField(blank=True, null=True)
     category = models.ForeignKey(to=CategoryModel, on_delete=models.PROTECT)
-    seller_profile = models.ForeignKey(to=SellerProfileModel, on_delete=models.CASCADE, related_name='items')
+    seller_profile = models.ForeignKey(to=SellerProfileModel, on_delete=models.CASCADE, related_name='items',
+                                       blank=True, null=True)
 
     def __str__(self):
         return f"{self.name}"
