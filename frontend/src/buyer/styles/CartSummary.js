@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const StyledBackdrop = styled.div`
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   position: absolute;
   top: 8vh;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 5;
 `;
 
 export const StyledCartContainer = styled.div`
