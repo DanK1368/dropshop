@@ -1,5 +1,5 @@
-from rest_framework.generics import RetrieveUpdateAPIView, CreateAPIView, ListAPIView
 
+from rest_framework.generics import RetrieveUpdateAPIView, CreateAPIView, ListAPIView
 from django.contrib.auth import get_user_model
 
 from review.serializers import ReviewSerializer, ListRetrieveReviewSerializer

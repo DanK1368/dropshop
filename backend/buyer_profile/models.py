@@ -32,3 +32,5 @@ def create_buyer_profile(sender, instance, *args, **kwargs):
         buyer_profile, buyer_created = BuyerProfileModel.objects.get_or_create(user=instance)
         if buyer_created:
             buyer_profile.save()
+
+
