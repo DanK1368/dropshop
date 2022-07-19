@@ -18,8 +18,7 @@ class BuyerProfileModel(models.Model):
     phone_number = models.CharField(max_length=100, blank=True)
     user = models.OneToOneField(to=UserModel, on_delete=models.CASCADE, null=True, blank=True,
                                 related_name='buyer_profile')
-    favourite_items = models.ManyToManyField(to=ItemModel)
-    # TODO Relations: wish_list
+    favourite_items = models.ManyToManyField(to=ItemModel, related_name='favourited_by_buyer')
 
     # def __str__(self):
     #     return f"BuyerProfile | Username: {self.user.username} | Email: {self.user.email}"
