@@ -31,9 +31,9 @@ const Header = () => {
         </div>
         <PageLinks>
           <NavLink to="/">HOME</NavLink>
-          <NavLink to="/headphones">HEADPHONES</NavLink>
-          <NavLink to="/speakers">SPEAKERS</NavLink>
-          <NavLink to="/earphones">EARPHONES</NavLink>
+          <NavLink to="/category-headphones">HEADPHONES</NavLink>
+          <NavLink to="/category-speakers">SPEAKERS</NavLink>
+          <NavLink to="/category-earphones">EARPHONES</NavLink>
           {isAuthenticatedUser ? (
             <button>LOGOUT</button>
           ) : (
