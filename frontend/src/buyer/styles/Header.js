@@ -77,3 +77,20 @@ export const StyledProfileContainer = styled.div`
     }
   }
 `;
+
+export const StyledCartContainer = styled.div`
+  position: relative;
+
+  p {
+    position: absolute;
+    font-size: 16px;
+    top: -35px;
+    right: -20px;
+    background-color: #d87d4a;
+    width: 25px;
+    height: 25px;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+  }
+`;

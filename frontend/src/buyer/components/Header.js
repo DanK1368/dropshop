@@ -5,6 +5,7 @@ import {
   PageLinks,
   StyledShowCartBtn,
   StyledProfileContainer,
+  StyledCartContainer,
 } from "../styles/Header";
 import CartSummary from "./CartSummary";
 import { NavLink, Link } from "react-router-dom";
@@ -14,9 +15,10 @@ import profile_pic from "../../assets/profile_pic.jpg";
 
 // not forget to take a look at the border-bottom
 const Header = () => {
-  const { isAuthenticatedUser } = useSelector(store => store.user);
-  const { showCartModal } = useSelector(state => state.cart);
-  const { userInfo } = useSelector(state => state.user);
+  const { isAuthenticatedUser, userInfo } = useSelector(store => store.user);
+  const { showCartModal, amount } = useSelector(store => store.cart);
+  console.log(amount);
+
   const dispatch = useDispatch();
 
   return (
@@ -54,9 +56,12 @@ const Header = () => {
               </Link>
             </>
           )}
-          <StyledShowCartBtn onClick={() => dispatch(TOGGLE_CART_MODAL())}>
-            <RiShoppingCartLine color="white" size={20} />
-          </StyledShowCartBtn>
+          <StyledCartContainer>
+            <StyledShowCartBtn onClick={() => dispatch(TOGGLE_CART_MODAL())}>
+              <RiShoppingCartLine color="white" size={20} />
+            </StyledShowCartBtn>
+            <p>{amount}</p>
+          </StyledCartContainer>
         </StyledProfileContainer>
       </Main>
       {showCartModal && <CartSummary />}

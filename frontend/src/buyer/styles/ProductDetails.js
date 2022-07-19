@@ -71,6 +71,7 @@ export const StyledBtnContainer = styled.div`
       background: none;
       border: none;
       padding-inline: 1rem;
+      cursor: pointer;
     }
   }
 `;
@@ -81,6 +82,11 @@ export const StyledAddToCartBtn = styled.button`
   padding: 1rem 2rem;
   background-color: #d87d4a;
   color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #fbaf85;
+  }
 `;
 
 export const StyledFeaturesContainer = styled.div`
