@@ -3,7 +3,7 @@ import { Columns, Grid } from "../../../../styles/SellerColumns";
 import SingleItem from "../Items/SingleItem";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
-import { ADD_ITEM_TO_COLUMN, DELETE_ITEM_FROM_COLUMN } from "../../../../../redux/productSlice";
+import { ADD_ITEM_TO_COLUMN } from "../../../../../redux/productSlice";
 
 const InventoryColumn = () => {
   const { itemInventory, itemsOnline, items25 } = useSelector(state => state.product);
@@ -16,7 +16,7 @@ const InventoryColumn = () => {
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "productItem",
     drop: item => addDraggedItemToProductsOnline(item.id),
-    drop: item => addDraggedItemTo25Discount(item.id),
+    // drop: item => addDraggedItemTo25Discount(item.id),
     collect: monitor => ({
       isOver: !!monitor.isOver(),
     }),
@@ -41,12 +41,13 @@ const InventoryColumn = () => {
     setShowDeleteButton(!showDeleteButton);
   };
 
+  {/**
   // FUNCTION THAT HANDLES THE ITEMS TO BE ADDED INTO THE 25% Discount STATE ARRAY
   const addDraggedItemTo25Discount = draggedItemId => {
     // get a reference to the item being dragged by the user
-    const draggedItem = itemInventory.filter(item => draggedItem === item.id);
+    const draggedItem = itemInventory.filter(item => draggedItemId === item.id);
 
-    //check if item exists in the array, if no don't add it else add the item
+    // check if item exists in the array, if no don't add it else add the item
     const checkIndex = items25.findIndex(
       item => item.id === draggedItem[0].id
     );
@@ -59,6 +60,7 @@ const InventoryColumn = () => {
 
     setShowDeleteButton(!showDeleteButton);
   };
+   */}
 
   return (
     <>
@@ -94,7 +96,8 @@ const InventoryColumn = () => {
         <h4>25% Discount</h4>
         <Grid>
           {items25.map(item => (
-            <SingleItem key={item.id} 
+            <SingleItem 
+            key={item.id} 
             {...item} 
             showDeleteButton={showDeleteButton}
             />
