@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   StyledBackdrop,
   StyledContainer,
@@ -6,27 +7,73 @@ import {
   StyledInputContainer,
   StyledButton,
 } from "../../../../styles/AddItem";
+import { createNewItem } from "../../../../../redux/productApiCalls";
+import { useDispatch } from "react-redux";
 
 const AddItem = () => {
+  const dispatch = useDispatch();
+  const [itemValues, setItemValues] = useState({
+    name: "",
+    price: "",
+    description: "",
+    features: "",
+    box_items: "",
+    category: "",
+    stock: "",
+  });
+
+  const handleCreateNewItem = e => {
+    e.preventDefault();
+    createNewItem(itemValues, dispatch);
+  };
+
+  console.log(itemValues);
+
   return (
     <StyledBackdrop>
       <StyledContainer>
-        <StyledForm>
+        <StyledForm onSubmit={handleCreateNewItem}>
           <h1>Add New Item</h1>
 
           <StyledGrid>
             <StyledInputContainer>
-              <label htmlFor="name">Title</label>
-              <input type="text" id="name" name="name" />
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={itemValues.name}
+                onChange={e =>
+                  setItemValues(prevState => {
+                    return { ...prevState, [e.target.name]: e.target.value };
+                  })
+                }
+              />
             </StyledInputContainer>
             <StyledInputContainer>
               <label htmlFor="price">Price</label>
-              <input type="text" name="price" id="price" />
+              <input
+                type="text"
+                name="price"
+                id="price"
+                value={itemValues.price}
+                onChange={e =>
+                  setItemValues(prevState => {
+                    return { ...prevState, [e.target.name]: e.target.value };
+                  })
+                }
+              />
             </StyledInputContainer>
             <StyledInputContainer>
               <label htmlFor="description">Description</label>
               <textarea
                 name="description"
+                value={itemValues.description}
+                onChange={e =>
+                  setItemValues(prevState => {
+                    return { ...prevState, [e.target.name]: e.target.value };
+                  })
+                }
                 id="description"
                 cols="30"
                 rows="10"
@@ -34,15 +81,59 @@ const AddItem = () => {
             </StyledInputContainer>
             <StyledInputContainer>
               <label htmlFor="features">Features</label>
-              <input type="text" id="features" name="features" />
+              <input
+                type="text"
+                id="features"
+                name="features"
+                value={itemValues.features}
+                onChange={e =>
+                  setItemValues(prevState => {
+                    return { ...prevState, [e.target.name]: e.target.value };
+                  })
+                }
+              />
             </StyledInputContainer>
             <StyledInputContainer>
               <label htmlFor="boxItems">Items Contained In The Box</label>
-              <input type="text" name="boxItems" id="boxItems" />
+              <input
+                type="text"
+                name="box_items"
+                id="box_items"
+                value={itemValues.box_items}
+                onChange={e =>
+                  setItemValues(prevState => {
+                    return { ...prevState, [e.target.name]: e.target.value };
+                  })
+                }
+              />
             </StyledInputContainer>
             <StyledInputContainer>
-              <label htmlFor="image">Images</label>
-              <input type="file" name="image" id="image" />
+              <label htmlFor="image">Category</label>
+              <input
+                type="text"
+                name="category"
+                id="category"
+                value={itemValues.category}
+                onChange={e =>
+                  setItemValues(prevState => {
+                    return { ...prevState, [e.target.name]: e.target.value };
+                  })
+                }
+              />
+            </StyledInputContainer>
+            <StyledInputContainer>
+              <label htmlFor="image">Stock</label>
+              <input
+                type="text"
+                name="stock"
+                id="stock"
+                value={itemValues.stock}
+                onChange={e =>
+                  setItemValues(prevState => {
+                    return { ...prevState, [e.target.name]: e.target.value };
+                  })
+                }
+              />
             </StyledInputContainer>
           </StyledGrid>
 
