@@ -18,6 +18,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HeadphonesPage from "./buyer/pages/HeadphonesPage";
 import SpeakersPage from "./buyer/pages/SpeakersPage";
+import EarphonesPage from "./buyer/pages/EarphonesPage";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="productdetails" element={<ProductDetails />} />
           <Route path="category-headphones" element={<HeadphonesPage />} />
           <Route path="category-speakers" element={<SpeakersPage />} />
+          <Route path="category-earphones" element={<EarphonesPage />} />
           <Route path="login" element={<Login />} />
           <Route path="registration" element={<Registration />} />
           <Route path="validation" element={<Validate />} />
