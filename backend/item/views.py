@@ -14,6 +14,9 @@ class ListCreateItemView(ListCreateAPIView):
         else:
             return ItemSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(seller_profile=self.request.user.seller_profile)
+
 
 class RetrieveUpdateDestroyItemView(RetrieveUpdateDestroyAPIView):
     queryset = ItemModel.objects.all()
