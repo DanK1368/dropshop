@@ -5,16 +5,16 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     userInfo: {
-      first_name: "Daniel",
-      last_name: "Kött",
+      first_name: "",
+      last_name: "",
       email: "daniel@gmail.com",
-      phone: "077 123 45 67",
-      address: "My Street 27",
-      zip: "8834",
-      city: "Schindellegi",
-      country: "Switzerland",
+      phone: "",
+      street: "",
+      zip: "",
+      city: "",
+      country: "",
     },
-
+    favorite_items: [],
     pending: false,
     error: false,
     isAuthenticatedUser: false,
@@ -56,6 +56,11 @@ export const userSlice = createSlice({
     UPDATE_USER_STATUS: state => {
       state.isAuthenticatedUser = !state.isAuthenticatedUser;
     },
+
+    // this will update user information state with the data fetched from the DB
+    GET_USER_INFO: (state, action) => {
+      state.userInfo = { ...action.payload };
+    },
   },
 });
 
@@ -68,5 +73,6 @@ export const {
   VALIDATE_SUCCESS,
   VALIDATE_ERROR,
   UPDATE_USER_STATUS,
+  GET_USER_INFO,
 } = userSlice.actions;
 export default userSlice.reducer;

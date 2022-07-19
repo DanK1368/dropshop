@@ -6,11 +6,15 @@ import {
   VALIDATE_SUCCESS,
   VALIDATE_ERROR,
   UPDATE_USER_STATUS,
+  GET_USER_INFO,
 } from "./userSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 const BASE_URL = "http://127.0.0.1:8000/backend/";
+
+const BEARER_TOKEN =
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU4NjQzOTg5LCJpYXQiOjE2NTgyMTE5ODksImp0aSI6ImI5YjkwYzZmOGY3YzQxNTRhMzA5NmY3YzM1MzdmNmRlIiwidXNlcl9pZCI6MTh9.y-bN7i7aTkhb_28956rDdR4QJW1q9z-P1Ntekyjb8Qo";
 
 // Registration of new user
 export const registerUser = async (
@@ -74,7 +78,7 @@ export const validateUser = async (
     dispatch(VALIDATE_SUCCESS());
     if (response.status === 200) {
       toast.success(
-        `Your account has been successfully validated. Enjoy Shopping!`
+        `Validation successfull! You may now login to your account`
       );
       navigate("/login");
     } else {
@@ -124,6 +128,7 @@ export const loginUser = async ({ username, password }, dispatch, navigate) => {
       return;
     }
   } catch (error) {
+    dispatch(VALIDATE_ERROR());
     if (error.response) {
       if (error.response.status === 401) {
         toast.error(`${Object.values(error.response.data)}`);
@@ -137,5 +142,59 @@ export const loginUser = async ({ username, password }, dispatch, navigate) => {
         "We are facing some problems. Please try registering some time later."
       );
     }
+  }
+};
+
+// update user profile information
+export const updateUserProfile = async (
+  { first_name, last_name, phone, street, zip, city, country },
+  dispatch
+) => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.patch(
+      `${BASE_URL}api/user/me/buyer/`,
+      {
+        first_name,
+        last_name,
+        phone,
+        street,
+        zip,
+        city,
+        country,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${BEARER_TOKEN}`,
+        },
+      }
+    );
+    dispatch(VALIDATE_SUCCESS());
+    console.log(response.data);
+    if (response.status === 200) {
+      toast.success(`Profile updated successfully!`);
+    } else {
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get user profile information
+export const getUserProfile = async dispatch => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.get(`${BASE_URL}api/user/me/buyer/`, {
+      headers: {
+        Authorization: `Bearer ${BEARER_TOKEN}`,
+      },
+    });
+    dispatch(VALIDATE_SUCCESS());
+    dispatch(GET_USER_INFO(response.data));
+  } catch (error) {
+    console.log(error);
   }
 };

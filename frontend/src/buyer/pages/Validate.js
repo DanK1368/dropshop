@@ -6,10 +6,12 @@ import {
   StyledFormGrid,
 } from "../styles/Register";
 import { validateUser } from "../../redux/apiCalls";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import spinner2 from "../../assets/spinner2.gif";
 
 const Validate = () => {
   const navigate = useNavigate();
+  const { pending } = useSelector(store => store.user);
   const [validationValues, setValidationValues] = useState({
     email: "",
     validation_code: "",
@@ -26,41 +28,45 @@ const Validate = () => {
       <h1>
         <span>Validate</span> <br /> your account
       </h1>
-      <StyledForm onSubmit={handleValidation}>
-        <StyledFormGrid>
-          <label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email address"
-              required
-              value={validationValues.email}
-              onChange={e =>
-                setValidationValues(prevState => {
-                  return { ...prevState, [e.target.name]: e.target.value };
-                })
-              }
-            />
-          </label>
-          <label>
-            <input
-              type="text"
-              name="validation_code"
-              id="validation_code"
-              placeholder="Validation Code"
-              required
-              value={validationValues.validation_code}
-              onChange={e =>
-                setValidationValues(prevState => {
-                  return { ...prevState, [e.target.name]: e.target.value };
-                })
-              }
-            />
-          </label>
-        </StyledFormGrid>
-        <button>SUBMIT</button>
-      </StyledForm>
+      {pending ? (
+        <img src={spinner2} alt="" />
+      ) : (
+        <StyledForm onSubmit={handleValidation}>
+          <StyledFormGrid>
+            <label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email address"
+                required
+                value={validationValues.email}
+                onChange={e =>
+                  setValidationValues(prevState => {
+                    return { ...prevState, [e.target.name]: e.target.value };
+                  })
+                }
+              />
+            </label>
+            <label>
+              <input
+                type="text"
+                name="validation_code"
+                id="validation_code"
+                placeholder="Validation Code"
+                required
+                value={validationValues.validation_code}
+                onChange={e =>
+                  setValidationValues(prevState => {
+                    return { ...prevState, [e.target.name]: e.target.value };
+                  })
+                }
+              />
+            </label>
+          </StyledFormGrid>
+          <button>SUBMIT</button>
+        </StyledForm>
+      )}
     </StyledContainer>
   );
 };

@@ -14,18 +14,20 @@ import Wishlist from "../components/Wishlist";
 import PreviousOrders from "../components/PreviousOrders";
 import { useDispatch, useSelector } from "react-redux";
 import { UPDATE_USER_INFO } from "../../redux/userSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { updateUserProfile } from "../../redux/apiCalls";
+import { getUserProfile } from "../../redux/apiCalls";
 
 const Profile = () => {
-  const { userInfo } = useSelector(state => state.user);
+  const { userInfo, pending } = useSelector(store => store.user);
 
   // state used to update user info
-  const [values, setValues] = useState({
+  const [profileValues, setProfileValues] = useState({
     first_name: userInfo.first_name,
     last_name: userInfo.last_name,
     email: userInfo.email,
     phone: userInfo.phone,
-    address: userInfo.address,
+    street: userInfo.street,
     zip: userInfo.zip,
     city: userInfo.city,
     country: userInfo.country,
@@ -35,8 +37,13 @@ const Profile = () => {
   // this function will save any changes made by the user to their info
   const handleUpdate = e => {
     e.preventDefault();
-    dispatch(UPDATE_USER_INFO(values));
+    dispatch(UPDATE_USER_INFO(profileValues));
+    updateUserProfile(profileValues, dispatch);
   };
+
+  useEffect(() => {
+    getUserProfile(dispatch);
+  }, [dispatch]);
 
   return (
     <div>
@@ -44,7 +51,7 @@ const Profile = () => {
         <Link to="/">Go Back</Link>
       </StyledGoBackBtnContainer>
       <StyledOuterContainer>
-        <StyledForm>
+        <StyledForm onSubmit={handleUpdate}>
           <div>
             <h1>YOUR PROFILE</h1>
           </div>
@@ -57,9 +64,9 @@ const Profile = () => {
                   type="text"
                   id="first_name"
                   name="first_name"
-                  value={values.first_name}
+                  value={profileValues.first_name}
                   onChange={e =>
-                    setValues(prevState => {
+                    setProfileValues(prevState => {
                       return { ...prevState, [e.target.name]: e.target.value };
                     })
                   }
@@ -71,9 +78,9 @@ const Profile = () => {
                   type="text"
                   id="last_name"
                   name="last_name"
-                  value={values.last_name}
+                  value={profileValues.last_name}
                   onChange={e =>
-                    setValues(prevState => {
+                    setProfileValues(prevState => {
                       return { ...prevState, [e.target.name]: e.target.value };
                     })
                   }
@@ -85,9 +92,9 @@ const Profile = () => {
                   type="text"
                   id="email"
                   name="email"
-                  value={values.email}
+                  value={profileValues.email}
                   onChange={e =>
-                    setValues(prevState => {
+                    setProfileValues(prevState => {
                       return { ...prevState, [e.target.name]: e.target.value };
                     })
                   }
@@ -99,9 +106,9 @@ const Profile = () => {
                   type="text"
                   id="phone"
                   name="phone"
-                  value={values.phone}
+                  value={profileValues.phone}
                   onChange={e =>
-                    setValues(prevState => {
+                    setProfileValues(prevState => {
                       return { ...prevState, [e.target.name]: e.target.value };
                     })
                   }
@@ -117,11 +124,11 @@ const Profile = () => {
                 <label htmlFor="address">Street and Number</label>
                 <input
                   type="text"
-                  id="address"
-                  name="address"
-                  value={values.address}
+                  id="street"
+                  name="street"
+                  value={profileValues.street}
                   onChange={e =>
-                    setValues(prevState => {
+                    setProfileValues(prevState => {
                       return { ...prevState, [e.target.name]: e.target.value };
                     })
                   }
@@ -133,9 +140,9 @@ const Profile = () => {
                   type="text"
                   id="zip"
                   name="zip"
-                  value={values.zip}
+                  value={profileValues.zip}
                   onChange={e =>
-                    setValues(prevState => {
+                    setProfileValues(prevState => {
                       return { ...prevState, [e.target.name]: e.target.value };
                     })
                   }
@@ -147,9 +154,9 @@ const Profile = () => {
                   type="text"
                   id="city"
                   name="city"
-                  value={values.city}
+                  value={profileValues.city}
                   onChange={e =>
-                    setValues(prevState => {
+                    setProfileValues(prevState => {
                       return { ...prevState, [e.target.name]: e.target.value };
                     })
                   }
@@ -161,9 +168,9 @@ const Profile = () => {
                   type="text"
                   id="country"
                   name="country"
-                  value={values.country}
+                  value={profileValues.country}
                   onChange={e =>
-                    setValues(prevState => {
+                    setProfileValues(prevState => {
                       return { ...prevState, [e.target.name]: e.target.value };
                     })
                   }
@@ -175,9 +182,7 @@ const Profile = () => {
           <div>
             <h2>update personal details</h2>
             <StyledBtnContainer>
-              <StyledSaveBtn type="submit" onClick={handleUpdate}>
-                SAVE
-              </StyledSaveBtn>
+              <StyledSaveBtn>SAVE</StyledSaveBtn>
               <StyledDeleteBtn type="button">Delete Account</StyledDeleteBtn>
             </StyledBtnContainer>
           </div>
