@@ -9,6 +9,7 @@ export const StyledWholeItem = styled.div`
         width: 50%;
         border-radius: 10px;
         background: #f1f1f1;
+        padding-top:20px;
     }
 `
 

@@ -36,6 +36,9 @@ const Header = () => {
           <NavLink to="/category-headphones">HEADPHONES</NavLink>
           <NavLink to="/category-speakers">SPEAKERS</NavLink>
           <NavLink to="/category-earphones">EARPHONES</NavLink>
+          {isAuthenticatedUser && (
+            <NavLink to="/seller">SELL</NavLink>
+          )}
           {isAuthenticatedUser ? (
             <button>LOGOUT</button>
           ) : (

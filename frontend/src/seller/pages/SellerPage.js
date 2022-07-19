@@ -9,7 +9,6 @@ import DiscountColumn from "../components/BoardLayout/DisplayBoard/Columns/Disco
 const SellerPage = () => {
   return (
     <Main>
-      <SideBoard />
       <Board>
         <Header />
         <InnerPage>
