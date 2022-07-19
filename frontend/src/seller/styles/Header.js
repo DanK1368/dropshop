@@ -9,6 +9,10 @@ export const StyledHeader = styled.div`
   padding: 0px 15px;
   background-color: #2b2c37;
   border-bottom: 0.5px solid #828fa3;
+  
+  a {
+    text-decoration: none;
+  }
 
   div {
     display: flex;

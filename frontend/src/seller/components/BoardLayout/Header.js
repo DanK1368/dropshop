@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyledHeader, AddButton } from "../../styles/Header";
+import { NavLink, Link } from "react-router-dom";
 import AddItem from "../../components/BoardLayout/DisplayBoard/Items/AddItem";
 import AddColumn from "../../components/BoardLayout/DisplayBoard/Items/AddColumn";
 
@@ -14,7 +15,9 @@ const Header = () => {
     <>
       <StyledHeader>
         <div>
-          <h2>dropshop</h2>
+          <Link to="/">
+            <h2>dropshop</h2>
+          </Link>
           <p>Dashboard</p>
         </div>
         <div>
