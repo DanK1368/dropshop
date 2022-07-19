@@ -1,9 +1,10 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, get_object_or_404, \
     GenericAPIView
 from rest_framework.views import APIView
 
 from item.models import ItemModel
+from item.serializers import ItemSerializer
 from wishlist.models import WishListModel
 from wishlist.serializers import WishlistSerializer
 from wishlist.permission import IsUser, IsNotUser
@@ -25,11 +26,13 @@ class AddToWishListView(APIView):
         else:
             wishlist.item.remove(item)
 
-        return HttpResponse(status=201)
+        # return JsonResponse(wishlist.item)
+        return HttpResponse(list(wishlist.item.all()))
 
-
-
-
+# class RetrieveUpdateDestroyItemView(RetrieveUpdateDestroyAPIView):
+#             queryset = ItemModel.objects.all()
+#             serializer_class = ItemSerializer
+#             lookup_url_kwarg = 'item_id'
 
         # if Response(status=204):
         #     post.liked_by.remove(user.id)

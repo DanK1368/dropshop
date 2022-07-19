@@ -19,7 +19,6 @@ class BuyerProfileModel(models.Model):
     user = models.OneToOneField(to=UserModel, on_delete=models.CASCADE, null=True, blank=True,
                                 related_name='buyer_profile')
     favourite_items = models.ManyToManyField(to=ItemModel)
-    # TODO Relations: wish_list
 
     # def __str__(self):
     #     return f"BuyerProfile | Username: {self.user.username} | Email: {self.user.email}"
