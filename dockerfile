@@ -2,6 +2,8 @@ FROM continuumio/miniconda3:latest
 
 RUN mkdir -p /backend
 RUN mkdir -p /scripts
+RUN mkdir -p /static-files
+RUN mkdir -p /media-files
 
 COPY ./backend /backend
 COPY ./scripts /scripts
