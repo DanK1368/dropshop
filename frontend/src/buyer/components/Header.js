@@ -14,6 +14,7 @@ import profile_pic from "../../assets/profile_pic.jpg";
 
 // not forget to take a look at the border-bottom
 const Header = () => {
+  const { isAuthenticatedUser } = useSelector(store => store.user);
   const { showCartModal } = useSelector(state => state.cart);
   const { userInfo } = useSelector(state => state.user);
   const dispatch = useDispatch();
@@ -30,18 +31,26 @@ const Header = () => {
         </div>
         <PageLinks>
           <NavLink to="/">HOME</NavLink>
-          <NavLink to="/headphones">HEADPHONES</NavLink>
-          <NavLink to="/speakers">SPEAKERS</NavLink>
-          <NavLink to="/earphones">EARPHONES</NavLink>
-          <NavLink to="/login">LOGIN</NavLink>
+          <NavLink to="/category-headphones">HEADPHONES</NavLink>
+          <NavLink to="/category-speakers">SPEAKERS</NavLink>
+          <NavLink to="/category-earphones">EARPHONES</NavLink>
+          {isAuthenticatedUser ? (
+            <button>LOGOUT</button>
+          ) : (
+            <NavLink to="/login">LOGIN</NavLink>
+          )}
         </PageLinks>
         <StyledProfileContainer>
-          <p>
-            Welcome <br /> {userInfo.first_name}
-          </p>
-          <Link to="/user/profile">
-            <img src={profile_pic} alt="" />
-          </Link>
+          {isAuthenticatedUser && (
+            <>
+              <p>
+                Welcome <br /> {userInfo.first_name}
+              </p>
+              <Link to="/user/profile">
+                <img src={profile_pic} alt="" />
+              </Link>
+            </>
+          )}
           <StyledShowCartBtn onClick={() => dispatch(TOGGLE_CART_MODAL())}>
             <RiShoppingCartLine color="white" size={20} />
           </StyledShowCartBtn>

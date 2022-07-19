@@ -26,14 +26,21 @@ export const PageLinks = styled.div`
   width: 40%;
   margin-right: 100px;
 
-  a {
+  a,
+  button {
     font-size: 14px;
     text-decoration: none;
     color: white;
+    cursor: pointer;
 
     &:hover {
       color: #d87d4a;
     }
+  }
+
+  button {
+    background: none;
+    border: none;
   }
 
   .active {

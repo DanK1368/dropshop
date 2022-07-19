@@ -5,46 +5,74 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     userInfo: {
-      first_name: "Daniel",
-      last_name: "Kött",
+      first_name: "",
+      last_name: "",
       email: "daniel@gmail.com",
-      phone: "077 123 45 67",
-      address: "My Street 27",
-      zip: "8834",
-      city: "Schindellegi",
-      country: "Switzerland",
+      phone: "",
+      street: "",
+      zip: "",
+      city: "",
+      country: "",
     },
+    favorite_items: [],
+    pending: false,
+    error: false,
+    isAuthenticatedUser: false,
   },
-  pending: false,
-  error: false,
-  status: null,
 
   reducers: {
     UPDATE_USER_INFO: (state, action) => {
       console.log(action.payload);
       state.userInfo = { ...action.payload };
-      toast.success("Profile successfully updated");
     },
 
     // this will handle the user registration request
-    UPDATE_START: state => {
+    REGISTER_START: state => {
       state.pending = true;
     },
-    UPDATE_SUCCESS: (state, action) => {
+    REGISTER_SUCCESS: state => {
       state.pending = false;
       state.error = false;
-      state.status = action.payload;
-      toast.success("Success! Please check your email");
     },
-    UPDATE_ERROR: (state, action) => {
+    REGISTER_ERROR: state => {
       state.error = true;
       state.pending = false;
-      state.status = action.payload;
-      toast.error("Oops! Something went wrong");
+    },
+
+    // this will handle the validation of the user
+    VALIDATE_START: state => {
+      state.pending = true;
+    },
+    VALIDATE_SUCCESS: state => {
+      state.pending = false;
+      state.error = false;
+    },
+    VALIDATE_ERROR: state => {
+      state.error = true;
+      state.pending = false;
+    },
+
+    // this will handle the login of the user
+    UPDATE_USER_STATUS: state => {
+      state.isAuthenticatedUser = !state.isAuthenticatedUser;
+    },
+
+    // this will update user information state with the data fetched from the DB
+    GET_USER_INFO: (state, action) => {
+      state.userInfo = { ...action.payload };
     },
   },
 });
 
-export const { UPDATE_USER_INFO, UPDATE_START, UPDATE_SUCCESS, UPDATE_ERROR } =
-  userSlice.actions;
+export const {
+  UPDATE_USER_INFO,
+  REGISTER_START,
+  REGISTER_SUCCESS,
+  REGISTER_ERROR,
+  VALIDATE_START,
+  VALIDATE_SUCCESS,
+  VALIDATE_ERROR,
+  UPDATE_USER_STATUS,
+  GET_USER_INFO,
+} = userSlice.actions;
 export default userSlice.reducer;

@@ -1,22 +1,200 @@
-import { UPDATE_START, UPDATE_ERROR, UPDATE_SUCCESS } from "./userSlice";
+import {
+  REGISTER_START,
+  REGISTER_ERROR,
+  REGISTER_SUCCESS,
+  VALIDATE_START,
+  VALIDATE_SUCCESS,
+  VALIDATE_ERROR,
+  UPDATE_USER_STATUS,
+  GET_USER_INFO,
+} from "./userSlice";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const registerUser = async (email, dispatch) => {
-  dispatch(UPDATE_START());
+const BASE_URL = "http://127.0.0.1:8000/backend/";
+
+const BEARER_TOKEN =
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU4NjQzOTg5LCJpYXQiOjE2NTgyMTE5ODksImp0aSI6ImI5YjkwYzZmOGY3YzQxNTRhMzA5NmY3YzM1MzdmNmRlIiwidXNlcl9pZCI6MTh9.y-bN7i7aTkhb_28956rDdR4QJW1q9z-P1Ntekyjb8Qo";
+
+// Registration of new user
+export const registerUser = async (
+  { email, username, password },
+  dispatch,
+  navigate
+) => {
+  dispatch(REGISTER_START());
 
   try {
-    const response = await axios.post(
-      "http://localhost:8000/backend/api/auth/registration/",
-      {
-        email: email,
-      }
-    );
-    dispatch(UPDATE_SUCCESS(response.status));
+    const response = await axios.post(`${BASE_URL}api/registration/`, {
+      email: email,
+      username: username,
+      password: password,
+    });
+    dispatch(REGISTER_SUCCESS());
+    if (response.status === 201) {
+      toast.success("Registered successfully! Please check your email");
+      navigate("/validation");
+    } else {
+      return;
+    }
   } catch (error) {
-    dispatch(UPDATE_ERROR(error.response.status));
+    dispatch(REGISTER_ERROR(error.response.status));
+
+    if (error.response) {
+      if (error.response.status === 400) {
+        toast.error(`${Object.values(error.response.data)}`);
+      } else {
+        toast.error(
+          "We are facing some problems. Please try registering later."
+        );
+      }
+    } else if (error.request) {
+      toast.error(
+        "We are facing some problems. Please try registering some time later."
+      );
+    }
   }
   toast.promise(registerUser, {
     pending: "Loading....",
   });
+};
+
+// Validation of user
+export const validateUser = async (
+  { email, validation_code },
+  dispatch,
+  navigate
+) => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.post(
+      `${BASE_URL}api/registration/validation/`,
+      {
+        email: email,
+        validation_code: validation_code,
+      }
+    );
+    dispatch(VALIDATE_SUCCESS());
+    if (response.status === 200) {
+      toast.success(
+        `Validation successfull! You may now login to your account`
+      );
+      navigate("/login");
+    } else {
+      return;
+    }
+  } catch (error) {
+    dispatch(VALIDATE_ERROR(error.response.status));
+
+    if (error.response) {
+      if (
+        error.response.status === 400 &&
+        error.response.data === "Wrong validation code"
+      ) {
+        toast.error("Wrong validation code");
+      } else {
+        toast.error(
+          "We are facing some problems. Please try registering later."
+        );
+      }
+    } else if (error.request) {
+      toast.error(
+        "We are facing some problems. Please try registering some time later."
+      );
+    }
+  }
+
+  toast.promise(validateUser, {
+    pending: "Loading...",
+  });
+};
+
+// login user
+export const loginUser = async ({ username, password }, dispatch, navigate) => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.post(`${BASE_URL}token/`, {
+      username,
+      password,
+    });
+    dispatch(VALIDATE_SUCCESS());
+    if (response.status === 200) {
+      dispatch(UPDATE_USER_STATUS());
+      toast.success(`Logged in successfully!`);
+      navigate("/");
+    } else {
+      return;
+    }
+  } catch (error) {
+    dispatch(VALIDATE_ERROR());
+    if (error.response) {
+      if (error.response.status === 401) {
+        toast.error(`${Object.values(error.response.data)}`);
+      } else {
+        toast.error(
+          "We are facing some problems. Please try registering later."
+        );
+      }
+    } else if (error.request) {
+      toast.error(
+        "We are facing some problems. Please try registering some time later."
+      );
+    }
+  }
+};
+
+// update user profile information
+export const updateUserProfile = async (
+  { first_name, last_name, phone, street, zip, city, country },
+  dispatch
+) => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.patch(
+      `${BASE_URL}api/user/me/buyer/`,
+      {
+        first_name,
+        last_name,
+        phone,
+        street,
+        zip,
+        city,
+        country,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${BEARER_TOKEN}`,
+        },
+      }
+    );
+    dispatch(VALIDATE_SUCCESS());
+    console.log(response.data);
+    if (response.status === 200) {
+      toast.success(`Profile updated successfully!`);
+    } else {
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get user profile information
+export const getUserProfile = async dispatch => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.get(`${BASE_URL}api/user/me/buyer/`, {
+      headers: {
+        Authorization: `Bearer ${BEARER_TOKEN}`,
+      },
+    });
+    dispatch(VALIDATE_SUCCESS());
+    dispatch(GET_USER_INFO(response.data));
+  } catch (error) {
+    console.log(error);
+  }
 };
