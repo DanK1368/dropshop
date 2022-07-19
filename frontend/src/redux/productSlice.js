@@ -10,25 +10,42 @@ export const productSlice = createSlice({
         name: "Headphones PX5000",
         price: 300,
         stock: 3,
+        amount: 1,
       },
       {
         id: 2,
         name: "Speakers PX5000",
         price: 100,
         stock: 1,
+        amount: 1,
       },
       {
         id: 3,
         name: "Earphones PX5000",
         price: 450,
         stock: 7,
+        amount: 1,
       },
     ],
     itemsOnline: [],
     showWarning: false,
+    pending: false,
+    error: false,
   },
 
   reducers: {
+    VALIDATE_START: state => {
+      state.pending = true;
+    },
+    VALIDATE_SUCCESS: state => {
+      state.pending = false;
+      state.error = false;
+    },
+    VALIDATE_ERROR: state => {
+      state.error = true;
+      state.pending = false;
+    },
+
     // used for the drag and drop of items from the inventory to another column
     ADD_ITEM_TO_COLUMN: (state, action) => {
       state.itemsOnline = [
@@ -55,5 +72,8 @@ export const {
   ADD_ITEM_TO_COLUMN,
   DELETE_ITEM_FROM_COLUMN,
   TOGGLE_WARNING_MESSAGE,
+  VALIDATE_START,
+  VALIDATE_SUCCESS,
+  VALIDATE_ERROR,
 } = productSlice.actions;
 export default productSlice.reducer;

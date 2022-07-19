@@ -72,13 +72,15 @@ export const StyledInputContainer = styled.div`
   }
 `;
 
-export const StyledButton = styled.div`
+export const StyledButton = styled.button`
   width: 100%;
   background: rgb(99, 95, 199);
   padding-block: 0.5rem;
   text-align: center;
   border-radius: 9999px;
   cursor: pointer;
+  border: none;
+  color: white;
 
   &:hover {
     background: rgb(168, 164, 255);
