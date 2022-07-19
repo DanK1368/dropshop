@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-vlaf3wpng*r#hel31+u%%bjg5esn)a^bhukz+jcdpuj_c7%(u5
 DEBUG = ast.literal_eval(os.environ.get('DJANGO_DEBUG'))
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['http://165.227.141.126']
+CSRF_TRUSTED_ORIGINS = ['http://165.227.141.126', 'https://dropshop.propulsion-learn.ch']
 
 # Application definition
 
