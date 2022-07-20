@@ -8,7 +8,8 @@ from .models import ItemModel
 
 from .serializers import ItemSerializer, CreateItemSerializer
 
-
+# TODO Implement permissions
+# TODO Implement throttling
 class ListCreateItemView(ListCreateAPIView):
     queryset = ItemModel.objects.all()
 
