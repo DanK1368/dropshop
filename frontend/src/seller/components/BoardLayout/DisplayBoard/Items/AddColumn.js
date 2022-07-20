@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   StyledBackdrop,
   StyledContainer,
@@ -9,6 +9,10 @@ import {
 } from "../../../../styles/AddColumn";
 import { ADD_COLUMN } from "../../../../../redux/columnSlice";
 import { useDispatch } from "react-redux";
+import {
+  createNewColumn,
+  listAllColumns,
+} from "../../../../../redux/columnApiCalls";
 
 const AddColumn = () => {
   const dispatch = useDispatch();
@@ -19,7 +23,7 @@ const AddColumn = () => {
 
   const handleAddColumn = e => {
     e.preventDefault();
-    dispatch(ADD_COLUMN(columnData));
+    createNewColumn(columnData, dispatch);
   };
 
   return (

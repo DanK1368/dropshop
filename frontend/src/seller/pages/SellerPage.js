@@ -3,15 +3,14 @@ import Header from "../components/BoardLayout/Header";
 import { Main, Board, InnerPage } from "../styles/SellerPage";
 import InventoryColumn from "../components/BoardLayout/DisplayBoard/Columns/InventoryColumn";
 import { useDispatch, useSelector } from "react-redux";
-import { listAllItems } from "../../redux/productApiCalls";
+import { listAllColumns } from "../../redux/columnApiCalls";
 
 const SellerPage = () => {
-  const { itemInventory } = useSelector(store => store.product);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   listAllItems(dispatch);
-  // }, []);
+  useEffect(() => {
+    listAllColumns(dispatch);
+  }, []);
 
   return (
     <Main>
@@ -25,4 +24,4 @@ const SellerPage = () => {
   );
 };
 
-export default React.memo(SellerPage);
+export default SellerPage;

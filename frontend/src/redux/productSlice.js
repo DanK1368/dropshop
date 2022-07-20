@@ -5,13 +5,12 @@ export const productSlice = createSlice({
   initialState: {
     // sample inventory
     itemInventory: [
-      // {
-      //   id: 100,
-      //   name: " Headphones Sandeep",
-      //   price: 300,
-      // },
+      {
+        id: 100,
+        name: " Headphones Sandeep",
+        price: 300,
+      },
     ],
-    itemsOnline: [],
     showWarning: false,
     pending: false,
     error: false,

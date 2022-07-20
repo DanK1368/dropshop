@@ -46,18 +46,18 @@ export const createNewItem = async (
 
 // list all the items
 
-export const listAllItems = async dispatch => {
-  dispatch(VALIDATE_START());
+// export const listAllItems = async dispatch => {
+//   dispatch(VALIDATE_START());
 
-  try {
-    const response = await axios.get(`${BASE_URL}api/items/`, {
-      headers: {
-        Authorization: `Bearer ${BEARER_TOKEN}`,
-      },
-    });
-    dispatch(VALIDATE_SUCCESS());
-    dispatch(ADD_FETCHED_ITEMS_TO_INVENTORY(response.data));
-  } catch (error) {
-    console.log(error);
-  }
-};
+//   try {
+//     const response = await axios.get(`${BASE_URL}api/items/`, {
+//       headers: {
+//         Authorization: `Bearer ${BEARER_TOKEN}`,
+//       },
+//     });
+//     dispatch(VALIDATE_SUCCESS());
+//     dispatch(ADD_FETCHED_ITEMS_TO_INVENTORY(response.data));
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
