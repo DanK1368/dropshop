@@ -18,6 +18,7 @@ class ItemModel(models.Model):
     image = models.ImageField(blank=True, null=True, upload_to=files_path)
     video = models.FileField(blank=True, null=True, upload_to=files_path)
     category = models.ForeignKey(to=CategoryModel, on_delete=models.PROTECT)
+    column_name = models.CharField(max_length=100, default="Inventory")
     seller_profile = models.ForeignKey(to=SellerProfileModel, on_delete=models.CASCADE, related_name='items',
                                        blank=True, null=True)
 
