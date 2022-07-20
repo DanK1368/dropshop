@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'seller_profile',
     'buyer_profile',
     'item_order_intermediary',
+    'column',
 
     # 3rd party
     'rest_framework',
