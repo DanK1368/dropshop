@@ -25,7 +25,7 @@ print('base dir', BASE_DIR)
 SECRET_KEY = 'django-insecure-vlaf3wpng*r#hel31+u%%bjg5esn)a^bhukz+jcdpuj_c7%(u5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = ast.literal_eval(os.environ.get('DJANGO_DEBUG'))
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True',
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['http://165.227.141.126', 'https://dropshop.propulsion-learn.ch']

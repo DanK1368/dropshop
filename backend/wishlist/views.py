@@ -2,9 +2,10 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, get_object_or_404, \
     GenericAPIView
 from rest_framework.views import APIView
+from rest_framework.response import Response
+
 
 from item.models import ItemModel
-from item.serializers import ItemSerializer
 from wishlist.models import WishListModel
 from wishlist.serializers import WishlistSerializer
 from wishlist.permission import IsUser, IsNotUser
@@ -25,9 +26,19 @@ class AddToWishListView(APIView):
             wishlist.item.add(item)
         else:
             wishlist.item.remove(item)
+        return HttpResponse(status=201)
 
-        # return JsonResponse(wishlist.item)
-        return HttpResponse(list(wishlist.item.all()))
+class GetAllItemsInWishlistView(GenericAPIView):
+    serializer_class = WishlistSerializer
+    queryset = WishListModel.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        # current_user = self.request.user
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+
 
 # class RetrieveUpdateDestroyItemView(RetrieveUpdateDestroyAPIView):
 #             queryset = ItemModel.objects.all()
