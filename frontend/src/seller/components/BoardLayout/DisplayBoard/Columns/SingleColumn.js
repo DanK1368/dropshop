@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import { Columns, Grid } from "../../../../styles/SellerColumns";
-import SingleItem from "../Items/SingleItem";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import { ADD_ITEM_TO_COLUMN } from "../../../../../redux/productSlice";
-import SingleColumn from "./SingleColumn";
+import { Columns, Grid } from "../../../../styles/SellerColumns";
+import SingleItem from "../Items/SingleItem";
 
-const InventoryColumn = () => {
+const SingleColumn = ({ title }) => {
   const dispatch = useDispatch();
-  const { columns } = useSelector(store => store.columns);
-
   const { itemInventory, itemsOnline } = useSelector(state => state.product);
   // state used to toggle the delete button for the SingleItem component
   const [showDeleteButton, setShowDeleteButton] = useState(false);
@@ -42,36 +39,11 @@ const InventoryColumn = () => {
   };
 
   return (
-    <>
-      {columns.map(column => (
-        <SingleColumn key={column.id} {...column} />
-      ))}
-
-      {/* INVENTORY */}
-      {/* <Columns>
-        <h4>Inventory</h4>
-        <Grid>
-          {itemInventory.map(item => (
-            <SingleItem key={item.id} {...item} />
-          ))}
-        </Grid>
-      </Columns> */}
-
-      {/* ITEMS TO BE SOLD ONLINE */}
-      {/* <Columns ref={drop}>
-        <h4>For Sale Online</h4>
-        <Grid>
-          {/* {itemsOnline.map(item => (
-            <SingleItem
-              key={item.id}
-              {...item}
-              showDeleteButton={showDeleteButton}
-            />
-          ))} 
-        </Grid>
-      </Columns> */}
-    </>
+    <Columns ref={drop}>
+      <h4>{title}</h4>
+      <Grid></Grid>
+    </Columns>
   );
 };
 
-export default React.memo(InventoryColumn);
+export default SingleColumn;

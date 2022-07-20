@@ -27,8 +27,6 @@ const AddItem = () => {
     createNewItem(itemValues, dispatch);
   };
 
-  console.log(itemValues);
-
   return (
     <StyledBackdrop>
       <StyledContainer>

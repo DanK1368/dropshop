@@ -12,9 +12,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const BASE_URL = "http://127.0.0.1:8000/backend/";
+// const BASE_URL = "https://dropshop.propulsion-learn.ch/backend/"
 
 const BEARER_TOKEN =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU4NjQzOTg5LCJpYXQiOjE2NTgyMTE5ODksImp0aSI6ImI5YjkwYzZmOGY3YzQxNTRhMzA5NmY3YzM1MzdmNmRlIiwidXNlcl9pZCI6MTh9.y-bN7i7aTkhb_28956rDdR4QJW1q9z-P1Ntekyjb8Qo";
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU4Njc0MTA2LCJpYXQiOjE2NTgyNDIxMDYsImp0aSI6ImM2YzIzN2U4YWY3NjQ1MmNiOWUwOGNmZTU0MDE2MTFlIiwidXNlcl9pZCI6M30.8ooOoViqO8cTQMa9tfoIKwMMkiP2xsd01AcnFZdCgQs";
 
 // Registration of new user
 export const registerUser = async (
