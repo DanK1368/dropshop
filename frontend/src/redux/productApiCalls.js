@@ -14,7 +14,16 @@ const BEARER_TOKEN =
 
 // create new item
 export const createNewItem = async (
-  { name, price, description, features, box_items, category, stock },
+  {
+    name,
+    price,
+    description,
+    features,
+    box_items,
+    category,
+    stock,
+    column_name,
+  },
   dispatch
 ) => {
   dispatch(VALIDATE_START());
@@ -30,6 +39,7 @@ export const createNewItem = async (
         features,
         box_items,
         category,
+        column_name,
       },
       {
         headers: {
@@ -45,19 +55,41 @@ export const createNewItem = async (
 };
 
 // list all the items
+export const listAllItems = async dispatch => {
+  dispatch(VALIDATE_START());
 
-// export const listAllItems = async dispatch => {
-//   dispatch(VALIDATE_START());
+  try {
+    const response = await axios.get(`${BASE_URL}api/items/`, {
+      headers: {
+        Authorization: `Bearer ${BEARER_TOKEN}`,
+      },
+    });
+    dispatch(VALIDATE_SUCCESS());
+    dispatch(ADD_FETCHED_ITEMS_TO_INVENTORY(response.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-//   try {
-//     const response = await axios.get(`${BASE_URL}api/items/`, {
-//       headers: {
-//         Authorization: `Bearer ${BEARER_TOKEN}`,
-//       },
-//     });
-//     dispatch(VALIDATE_SUCCESS());
-//     dispatch(ADD_FETCHED_ITEMS_TO_INVENTORY(response.data));
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+// update a single item
+export const updateSingleItem = async (id, column_name, dispatch) => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.patch(
+      `${BASE_URL}api/items/${id}/`,
+      {
+        column_name,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${BEARER_TOKEN}`,
+        },
+      }
+    );
+    dispatch(VALIDATE_SUCCESS());
+  } catch (error) {
+    dispatch(VALIDATE_ERROR());
+    console.log(error);
+  }
+};
