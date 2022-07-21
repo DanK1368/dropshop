@@ -31,9 +31,9 @@ export const StyledOuterContainer = styled.div`
 `;
 
 // sample array of pictures -> should always be 3 pictures for this layout
-const ProductDetails = () => {
+const ProductDetails = ({ id, category, description, features, box_items, stock, price, seller_profile }) => {
 
-  const { dummyInventory, pending } = useSelector(state => state.product);
+  const { dummyInventory } = useSelector(state => state.product);
 
 
   const [pics, setPics] = useState([
@@ -64,18 +64,19 @@ const ProductDetails = () => {
         <StyledProductDetails>
           <h2>New Product</h2>
           <StyledCartContainer>
-            {dummyInventory.map(item => (
-              <StyledTitel key={item.category.name} {...item} />
-
-            ))}
+            <h3>{dummyInventory[0].category.name}</h3>
             <p>
-              The new XX99 Mark II headphones is the pinnacle of pristine audio.
+              {dummyInventory[0].description}
+              {/** The new XX99 Mark II headphones is the pinnacle of pristine audio.
               It redefines your premium headphone experience by reproducing the
-              balanced depth and precision of studio-quality sound.
+              balanced depth and precision of studio-quality sound. */}
             </p>
+            <p>{dummyInventory[0].price}</p>
+              {/**
               {dummyInventory.map(item => (
                 <StyledPrice key={item.price} {...item} />
               ))}
+               */}
           </StyledCartContainer>
           <StyledBtnContainer>
             <div>
@@ -96,14 +97,18 @@ const ProductDetails = () => {
         <StyledFeatures>
           <h4>Features</h4>
           <p>
+            {dummyInventory[0].features}
+            {/**
             Featuring a genuine leather head strap and premium earcups, these
             headphones deliver superior comfort for those who like to enjoy
             endless listening. It includes intuitive controls designed for any
             situation. Whether you’re taking a business call or just in your own
             personal space, the auto on/off and pause features ensure that
             you’ll never miss a beat.
+             */}
           </p>
           <p>
+            {/**
             The advanced Active Noise Cancellation with built-in equalizer allow
             you to experience your audio world on your terms. It lets you enjoy
             your audio in peace, but quickly interact with your surroundings
@@ -111,26 +116,14 @@ const ProductDetails = () => {
             connectivity and 17 hour battery life, the XX99 Mark II headphones
             gives you superior sound, cutting-edge technology, and a modern
             design aesthetic.
+             */}
           </p>
         </StyledFeatures>
         <StyledBoxItems>
           <h4>In the box</h4>
           <ul>
             <li>
-              <span>2x</span>
-              Replacement Earcups
-            </li>
-            <li>
-              <span>1x</span>
-              User Manual
-            </li>
-            <li>
-              <span>1x</span>
-              3.5mm 5m Audio Cable
-            </li>
-            <li>
-              <span>1x</span>
-              Travel Bag
+              {dummyInventory[0].box_items}
             </li>
           </ul>
         </StyledBoxItems>
