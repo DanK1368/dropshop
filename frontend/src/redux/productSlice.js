@@ -6,6 +6,7 @@ export const productSlice = createSlice({
   initialState: {
     // sample inventory
     itemInventory: [],
+    searchedItems: [],
     itemsOnline: [],
     dummyInventory: [
       {
@@ -27,6 +28,8 @@ export const productSlice = createSlice({
     showWarning: false,
     pending: false,
     error: false,
+    showItemDetails: false,
+    itemToBeUpdatedId: null,
   },
 
   reducers: {
@@ -66,6 +69,19 @@ export const productSlice = createSlice({
     TOGGLE_WARNING_MESSAGE: state => {
       state.showWarning = !state.showWarning;
     },
+
+    TOGGLE_SHOW_ITEM_DETAILS: (state, action) => {
+      state.showItemDetails = !state.showItemDetails;
+      state.itemToBeUpdatedId = action.payload;
+    },
+
+    SEARCH_ITEMS: (state, action) => {
+      state.searchedItems = state.itemInventory.filter(
+        item =>
+          item.name.toLocaleLowerCase().includes(action.payload.searchTerm) &&
+          item.column_name === action.payload.columnTitle
+      );
+    },
   },
 });
 
@@ -77,5 +93,8 @@ export const {
   VALIDATE_SUCCESS,
   VALIDATE_ERROR,
   ADD_FETCHED_ITEMS_TO_INVENTORY,
+  TOGGLE_SHOW_ITEM_DETAILS,
+  SEARCH_ITEMS,
+  SEARCH_TERM,
 } = productSlice.actions;
 export default productSlice.reducer;

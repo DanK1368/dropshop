@@ -3,17 +3,21 @@ import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSingleItem } from "../../../../../redux/productApiCalls";
 import { ADD_ITEM_TO_COLUMN } from "../../../../../redux/productSlice";
-import { Columns, Grid } from "../../../../styles/SellerColumns";
+import {
+  Columns,
+  Grid,
+  StyledColumnContainer,
+} from "../../../../styles/SellerColumns";
 import SingleItem from "../Items/SingleItem";
 import DeleteColumn from "../Items/DeleteColumn";
 import { TOGGLE_WARNING_MESSAGE } from "../../../../../redux/columnSlice";
-
+import SearchBar from "../Items/SearchBar";
 import { TiDelete } from "react-icons/ti";
 
 const SingleColumn = ({ title, id }) => {
   const dispatch = useDispatch();
   const { showWarning } = useSelector(store => store.columns);
-  const { itemInventory } = useSelector(store => store.product);
+  const { itemInventory, searchedItems } = useSelector(store => store.product);
 
   // function that handles the drop feature of drag-and-drop
   const [{ isOver }, drop] = useDrop(() => ({
@@ -46,19 +50,22 @@ const SingleColumn = ({ title, id }) => {
 
   return (
     <>
-      <Columns ref={drop}>
-        <button onClick={() => dispatch(TOGGLE_WARNING_MESSAGE())}>
+      <StyledColumnContainer>
+        {/* <StyledDeleteBtn onClick={() => dispatch(TOGGLE_WARNING_MESSAGE())}>
           <TiDelete size={25} color="#EA5555" />
-        </button>
-        <h4>{title}</h4>
-        <Grid>
-          {itemInventory
-            .filter(item => item.column_name === title)
-            .map(item => (
-              <SingleItem key={item.id} {...item} />
-            ))}
-        </Grid>
-      </Columns>
+        </StyledDeleteBtn> */}
+        <Columns ref={drop}>
+          <h4>{title}</h4>
+          <SearchBar columnId={id} columnTitle={title} />
+          <Grid>
+            {itemInventory
+              .filter(item => item.column_name === title)
+              .map(item => (
+                <SingleItem key={item.id} {...item} />
+              ))}
+          </Grid>
+        </Columns>
+      </StyledColumnContainer>
       {showWarning && <DeleteColumn columnId={id} />}
     </>
   );

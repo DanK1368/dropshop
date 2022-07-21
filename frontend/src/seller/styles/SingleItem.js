@@ -1,35 +1,28 @@
 import styled from "styled-components";
 
+export const StyledCardContainer = styled.div`
+  position: relative;
+`;
+
 export const StyledCard = styled.article`
   background: #20212c;
   width: 280px;
-  max-height: 120px;
   border-radius: 5px;
   color: white;
   padding: 0.2rem;
   box-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
-  display: grid;
-  place-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   position: relative;
 
-  button {
-    width: 30px;
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-
-    &:hover {
-      transform: scale(120%);
-    }
-  }
-
-  :hover {
-    border: 1px solid #a8a4ff;
-    margin: -1px;
+  img {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    margin-top: 2rem;
   }
 
   h2 {
@@ -43,5 +36,38 @@ export const StyledCard = styled.article`
     justify-content: center;
     align-items: center;
     gap: 2rem;
+  }
+`;
+
+export const StyledDeleteBtn = styled.button`
+  width: 30px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(120%);
+  }
+`;
+
+export const StyledBtnContainer = styled.div`
+  padding-block: 1rem;
+
+  button {
+    position: initial;
+    background: #a8a4ff;
+    border: none;
+    color: white;
+    width: 100%;
+    border-radius: 9999px;
+    padding: 0.2rem 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+      background: #a9a4ffc5;
+    }
   }
 `;
