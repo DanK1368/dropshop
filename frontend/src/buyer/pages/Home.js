@@ -22,17 +22,15 @@ import { useSelector } from "react-redux";
 const Home = () => {
   const { featuredItems } = useSelector(state => state.product);
 
-  console.log(featuredItems);
-
   return (
     <Main>
       {featuredItems.length > 0 ? (
         featuredItems.map(item => (
-          <StyledFeaturedProduct>
+          <StyledFeaturedProduct key={item.id}>
             <div>
               <p>NEW PRODUCT</p>
               <h1>{item.name}</h1>
-              <h4>{item.descriotion}</h4>
+              <h4>{item.description}</h4>
 
               <StyledSeeProduct>SEE PRODUCT</StyledSeeProduct>
             </div>

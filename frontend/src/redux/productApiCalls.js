@@ -162,17 +162,6 @@ export const updateItem = async (
       }
     );
     if (response.status === 200) {
-      console.log(response);
-      console.log(
-        name,
-        price,
-        description,
-        features,
-        box_items,
-        category,
-        stock,
-        column_name
-      );
       dispatch(VALIDATE_SUCCESS());
       toast.success("Item successfully updated");
     } else {
