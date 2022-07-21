@@ -4,6 +4,7 @@ export const columnSlice = createSlice({
   name: "columns",
   initialState: {
     columns: [],
+    showWarning: false,
   },
 
   reducers: {
@@ -14,8 +15,23 @@ export const columnSlice = createSlice({
     UPDATE_COLUMNS: (state, action) => {
       state.columns = action.payload;
     },
+
+    DELETE_COLUMN: (state, action) => {
+      state.columns = [
+        ...state.columns.filter(column => column.id !== action.payload),
+      ];
+    },
+
+    TOGGLE_WARNING_MESSAGE: state => {
+      state.showWarning = !state.showWarning;
+    },
   },
 });
 
-export const { ADD_COLUMN, UPDATE_COLUMNS } = columnSlice.actions;
+export const {
+  ADD_COLUMN,
+  UPDATE_COLUMNS,
+  TOGGLE_WARNING_MESSAGE,
+  DELETE_COLUMN,
+} = columnSlice.actions;
 export default columnSlice.reducer;
