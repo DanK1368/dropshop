@@ -70,6 +70,10 @@ export const StyledInputContainer = styled.div`
   &:nth-child(3) {
     grid-column: 1 / 3;
   }
+
+  &:nth-child(8) {
+    grid-column: 1 / 3;
+  }
 `;
 
 export const StyledButton = styled.button`

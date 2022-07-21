@@ -20,14 +20,13 @@ const AddItem = () => {
     box_items: "",
     category: "",
     stock: "",
+    column_name: "",
   });
 
   const handleCreateNewItem = e => {
     e.preventDefault();
     createNewItem(itemValues, dispatch);
   };
-
-  console.log(itemValues);
 
   return (
     <StyledBackdrop>
@@ -128,6 +127,20 @@ const AddItem = () => {
                 name="stock"
                 id="stock"
                 value={itemValues.stock}
+                onChange={e =>
+                  setItemValues(prevState => {
+                    return { ...prevState, [e.target.name]: e.target.value };
+                  })
+                }
+              />
+            </StyledInputContainer>
+            <StyledInputContainer>
+              <label htmlFor="column_name">Column</label>
+              <input
+                type="text"
+                name="column_name"
+                id="column_name"
+                value={itemValues.column_name}
                 onChange={e =>
                   setItemValues(prevState => {
                     return { ...prevState, [e.target.name]: e.target.value };

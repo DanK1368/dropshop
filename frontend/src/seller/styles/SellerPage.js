@@ -16,6 +16,7 @@ export const InnerPage = styled.div`
   width: 100%;
   overflow: hidden;
   display: grid;
+  height: 100vh;
   grid-template-columns: repeat(3, minmax(400px, 1fr));
   background-color: #000112;
   padding-block: 1rem;
