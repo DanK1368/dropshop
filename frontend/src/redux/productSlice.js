@@ -7,7 +7,7 @@ export const productSlice = createSlice({
     // sample inventory
     itemInventory: [],
     searchedItems: [],
-    itemsOnline: [],
+    featuredItems: [],
     dummyInventory: [
       {
         id: 1,
@@ -23,7 +23,7 @@ export const productSlice = createSlice({
         image: null,
         video: null,
         seller_profile: 1,
-      }
+      },
     ],
     showWarning: false,
     pending: false,
@@ -82,6 +82,10 @@ export const productSlice = createSlice({
           item.column_name === action.payload.columnTitle
       );
     },
+
+    ADD_ITEM_TO_FEATURED_LIST: (state, action) => {
+      state.featuredItems = [action.payload];
+    },
   },
 });
 
@@ -95,6 +99,6 @@ export const {
   ADD_FETCHED_ITEMS_TO_INVENTORY,
   TOGGLE_SHOW_ITEM_DETAILS,
   SEARCH_ITEMS,
-  SEARCH_TERM,
+  ADD_ITEM_TO_FEATURED_LIST,
 } = productSlice.actions;
 export default productSlice.reducer;
