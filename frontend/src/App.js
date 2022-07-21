@@ -19,6 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 import HeadphonesPage from "./buyer/pages/HeadphonesPage";
 import SpeakersPage from "./buyer/pages/SpeakersPage";
 import EarphonesPage from "./buyer/pages/EarphonesPage";
+import Marketplace from "./buyer/pages/Marketplace";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
         {/* Buyer Side below  */}
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
+          <Route path="marketplace" element={<Marketplace />} />
           <Route path="productdetails" element={<ProductDetails />} />
           <Route path="category-headphones" element={<HeadphonesPage />} />
           <Route path="category-speakers" element={<SpeakersPage />} />
