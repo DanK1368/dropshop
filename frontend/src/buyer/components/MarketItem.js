@@ -4,9 +4,12 @@ import {
     StyledPicture,
     StyledItemDescription,
 } from "../styles/MarketItem"
-import DefaultImage from "../../assets/shared/desktop/image-xx59-headphones.jpg";
+import DefaultImage from "../../assets/shared/desktop/image-xx99-mark-one-headphones.jpg";
+import { useSelector } from "react-redux";
 
 const MarketItem = () => {
+
+    const { dummyInventory } = useSelector(state => state.product);
 
     return (
 
@@ -20,8 +23,8 @@ const MarketItem = () => {
 
             <StyledItemDescription>
 
-                <h3>Titel</h3>
-                <p>1799.50$</p>
+                <h3>{dummyInventory[0].category.name}</h3>
+                <p>{dummyInventory[0].price}</p>
 
             </StyledItemDescription>
 
