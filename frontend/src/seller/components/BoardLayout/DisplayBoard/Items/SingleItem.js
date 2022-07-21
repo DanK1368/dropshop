@@ -22,18 +22,17 @@ const SingleItem = ({ id, name, price, stock, showDeleteButton }) => {
   return (
     <>
       <StyledCard ref={drag}>
-        {showDeleteButton && (
-          <button onClick={() => dispatch(TOGGLE_WARNING_MESSAGE())}>
-            <TiDelete size={25} color="#EA5555" />
-          </button>
-        )}
+        <button onClick={() => dispatch(TOGGLE_WARNING_MESSAGE())}>
+          <TiDelete size={25} color="#EA5555" />
+        </button>
+
         <h2>{name}</h2>
         <div>
           <p>Price: $ {price}</p>
           <p>Stock: {stock} </p>
         </div>
+        {showWarning && <DeleteItem productId={id} />}
       </StyledCard>
-      {showWarning && <DeleteItem showWarning={showWarning} productId={id} />}
     </>
   );
 };

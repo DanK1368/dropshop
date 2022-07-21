@@ -1,22 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import { updateSingleItem } from "../../../../../redux/productApiCalls";
 import { ADD_ITEM_TO_COLUMN } from "../../../../../redux/productSlice";
 import { Columns, Grid } from "../../../../styles/SellerColumns";
 import SingleItem from "../Items/SingleItem";
+import DeleteColumn from "../Items/DeleteColumn";
+import { TOGGLE_WARNING_MESSAGE } from "../../../../../redux/columnSlice";
 
-const SingleColumn = ({ title }) => {
+import { TiDelete } from "react-icons/ti";
+
+const SingleColumn = ({ title, id }) => {
   const dispatch = useDispatch();
-  const { itemInventory, itemsOnline } = useSelector(state => state.product);
-
-  // state used to toggle the delete button for the SingleItem component
-  const [showDeleteButton, setShowDeleteButton] = useState(false);
+  const { showWarning } = useSelector(store => store.columns);
+  const { itemInventory } = useSelector(store => store.product);
 
   // function that handles the drop feature of drag-and-drop
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "productItem",
-    drop: item => addDraggedItemToColumn(item.id),
+    drop: item => {
+      addDraggedItemToColumn(item.id);
+      updateSingleItem(item.id, title, dispatch);
+    },
+
     collect: monitor => ({
       isOver: !!monitor.isOver(),
     }),
@@ -36,22 +42,25 @@ const SingleColumn = ({ title }) => {
     } else {
       return;
     }
-
-    updateSingleItem(draggedItemId, title, dispatch);
-    setShowDeleteButton(!showDeleteButton);
   };
 
   return (
-    <Columns ref={drop}>
-      <h4>{title}</h4>
-      <Grid>
-        {itemInventory
-          .filter(item => item.column_name === title)
-          .map(item => (
-            <SingleItem key={item.id} {...item} />
-          ))}
-      </Grid>
-    </Columns>
+    <>
+      <Columns ref={drop}>
+        <button onClick={() => dispatch(TOGGLE_WARNING_MESSAGE())}>
+          <TiDelete size={25} color="#EA5555" />
+        </button>
+        <h4>{title}</h4>
+        <Grid>
+          {itemInventory
+            .filter(item => item.column_name === title)
+            .map(item => (
+              <SingleItem key={item.id} {...item} />
+            ))}
+        </Grid>
+      </Columns>
+      {showWarning && <DeleteColumn columnId={id} />}
+    </>
   );
 };
 

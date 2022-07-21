@@ -1,16 +1,19 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { listAllColumns } from "./columnApiCalls";
 import {
   VALIDATE_START,
   VALIDATE_SUCCESS,
   VALIDATE_ERROR,
   ADD_FETCHED_ITEMS_TO_INVENTORY,
+  DELETE_SINGLE_ITEM,
+  TOGGLE_WARNING_MESSAGE,
 } from "./productSlice";
 
 const BASE_URL = "http://127.0.0.1:8000/backend/";
 
 const BEARER_TOKEN =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU4Njc0MjcyLCJpYXQiOjE2NTgyNDIyNzIsImp0aSI6IjBjMDE5Y2EzOGQ1YjRmYmE4Y2YyMjQ0Y2M4N2I1NDg1IiwidXNlcl9pZCI6MX0.zmuLt8Ssf9O7oFuCvEN1lhTm7mMqqgXNKiyVmmKxDR0";
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU4NzQ2NTY1LCJpYXQiOjE2NTgzMTQ1NjUsImp0aSI6IjE3NjYyMjllZGVlYjRlNDdiZmYyODQxZjM4YmJiMDljIiwidXNlcl9pZCI6MX0.LraGGEluEC7Qb4v405g0o37-ZxRA0G_fcwYY1IS4-bY";
 
 // create new item
 export const createNewItem = async (
@@ -48,6 +51,7 @@ export const createNewItem = async (
       }
     );
     dispatch(VALIDATE_SUCCESS());
+    listAllColumns(dispatch);
   } catch (error) {
     console.log(error);
     dispatch(VALIDATE_ERROR());
@@ -88,8 +92,34 @@ export const updateSingleItem = async (id, column_name, dispatch) => {
       }
     );
     dispatch(VALIDATE_SUCCESS());
+    console.log(response);
   } catch (error) {
     dispatch(VALIDATE_ERROR());
     console.log(error);
+  }
+};
+
+// delete a single item
+export const deleteSingleItem = async (id, dispatch) => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.delete(`${BASE_URL}api/items/${id}/`, {
+      headers: {
+        Authorization: `Bearer ${BEARER_TOKEN}`,
+      },
+    });
+
+    if (response.status === 204) {
+      dispatch(VALIDATE_SUCCESS());
+      dispatch(DELETE_SINGLE_ITEM(id));
+      dispatch(TOGGLE_WARNING_MESSAGE());
+      toast.success("Item successfully deleted");
+    } else {
+      return;
+    }
+  } catch (error) {
+    dispatch(VALIDATE_ERROR());
+    toast.error("Oops! Something went wrong");
   }
 };

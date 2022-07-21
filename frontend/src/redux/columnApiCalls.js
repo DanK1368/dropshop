@@ -4,7 +4,12 @@ import {
   VALIDATE_SUCCESS,
   VALIDATE_ERROR,
 } from "./productSlice";
-import { ADD_COLUMN, UPDATE_COLUMNS } from "./columnSlice";
+import {
+  ADD_COLUMN,
+  UPDATE_COLUMNS,
+  DELETE_COLUMN,
+  TOGGLE_WARNING_MESSAGE,
+} from "./columnSlice";
 import { toast } from "react-toastify";
 
 const BASE_URL = "http://127.0.0.1:8000/backend/";
@@ -60,5 +65,29 @@ export const listAllColumns = async dispatch => {
   } catch (error) {
     dispatch(VALIDATE_ERROR());
     console.log(error);
+  }
+};
+
+// delete a single column
+export const deleteSingleColumn = async (id, dispatch) => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.delete(`${BASE_URL}api/columns/${id}`, {
+      headers: {
+        Authorization: `Bearer ${BEARER_TOKEN}`,
+      },
+    });
+    dispatch(VALIDATE_SUCCESS());
+    if (response.status === 204) {
+      dispatch(DELETE_COLUMN(id));
+      dispatch(TOGGLE_WARNING_MESSAGE());
+      toast.success("Successfully deleted column");
+    } else {
+      return;
+    }
+  } catch (error) {
+    dispatch(VALIDATE_ERROR());
+    toast.error("Oops! Something went wrong");
   }
 };
