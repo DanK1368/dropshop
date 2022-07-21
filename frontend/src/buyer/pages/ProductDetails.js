@@ -33,7 +33,8 @@ export const StyledOuterContainer = styled.div`
 // sample array of pictures -> should always be 3 pictures for this layout
 const ProductDetails = () => {
 
-  const { dummyInventory } = useSelector(state => state.product);
+  const { dummyInventory, pending } = useSelector(state => state.product);
+
 
   const [pics, setPics] = useState([
     {
@@ -65,7 +66,7 @@ const ProductDetails = () => {
           <StyledCartContainer>
             {dummyInventory.map(item => (
               <StyledTitel key={item.category.name} {...item} />
-              
+
             ))}
             <p>
               The new XX99 Mark II headphones is the pinnacle of pristine audio.
