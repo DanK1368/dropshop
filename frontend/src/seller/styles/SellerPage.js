@@ -14,10 +14,10 @@ export const Board = styled.div`
 
 export const InnerPage = styled.div`
   width: 100%;
-  overflow: hidden;
+  overflow: scroll;
   display: grid;
   height: 100vh;
-  grid-template-columns: repeat(3, minmax(400px, 1fr));
+  grid-template-columns: repeat(6, minmax(350px, 1fr));
   background-color: #000112;
   padding-block: 1rem;
 `;

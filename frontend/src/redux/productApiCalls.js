@@ -123,3 +123,61 @@ export const deleteSingleItem = async (id, dispatch) => {
     toast.error("Oops! Something went wrong");
   }
 };
+
+export const updateItem = async (
+  id,
+  {
+    name,
+    price,
+    description,
+    features,
+    box_items,
+    category,
+    stock,
+    column_name,
+  },
+  dispatch
+) => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.patch(
+      `${BASE_URL}api/items/${id}/`,
+      {
+        name,
+        price,
+        description,
+        features,
+        box_items,
+        category,
+        stock,
+        column_name,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${BEARER_TOKEN}`,
+        },
+      }
+    );
+    if (response.status === 200) {
+      console.log(response);
+      console.log(
+        name,
+        price,
+        description,
+        features,
+        box_items,
+        category,
+        stock,
+        column_name
+      );
+      dispatch(VALIDATE_SUCCESS());
+      toast.success("Item successfully updated");
+    } else {
+      return;
+    }
+  } catch (error) {
+    dispatch(VALIDATE_ERROR());
+    toast.error("Oops! Something went wrong");
+  }
+};

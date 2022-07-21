@@ -5,9 +5,13 @@ import InventoryColumn from "../components/BoardLayout/DisplayBoard/Columns/Inve
 import { useDispatch, useSelector } from "react-redux";
 import { listAllColumns } from "../../redux/columnApiCalls";
 import { listAllItems } from "../../redux/productApiCalls";
+import ItemDetails from "../components/BoardLayout/DisplayBoard/Items/ItemDetails";
 
 const SellerPage = () => {
   const dispatch = useDispatch();
+  const { showItemDetails, itemToBeUpdatedId } = useSelector(
+    store => store.product
+  );
 
   useEffect(() => {
     listAllColumns(dispatch);
@@ -20,6 +24,7 @@ const SellerPage = () => {
         <Header />
         <InnerPage>
           <InventoryColumn />
+          {showItemDetails && <ItemDetails id={itemToBeUpdatedId} />}
         </InnerPage>
       </Board>
     </Main>
