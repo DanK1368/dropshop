@@ -29,16 +29,22 @@ export const productSlice = createSlice({
       },
     ],
     itemsOnline: [],
-    dummyInventory [
-      id: 1,
-      category: {
+    dummyInventory: [
+      {
         id: 1,
-        name: Headphones,
-      },
-      description: "asd",
-      features: "asda",
-      box_items: "1",
-      
+        category: {
+          id: 1,
+          name: "headphones",
+        },
+        description: "asd",
+        features: "asda",
+        box_items: "1",
+        stock: 1,
+        price: 100.0,
+        image: null,
+        video: null,
+        seller_profile: 1,
+      }
     ],
     showWarning: false,
     pending: false,
