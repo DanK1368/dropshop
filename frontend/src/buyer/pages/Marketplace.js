@@ -5,9 +5,18 @@ import { Grid } from "../styles/Marketplace";
 const Marketplace = () => {
 
     return (
+
         <Grid>
+
             <MarketItem />
+            <MarketItem />
+            <MarketItem />
+            <MarketItem />
+            <MarketItem />
+            <MarketItem />
+
         </Grid>
+
     );
 };
 
