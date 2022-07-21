@@ -180,3 +180,12 @@ export const StyledPictureGrid = styled.div`
     height: 100%;
   }
 `;
+
+export const StyledPrice = styled.div`
+  line-height: 1.7;
+`;
+
+export const StyledTitel = styled.div`
+  font-weight: bold;
+  font-size: 27px;
+`;

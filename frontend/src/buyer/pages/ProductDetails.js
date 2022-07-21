@@ -13,6 +13,8 @@ import {
   StyledFeatures,
   StyledBoxItems,
   StyledPictureGrid,
+  StyledPrice,
+  StyledTitel,
 } from "../styles/ProductDetails";
 import { Link } from "react-router-dom";
 import image1 from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg";
@@ -31,7 +33,7 @@ export const StyledOuterContainer = styled.div`
 // sample array of pictures -> should always be 3 pictures for this layout
 const ProductDetails = () => {
 
-  const { dummyInventory } = useSelector(state => state.products);
+  const { dummyInventory } = useSelector(state => state.product);
 
   const [pics, setPics] = useState([
     {
@@ -61,13 +63,18 @@ const ProductDetails = () => {
         <StyledProductDetails>
           <h2>New Product</h2>
           <StyledCartContainer>
-            <h3>XX99 Mark ii headphones</h3>
+            {dummyInventory.map(item => (
+              <StyledTitel key={item.category.name} {...item} />
+              
+            ))}
             <p>
               The new XX99 Mark II headphones is the pinnacle of pristine audio.
               It redefines your premium headphone experience by reproducing the
               balanced depth and precision of studio-quality sound.
             </p>
-            <p>$ 2,999</p>
+              {dummyInventory.map(item => (
+                <StyledPrice key={item.price} {...item} />
+              ))}
           </StyledCartContainer>
           <StyledBtnContainer>
             <div>
