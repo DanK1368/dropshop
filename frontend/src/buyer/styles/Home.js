@@ -16,6 +16,36 @@ export const ProductDescription = styled.div`
     background-color: black;
   }
 `;
+
+export const StyledFeaturedProduct = styled.div`
+  color: black;
+  margin-bottom: 4rem;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 3rem;
+  border-radius: 10px;
+
+  img {
+    max-width: 500px;
+  }
+
+  div:nth-child(1) {
+    min-height: 450px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    h4 {
+      font-weight: 400;
+    }
+  }
+`;
+
 export const NewProduct = styled.div`
   width: 30%;
   height: 100%;

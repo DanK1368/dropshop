@@ -11,15 +11,20 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   TOGGLE_SHOW_ITEM_DETAILS,
   TOGGLE_WARNING_MESSAGE,
+  ADD_ITEM_TO_FEATURED_LIST,
 } from "../../../../../redux/productSlice";
 import ItemDetails from "./ItemDetails";
 import { useState } from "react";
+import { fetchFeaturedItem } from "../../../../../redux/productApiCalls.js";
 
 const SingleItem = ({ id, name, price, stock, image }) => {
-  const { showWarning, showItemDetails, itemInventory } = useSelector(
-    state => state.product
-  );
   const dispatch = useDispatch();
+
+  const handleFetchFeaturedItem = () => {
+    fetchFeaturedItem(id, dispatch);
+  };
+  const { showWarning, featuredItems } = useSelector(state => state.product);
+  console.log(featuredItems);
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: "productItem",
@@ -51,7 +56,9 @@ const SingleItem = ({ id, name, price, stock, image }) => {
             <button onClick={() => dispatch(TOGGLE_SHOW_ITEM_DETAILS(id))}>
               See Details
             </button>
-            <button>Make Item Featured</button>
+            <button onClick={handleFetchFeaturedItem}>
+              Mark Item As Featured
+            </button>
           </StyledBtnContainer>
         </StyledCard>
       </StyledCardContainer>

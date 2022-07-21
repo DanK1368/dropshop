@@ -8,6 +8,7 @@ import {
   ADD_FETCHED_ITEMS_TO_INVENTORY,
   DELETE_SINGLE_ITEM,
   TOGGLE_WARNING_MESSAGE,
+  ADD_ITEM_TO_FEATURED_LIST,
 } from "./productSlice";
 
 const BASE_URL = "http://127.0.0.1:8000/backend/";
@@ -124,6 +125,7 @@ export const deleteSingleItem = async (id, dispatch) => {
   }
 };
 
+// update a single item with all information
 export const updateItem = async (
   id,
   {
@@ -179,5 +181,22 @@ export const updateItem = async (
   } catch (error) {
     dispatch(VALIDATE_ERROR());
     toast.error("Oops! Something went wrong");
+  }
+};
+
+// fetch a single item ( featured item )
+export const fetchFeaturedItem = async (id, dispatch) => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.get(`${BASE_URL}api/items/${id}`, {
+      headers: {
+        Authorization: `Bearer ${BEARER_TOKEN}`,
+      },
+    });
+    dispatch(VALIDATE_SUCCESS());
+    dispatch(ADD_ITEM_TO_FEATURED_LIST(response.data));
+  } catch (error) {
+    console.log(error);
   }
 };
