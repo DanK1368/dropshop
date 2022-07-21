@@ -57,11 +57,10 @@ export const productSlice = createSlice({
     },
 
     // will delete the item from the Products-Online Column
-    DELETE_ITEM_FROM_COLUMN: (state, action) => {
-      state.itemsOnline = [
-        ...state.itemsOnline.filter(item => item.id !== action.payload),
+    DELETE_SINGLE_ITEM: (state, action) => {
+      state.itemInventory = [
+        ...state.itemInventory.filter(item => item.id !== action.payload),
       ];
-      state.showWarning = false;
     },
 
     TOGGLE_WARNING_MESSAGE: state => {
@@ -72,7 +71,7 @@ export const productSlice = createSlice({
 
 export const {
   ADD_ITEM_TO_COLUMN,
-  DELETE_ITEM_FROM_COLUMN,
+  DELETE_SINGLE_ITEM,
   TOGGLE_WARNING_MESSAGE,
   VALIDATE_START,
   VALIDATE_SUCCESS,

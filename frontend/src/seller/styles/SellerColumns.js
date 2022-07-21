@@ -9,6 +9,17 @@ export const Columns = styled.div`
   background-color: rgba(43, 44, 55, 0.5);
   margin-left: 1rem;
   border-radius: 10px;
+  position: relative;
+
+  button {
+    width: 30px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 
   h4 {
     color: #a8a4ff;

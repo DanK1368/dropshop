@@ -57,4 +57,5 @@ deploy:
   script:
     - docker-compose -f docker-compose.deploy.yml pull
     - docker-compose -f docker-compose.deploy.yml down --remove-orphans
+    - docker volume rm dropshop_build
     - docker-compose -f docker-compose.deploy.yml up -d

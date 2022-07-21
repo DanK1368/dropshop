@@ -4,16 +4,15 @@ import {
   StyledButtonContainer,
 } from "../../../../styles/DeleteItem";
 import { useDispatch } from "react-redux";
-import { TOGGLE_WARNING_MESSAGE } from "../../../../../redux/productSlice";
-import { deleteSingleItem } from "../../../../../redux/productApiCalls";
+import { TOGGLE_WARNING_MESSAGE } from "../../../../../redux/columnSlice";
+import { deleteSingleColumn } from "../../../../../redux/columnApiCalls";
 
-// the props passed down come from the SingleItem Component
-const DeleteItem = ({ productId }) => {
+const DeleteItem = ({ columnId }) => {
   const dispatch = useDispatch();
 
-  // this will delete the item from the Online Column
-  const handleDeleteItem = () => {
-    deleteSingleItem(productId, dispatch);
+  // this will delete the column
+  const handleDeleteColumn = () => {
+    deleteSingleColumn(columnId, dispatch);
   };
 
   return (
@@ -21,11 +20,11 @@ const DeleteItem = ({ productId }) => {
       <StyledCard>
         <h2>Delete this item?</h2>
         <p>
-          Are you sure you want to delete the item? This action cannot be
+          Are you sure you want to delete this column? This action cannot be
           reveresed!
         </p>
         <StyledButtonContainer>
-          <button onClick={handleDeleteItem}>Delete</button>
+          <button onClick={handleDeleteColumn}>Delete</button>
           <button onClick={() => dispatch(TOGGLE_WARNING_MESSAGE())}>
             Cancel
           </button>
