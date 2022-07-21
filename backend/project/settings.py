@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'seller_profile',
     'buyer_profile',
     'item_order_intermediary',
+    'column',
 
     # 3rd party
     'rest_framework',
@@ -152,13 +153,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static-files/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static-files') if DEBUG else '/static-files/'
+STATIC_URL = 'static-files/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static-files')
 print('static root', STATIC_ROOT)
 
-MEDIA_URL = '/media-files/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media-files') if DEBUG else '/media-files/'
+MEDIA_URL = 'media-files/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media-files')
 print('media root', MEDIA_ROOT)
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

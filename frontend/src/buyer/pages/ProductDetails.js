@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import image1 from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg";
 import image2 from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg";
 import image3 from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg";
+import { useSelector } from "react-redux";
 
 export const StyledOuterContainer = styled.div`
   /* background: rgba(0, 0, 0, 0.1); */
@@ -29,6 +30,9 @@ export const StyledOuterContainer = styled.div`
 
 // sample array of pictures -> should always be 3 pictures for this layout
 const ProductDetails = () => {
+
+  const { dummyInventory } = useSelector(state => state.products);
+
   const [pics, setPics] = useState([
     {
       id: 1,

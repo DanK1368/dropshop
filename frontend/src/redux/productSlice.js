@@ -5,29 +5,7 @@ export const productSlice = createSlice({
   name: "product",
   initialState: {
     // sample inventory
-    itemInventory: [
-      {
-        id: 1,
-        name: "Headphones PX5000",
-        price: 300,
-        stock: 3,
-        amount: 1,
-      },
-      {
-        id: 2,
-        name: "Speakers PX5000",
-        price: 100,
-        stock: 1,
-        amount: 1,
-      },
-      {
-        id: 3,
-        name: "Earphones PX5000",
-        price: 450,
-        stock: 7,
-        amount: 1,
-      },
-    ],
+    itemInventory: [],
     itemsOnline: [],
     dummyInventory: [
       {
@@ -64,12 +42,18 @@ export const productSlice = createSlice({
       state.pending = false;
     },
 
-    // used for the drag and drop of items from the inventory to another column
+    // add newly created item to inventory
+    ADD_FETCHED_ITEMS_TO_INVENTORY: (state, action) => {
+      state.itemInventory = [...action.payload];
+    },
+
+    // used for the drag and drop of items,
     ADD_ITEM_TO_COLUMN: (state, action) => {
-      state.itemsOnline = [
-        ...state.itemsOnline.filter(item => item.id !== action.payload[0].id),
-        action.payload[0],
-      ];
+      let updatedItem = state.itemInventory.filter(
+        item => item.id === action.payload.id
+      );
+      updatedItem[0].column_name = action.payload.title;
+      state.itemInventory = [...state.itemInventory, { ...updatedItem }];
     },
 
     // will delete the item from the Products-Online Column
@@ -93,5 +77,6 @@ export const {
   VALIDATE_START,
   VALIDATE_SUCCESS,
   VALIDATE_ERROR,
+  ADD_FETCHED_ITEMS_TO_INVENTORY,
 } = productSlice.actions;
 export default productSlice.reducer;
