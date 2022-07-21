@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import HeadphonesPage from "../buyer/pages/HeadphonesPage";
 
 export const productSlice = createSlice({
   name: "product",
@@ -6,6 +7,24 @@ export const productSlice = createSlice({
     // sample inventory
     itemInventory: [],
     searchedItems: [],
+    itemsOnline: [],
+    dummyInventory: [
+      {
+        id: 1,
+        category: {
+          id: 1,
+          name: "headphones",
+        },
+        description: "asd",
+        features: "asda",
+        box_items: "1",
+        stock: 1,
+        price: 100.0,
+        image: null,
+        video: null,
+        seller_profile: 1,
+      }
+    ],
     showWarning: false,
     pending: false,
     error: false,
