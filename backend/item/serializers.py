@@ -1,11 +1,10 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SlugRelatedField
 
 from .models import ItemModel
-from category.serializers import CategorySerializer
-
+from category.models import CategoryModel
 
 class ItemSerializer(ModelSerializer):
-    category = CategorySerializer()
+    category = SlugRelatedField(slug_field='name', queryset=CategoryModel.objects.all())
 
     class Meta:
         model = ItemModel
