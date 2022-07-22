@@ -10,6 +10,7 @@ import { deleteSingleItem } from "../../../../../redux/productApiCalls";
 // the props passed down come from the SingleItem Component
 const DeleteItem = ({ productId }) => {
   const dispatch = useDispatch();
+  console.log(productId);
 
   // this will delete the item from the Online Column
   const handleDeleteItem = () => {
