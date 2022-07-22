@@ -3,30 +3,38 @@ import MarketItem from "../components/MarketItem";
 import { Grid } from "../styles/Marketplace";
 import { useDispatch, useSelector } from "react-redux";
 import { listAllItems } from "../../redux/productApiCalls";
+import {
+    StyledItemContainer,
+    StyledPicture,
+    StyledItemDescription,
+} from "../styles/MarketItem";
+import { useNavigate } from "react-router-dom";
 
-const Marketplace = () => {
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        listAllItems(dispatch);
-    }, []);
-
-    const { itemInventory } = useSelector(store => store.product);
+const Marketplace = ({ id, image, name, price }) => {
+    const navigate = useNavigate();
 
     return (
 
         <Grid>
-            {itemInventory.map((item) => (
-                <MarketItem key={itemInventory.id} {...itemInventory} item={item} />
-            ))}
-            <MarketItem />
-            <MarketItem />
-            <MarketItem />
-            <MarketItem />
-            <MarketItem />
-            <MarketItem />
 
+            <StyledItemContainer onClick={() => navigate(`/productdetails/${id}`)}>
+                <StyledPicture>
+                    <img src={image} />
+                </StyledPicture>
+                <StyledItemDescription>
+                    <h3>{name}</h3>
+                    <p>{price}</p>
+                </StyledItemDescription>
+            </StyledItemContainer>
+
+            {/**
+            <MarketItem />
+            <MarketItem />
+            <MarketItem />
+            <MarketItem />
+            <MarketItem />
+            <MarketItem />
+             */}
         </Grid>
 
     );
