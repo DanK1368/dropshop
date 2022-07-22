@@ -7,20 +7,15 @@ import {
 } from "../styles/ItemForSale";
 import { StyledSeeProduct } from "../styles/SeeProductButton";
 
-const Earphones = () => {
+const Earphones = ({ name, image, description, idx }) => {
   return (
-    <StyledWholeItem>
-      <img src={earphones} alt="Speakers" />
+    <StyledWholeItem layout={idx % 2 !== 0 && "row-reverse"}>
+      <img src={image} alt="Speakers" />
       <StyledDescriptionBox>
         <StyledInnerDescriptionBox>
           <h5>NEW PRODUCT</h5>
-          <h2>YX1 WIRELESS EARPHONES</h2>
-          <p>
-            Tailor your listening experience with bespoke dynamic drivers from
-            the new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound
-            even in noisy environments with its active noise cancellation
-            feature.
-          </p>
+          <h2>{name}</h2>
+          <p>{description}</p>
           <StyledSeeProduct>SEE PRODUCT</StyledSeeProduct>
         </StyledInnerDescriptionBox>
       </StyledDescriptionBox>
