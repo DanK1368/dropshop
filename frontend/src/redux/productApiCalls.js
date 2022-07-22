@@ -9,6 +9,7 @@ import {
   DELETE_SINGLE_ITEM,
   TOGGLE_WARNING_MESSAGE,
   ADD_ITEM_TO_FEATURED_LIST,
+  ADD_SINGLE_ITEM,
 } from "./productSlice";
 
 const BASE_URL = "http://127.0.0.1:8000/backend/";
@@ -185,6 +186,20 @@ export const fetchFeaturedItem = async (id, dispatch) => {
     });
     dispatch(VALIDATE_SUCCESS());
     dispatch(ADD_ITEM_TO_FEATURED_LIST(response.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// retrieve a single item
+
+export const fetchSingleItem = async (id, dispatch) => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.get(`${BASE_URL}api/items/${id}`);
+    dispatch(VALIDATE_SUCCESS());
+    dispatch(ADD_SINGLE_ITEM(response.data));
   } catch (error) {
     console.log(error);
   }
