@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404
+
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -9,9 +11,9 @@ from .models import ItemModel
 from .serializers import ItemSerializer, CreateItemSerializer
 
 # TODO Implement permissions
-# TODO Implement throttling
 class ListCreateItemView(ListCreateAPIView):
     queryset = ItemModel.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -27,6 +29,7 @@ class RetrieveUpdateDestroyItemView(RetrieveUpdateDestroyAPIView):
     queryset = ItemModel.objects.all()
     serializer_class = ItemSerializer
     lookup_url_kwarg = 'item_id'
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class ToggleFavouriteView(APIView):
