@@ -8,6 +8,7 @@ export const productSlice = createSlice({
     itemInventory: [],
     searchedItems: [],
     featuredItems: [],
+    singleItem: [],
     dummyInventory: [
       {
         id: 1,
@@ -87,6 +88,10 @@ export const productSlice = createSlice({
     ADD_ITEM_TO_FEATURED_LIST: (state, action) => {
       state.featuredItems = [action.payload];
     },
+
+    ADD_SINGLE_ITEM: (state, action) => {
+      state.singleItem = [action.payload];
+    },
   },
 });
 
@@ -101,5 +106,6 @@ export const {
   TOGGLE_SHOW_ITEM_DETAILS,
   SEARCH_ITEMS,
   ADD_ITEM_TO_FEATURED_LIST,
+  ADD_SINGLE_ITEM,
 } = productSlice.actions;
 export default productSlice.reducer;
