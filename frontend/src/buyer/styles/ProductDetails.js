@@ -3,12 +3,18 @@ import styled from "styled-components";
 export const StyledGoBackBtnContainer = styled.div`
   padding-bottom: 5rem;
 
-  a {
+  button {
     font-size: 18px;
     color: gray;
     font-weight: 300;
     cursor: pointer;
     text-decoration: none;
+    background: none;
+    border: none;
+
+    &:hover {
+      color: #d87d4a;
+    }
   }
 `;
 
@@ -39,6 +45,14 @@ export const StyledCartContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  div {
+    display: flex;
+    justify-content: flex-start;
+
+    align-items: center;
+    gap: 5rem;
+  }
 
   h3 {
     font-size: 30px;

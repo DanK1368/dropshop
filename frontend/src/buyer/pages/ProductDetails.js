@@ -16,7 +16,7 @@ import {
   StyledPrice,
   StyledTitel,
 } from "../styles/ProductDetails";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import image1 from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg";
 import image2 from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg";
 import image3 from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg";
@@ -31,10 +31,15 @@ export const StyledOuterContainer = styled.div`
 `;
 
 // sample array of pictures -> should always be 3 pictures for this layout
-const ProductDetails = ({ id, category, description, features, box_items, stock, price, seller_profile }) => {
-
-  const { dummyInventory } = useSelector(state => state.product);
-
+const ProductDetails = () => {
+  const navigate = useNavigate();
+  const { productId } = useParams();
+  const { itemInventory } = useSelector(store => store.product);
+  const detailedProduct = itemInventory.filter(
+    item => item.id === parseInt(productId)
+  );
+  const { description, features, name, price, stock, image } =
+    detailedProduct[0];
 
   const [pics, setPics] = useState([
     {
@@ -55,28 +60,21 @@ const ProductDetails = ({ id, category, description, features, box_items, stock,
     <section>
       {/* Button Container */}
       <StyledGoBackBtnContainer>
-        <Link to="/">Go Back</Link>
+        <button onClick={() => navigate(-1)}>Go Back</button>
       </StyledGoBackBtnContainer>
       {/* Container with Picture and details about product */}
       <StyledProductContainer>
-        <img src={productImage} alt="" />
+        <img src={image} alt="" />
 
         <StyledProductDetails>
           <h2>New Product</h2>
           <StyledCartContainer>
-            <h3>{dummyInventory[0].category.name}</h3>
-            <p>
-              {dummyInventory[0].description}
-              {/** The new XX99 Mark II headphones is the pinnacle of pristine audio.
-              It redefines your premium headphone experience by reproducing the
-              balanced depth and precision of studio-quality sound. */}
-            </p>
-            <p>{dummyInventory[0].price}</p>
-              {/**
-              {dummyInventory.map(item => (
-                <StyledPrice key={item.price} {...item} />
-              ))}
-               */}
+            <h3>{name}</h3>
+            <p>{description}</p>
+            <div>
+              <p>CHF {price.toFixed(2)} </p>
+              <p>Stock {stock}</p>
+            </div>
           </StyledCartContainer>
           <StyledBtnContainer>
             <div>
@@ -96,35 +94,12 @@ const ProductDetails = ({ id, category, description, features, box_items, stock,
       <StyledFeaturesContainer>
         <StyledFeatures>
           <h4>Features</h4>
-          <p>
-            {dummyInventory[0].features}
-            {/**
-            Featuring a genuine leather head strap and premium earcups, these
-            headphones deliver superior comfort for those who like to enjoy
-            endless listening. It includes intuitive controls designed for any
-            situation. Whether you’re taking a business call or just in your own
-            personal space, the auto on/off and pause features ensure that
-            you’ll never miss a beat.
-             */}
-          </p>
-          <p>
-            {/**
-            The advanced Active Noise Cancellation with built-in equalizer allow
-            you to experience your audio world on your terms. It lets you enjoy
-            your audio in peace, but quickly interact with your surroundings
-            when you need to. Combined with Bluetooth 5. 0 compliant
-            connectivity and 17 hour battery life, the XX99 Mark II headphones
-            gives you superior sound, cutting-edge technology, and a modern
-            design aesthetic.
-             */}
-          </p>
+          <p>{features}</p>
         </StyledFeatures>
         <StyledBoxItems>
           <h4>In the box</h4>
           <ul>
-            <li>
-              {dummyInventory[0].box_items}
-            </li>
+            <li>Box Items</li>
           </ul>
         </StyledBoxItems>
       </StyledFeaturesContainer>
