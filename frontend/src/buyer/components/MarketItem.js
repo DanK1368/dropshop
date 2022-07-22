@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     StyledItemContainer,
     StyledPicture,
     StyledItemDescription,
 } from "../styles/MarketItem"
 import DefaultImage from "../../assets/shared/desktop/image-xx99-mark-one-headphones.jpg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { listAllItems } from "../../redux/productApiCalls";
 
-const MarketItem = () => {
+const MarketItem = ({image, name, price, item}) => {
 
-    const { dummyInventory } = useSelector(state => state.product);
+    // const { dummyInventory } = useSelector(state => state.product);
 
     return (
 
@@ -17,14 +18,14 @@ const MarketItem = () => {
 
             <StyledPicture>
 
-                <img src={ DefaultImage }/>
+                <img src={image}/>
 
             </StyledPicture>
 
             <StyledItemDescription>
 
-                <h3>{dummyInventory[0].category.name}</h3>
-                <p>{dummyInventory[0].price}</p>
+                <h3>{name}</h3>
+                <p>{price}</p>
 
             </StyledItemDescription>
 
