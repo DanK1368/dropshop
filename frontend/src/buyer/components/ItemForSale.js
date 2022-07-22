@@ -1,26 +1,26 @@
 import React from "react";
 import XX99 from "../../assets/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg";
 import {
-    StyledWholeItem,
-    StyledDescriptionBox,
-    StyledInnerDescriptionBox,
+  StyledWholeItem,
+  StyledDescriptionBox,
+  StyledInnerDescriptionBox,
 } from "../styles/ItemForSale";
 import { StyledSeeProduct } from "../styles/SeeProductButton";
 
-const ItemForSale = () => {
-    return (
-        <StyledWholeItem>
-            <img src={XX99} alt="Headphones" />
-            <StyledDescriptionBox>
-                <StyledInnerDescriptionBox>
-                    <h5>NEW PRODUCT</h5>
-                    <h2>XX99 MARK II HEADPHONES</h2>
-                    <p>The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.</p>
-                    <StyledSeeProduct>SEE PRODUCT</StyledSeeProduct>
-                </StyledInnerDescriptionBox>
-            </StyledDescriptionBox>
-        </StyledWholeItem>
-    );
+const ItemForSale = ({ id, image, name, description }) => {
+  return (
+    <StyledWholeItem layout={id === 21 && "row-reverse"}>
+      <img src={image} alt="Headphones" />
+      <StyledDescriptionBox>
+        <StyledInnerDescriptionBox>
+          <h5>NEW PRODUCT</h5>
+          <h2>{name}</h2>
+          <p>{description}</p>
+          <StyledSeeProduct>SEE PRODUCT</StyledSeeProduct>
+        </StyledInnerDescriptionBox>
+      </StyledDescriptionBox>
+    </StyledWholeItem>
+  );
 };
 
 export default ItemForSale;

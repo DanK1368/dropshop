@@ -66,7 +66,8 @@ export const productSlice = createSlice({
       ];
     },
 
-    TOGGLE_WARNING_MESSAGE: state => {
+    TOGGLE_WARNING_MESSAGE: (state, action) => {
+      state.itemToBeUpdatedId = action.payload;
       state.showWarning = !state.showWarning;
     },
 
