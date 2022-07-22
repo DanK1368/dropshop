@@ -65,9 +65,9 @@ export const listAllItems = async dispatch => {
 
   try {
     const response = await axios.get(`${BASE_URL}api/items/`, {
-      headers: {
-        Authorization: `Bearer ${BEARER_TOKEN}`,
-      },
+      // headers: {
+      //   Authorization: `Bearer ${BEARER_TOKEN}`,
+      // },
     });
     dispatch(VALIDATE_SUCCESS());
     dispatch(ADD_FETCHED_ITEMS_TO_INVENTORY(response.data));

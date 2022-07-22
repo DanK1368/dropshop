@@ -3,7 +3,6 @@ import ItemForSale from "../components/ItemForSale";
 import ItemForSaleMirrored from "../components/ItemForSaleMirrored";
 import ShopLinks from "../components/ShopLinks";
 import { BottomComponent, SecondHeader } from "../styles/HeadphonesPage";
-import { productList } from "../../productList";
 import { useDispatch, useSelector } from "react-redux";
 import { listAllItems } from "../../redux/productApiCalls";
 
@@ -31,8 +30,8 @@ const HeadphonesPage = () => {
           <br></br>HEADPHONES
         </h1>
       </SecondHeader>
-      {headphones.map(headphone => (
-        <ItemForSale key={headphone.id} {...headphone} />
+      {headphones.map((headphone, idx) => (
+        <ItemForSale key={headphone.id} {...headphone} idx={idx} />
       ))}
 
       {/* <ItemForSaleMirrored />

@@ -7,9 +7,9 @@ import {
 } from "../styles/ItemForSale";
 import { StyledSeeProduct } from "../styles/SeeProductButton";
 
-const ItemForSale = ({ id, image, name, description }) => {
+const ItemForSale = ({ image, name, description, idx }) => {
   return (
-    <StyledWholeItem layout={id === 21 && "row-reverse"}>
+    <StyledWholeItem layout={idx % 2 !== 0 && "row-reverse"}>
       <img src={image} alt="Headphones" />
       <StyledDescriptionBox>
         <StyledInnerDescriptionBox>
