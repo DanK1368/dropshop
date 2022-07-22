@@ -43,10 +43,13 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="marketplace" element={<Marketplace />} />
-          <Route path="productdetails" element={<ProductDetails />} />
           <Route path="category-headphones" element={<HeadphonesPage />} />
           <Route path="category-speakers" element={<SpeakersPage />} />
           <Route path="category-earphones" element={<EarphonesPage />} />
+          <Route
+            path="productdetails/:productId"
+            element={<ProductDetails />}
+          />
           <Route path="login" element={<Login />} />
           <Route path="registration" element={<Registration />} />
           <Route path="validation" element={<Validate />} />
