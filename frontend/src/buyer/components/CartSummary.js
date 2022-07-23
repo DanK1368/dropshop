@@ -7,9 +7,11 @@ import {
   StyledTotalAmount,
   StyledCheckOutBtn,
   StyledRemoveAllBtn,
+  StyledGifContainer,
 } from "../styles/CartSummary";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import image1 from "../../assets/product-xx59-headphones/desktop/image-product.jpg";
+import emptyCartGif from "../../assets/cart.gif";
+
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -46,35 +48,41 @@ const CartSummary = () => {
           </StyledRemoveAllBtn>
         </StyledFlexContainer>
 
-        {cart.map(item => (
-          <StyledFlexContainer key={item.id}>
-            <StyledProductContainer>
-              <img src={item.image} alt="" />
-              <div>
-                <p>{item.name}</p>
-                <p>$ {item.price.toFixed(2)}</p>
-              </div>
-            </StyledProductContainer>
-            <StyledBtnContainer>
-              <button
-                onClick={() => {
-                  if (item.amount === 1) {
-                    dispatch(REMOVE_SINGLE_ITEM(item.id));
-                    return;
-                  } else {
-                    dispatch(DECREASE(item.id));
-                  }
-                }}
-              >
-                <AiOutlineMinus />
-              </button>
-              <p>{item.amount} </p>
-              <button onClick={() => dispatch(INCREASE(item.id))}>
-                <AiOutlinePlus />
-              </button>
-            </StyledBtnContainer>
-          </StyledFlexContainer>
-        ))}
+        {!cart.length ? (
+          <StyledGifContainer>
+            <img src={emptyCartGif} alt="" />
+          </StyledGifContainer>
+        ) : (
+          cart.map(item => (
+            <StyledFlexContainer key={item.id}>
+              <StyledProductContainer>
+                <img src={item.image} alt="" />
+                <div>
+                  <p>{item.name}</p>
+                  <p>$ {item.price.toFixed(2)}</p>
+                </div>
+              </StyledProductContainer>
+              <StyledBtnContainer>
+                <button
+                  onClick={() => {
+                    if (item.amount === 1) {
+                      dispatch(REMOVE_SINGLE_ITEM(item.id));
+                      return;
+                    } else {
+                      dispatch(DECREASE(item.id));
+                    }
+                  }}
+                >
+                  <AiOutlineMinus />
+                </button>
+                <p>{item.amount} </p>
+                <button onClick={() => dispatch(INCREASE(item.id))}>
+                  <AiOutlinePlus />
+                </button>
+              </StyledBtnContainer>
+            </StyledFlexContainer>
+          ))
+        )}
 
         <StyledTotalAmount>
           <p>TOTAL</p>
