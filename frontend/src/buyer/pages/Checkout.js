@@ -5,15 +5,38 @@ import {
   StyledInputContainer,
   StyledInputGrid,
 } from "../styles/Checkout";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import CheckoutSummary from "../components/CheckoutSummary";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Checkout = () => {
+  const navigate = useNavigate();
+  const { userInfo } = useSelector(store => store.user);
+
+  const [profileValues, setProfileValues] = useState({
+    first_name: userInfo.first_name,
+    last_name: userInfo.last_name,
+    email: userInfo.email,
+    phone: userInfo.phone,
+    street: userInfo.street,
+    zip: userInfo.zip,
+    city: userInfo.city,
+    country: userInfo.country,
+  });
+
+  console.log(profileValues);
+
+  const handleUpdateProfileValues = e => {
+    setProfileValues(prevState => {
+      return { ...prevState, [e.target.name]: e.target.value };
+    });
+  };
+
   return (
     <div>
       <StyledGoBackBtnContainer>
-        <Link to="/">Go Back</Link>
+        <button onClick={() => navigate(-1)}>Go Back</button>
       </StyledGoBackBtnContainer>
       <StyledOuterContainer>
         <StyledForm>
@@ -27,16 +50,44 @@ const Checkout = () => {
             <h2>Billing Details</h2>
             <StyledInputGrid>
               <StyledInputContainer>
-                <label htmlFor="name">Name</label>
-                <input type="text" id="name" name="name" />
+                <label htmlFor="first_name">First Name</label>
+                <input
+                  type="text"
+                  id="first_name"
+                  name="first_name"
+                  value={profileValues.first_name}
+                  onChange={handleUpdateProfileValues}
+                />
               </StyledInputContainer>
               <StyledInputContainer>
-                <label htmlFor="name">E-Mail Address</label>
-                <input type="text" id="email" name="email" />
+                <label htmlFor="last_name">Last Name</label>
+                <input
+                  type="text"
+                  id="last_name"
+                  name="last_name"
+                  value={profileValues.last_name}
+                  onChange={handleUpdateProfileValues}
+                />
+              </StyledInputContainer>
+              <StyledInputContainer>
+                <label htmlFor="email">E-Mail Address</label>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  value={profileValues.email}
+                  onChange={handleUpdateProfileValues}
+                />
               </StyledInputContainer>
               <StyledInputContainer>
                 <label htmlFor="name">Phone Number</label>
-                <input type="text" id="phone" name="phone" />
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  value={profileValues.phone}
+                  onChange={handleUpdateProfileValues}
+                />
               </StyledInputContainer>
             </StyledInputGrid>
           </div>
@@ -45,16 +96,44 @@ const Checkout = () => {
             <h2>Shipping Info</h2>
             <StyledInputGrid>
               <StyledInputContainer>
-                <label htmlFor="name">Address</label>
-                <input type="text" id="address" name="address" />
+                <label htmlFor="street">Address</label>
+                <input
+                  type="text"
+                  id="street"
+                  name="street"
+                  value={profileValues.street}
+                  onChange={handleUpdateProfileValues}
+                />
               </StyledInputContainer>
               <StyledInputContainer>
                 <label htmlFor="name">Zip Code</label>
-                <input type="text" id="zip" name="zip" />
+                <input
+                  type="text"
+                  id="zip"
+                  name="zip"
+                  value={profileValues.zip}
+                  onChange={handleUpdateProfileValues}
+                />
               </StyledInputContainer>
               <StyledInputContainer>
                 <label htmlFor="name">City</label>
-                <input type="text" id="city" name="city" />
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  value={profileValues.city}
+                  onChange={handleUpdateProfileValues}
+                />
+              </StyledInputContainer>
+              <StyledInputContainer>
+                <label htmlFor="country">Country</label>
+                <input
+                  type="text"
+                  id="country"
+                  name="country"
+                  value={profileValues.country}
+                  onChange={handleUpdateProfileValues}
+                />
               </StyledInputContainer>
             </StyledInputGrid>
           </div>

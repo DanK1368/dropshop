@@ -21,7 +21,7 @@ export const StyledCartContainer = styled.div`
   padding: 1.5rem 2.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  //gap: 2rem;
 
   img {
     width: 70px;
@@ -46,10 +46,22 @@ export const StyledCartContainer = styled.div`
   }
 `;
 
+export const StyledGifContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 250px;
+    height: 100%;
+  }
+`;
+
 export const StyledFlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-block: 0.7rem;
 `;
 
 export const StyledProductContainer = styled.div`

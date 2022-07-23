@@ -15,7 +15,7 @@ const BASE_URL = "http://127.0.0.1:8000/backend/";
 // const BASE_URL = "https://dropshop.propulsion-learn.ch/backend/"
 
 const BEARER_TOKEN =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU4Njc0MTA2LCJpYXQiOjE2NTgyNDIxMDYsImp0aSI6ImM2YzIzN2U4YWY3NjQ1MmNiOWUwOGNmZTU0MDE2MTFlIiwidXNlcl9pZCI6M30.8ooOoViqO8cTQMa9tfoIKwMMkiP2xsd01AcnFZdCgQs";
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5MDE2OTQ2LCJpYXQiOjE2NTg1ODQ5NDYsImp0aSI6ImUzMDRhNmYxNDJmMjRkYzY5YjM4OTNiMTIzZTNhN2YyIiwidXNlcl9pZCI6Mn0.o8KqxQF_DKYCDMKD3VP2cc5RNN32Ypbgi9BHCWw1Wsc";
 
 // Registration of new user
 export const registerUser = async (
@@ -180,6 +180,7 @@ export const updateUserProfile = async (
     }
   } catch (error) {
     console.log(error);
+    toast.error("Something went wrong. Unable to save profile");
   }
 };
 

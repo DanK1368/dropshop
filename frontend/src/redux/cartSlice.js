@@ -17,7 +17,6 @@ export const cartSlice = createSlice({
     },
 
     ADD_TO_CART: (state, action) => {
-      console.log(action.payload.id);
       // check first if item exist in the cart already
       const checkIndex = state.cart.findIndex(
         item => item.id === action.payload.id
