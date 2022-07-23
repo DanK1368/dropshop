@@ -12,13 +12,20 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import image1 from "../../assets/product-xx59-headphones/desktop/image-product.jpg";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { TOGGLE_CART_MODAL } from "../../redux/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  TOGGLE_CART_MODAL,
+  INCREASE,
+  DECREASE,
+  REMOVE_ALL_ITEMS,
+  REMOVE_SINGLE_ITEM,
+} from "../../redux/cartSlice";
 
 const CartSummary = () => {
   const ref = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { cart, total } = useSelector(store => store.cart);
 
   // used to navigate to the checkout on button click, and close the modal after
   const handleNavigate = () => {
@@ -33,32 +40,45 @@ const CartSummary = () => {
     <StyledBackdrop>
       <StyledCartContainer ref={ref}>
         <StyledFlexContainer>
-          <h3>CART (3)</h3>
-          <StyledRemoveAllBtn>Remove all</StyledRemoveAllBtn>
+          <h3>CART ({cart.length})</h3>
+          <StyledRemoveAllBtn onClick={() => dispatch(REMOVE_ALL_ITEMS())}>
+            Remove all
+          </StyledRemoveAllBtn>
         </StyledFlexContainer>
 
-        <StyledFlexContainer>
-          <StyledProductContainer>
-            <img src={image1} alt="" />
-            <div>
-              <p>XX99 MK II</p>
-              <p>$ 2,999</p>
-            </div>
-          </StyledProductContainer>
-          <StyledBtnContainer>
-            <button>
-              <AiOutlineMinus />
-            </button>
-            <p>1</p>
-            <button>
-              <AiOutlinePlus />
-            </button>
-          </StyledBtnContainer>
-        </StyledFlexContainer>
+        {cart.map(item => (
+          <StyledFlexContainer key={item.id}>
+            <StyledProductContainer>
+              <img src={item.image} alt="" />
+              <div>
+                <p>{item.name}</p>
+                <p>$ {item.price.toFixed(2)}</p>
+              </div>
+            </StyledProductContainer>
+            <StyledBtnContainer>
+              <button
+                onClick={() => {
+                  if (item.amount === 1) {
+                    dispatch(REMOVE_SINGLE_ITEM(item.id));
+                    return;
+                  } else {
+                    dispatch(DECREASE(item.id));
+                  }
+                }}
+              >
+                <AiOutlineMinus />
+              </button>
+              <p>{item.amount} </p>
+              <button onClick={() => dispatch(INCREASE(item.id))}>
+                <AiOutlinePlus />
+              </button>
+            </StyledBtnContainer>
+          </StyledFlexContainer>
+        ))}
 
         <StyledTotalAmount>
           <p>TOTAL</p>
-          <span>$ 5,396</span>
+          <span>$ {total.toFixed(2)}</span>
         </StyledTotalAmount>
         <StyledCheckOutBtn onClick={handleNavigate}>CHECKOUT</StyledCheckOutBtn>
       </StyledCartContainer>
