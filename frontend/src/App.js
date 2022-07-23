@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import BottomPicture from "./buyer/components/BottomPicture";
 import ItemForSale from "./buyer/components/ItemForSale";
@@ -20,8 +20,17 @@ import HeadphonesPage from "./buyer/pages/HeadphonesPage";
 import SpeakersPage from "./buyer/pages/SpeakersPage";
 import EarphonesPage from "./buyer/pages/EarphonesPage";
 import Marketplace from "./buyer/pages/Marketplace";
+import { useDispatch, useSelector } from "react-redux";
+import { CALCULATE_TOTALS } from "./redux/cartSlice";
 
 function App() {
+  const { cart } = useSelector(store => store.cart);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(CALCULATE_TOTALS());
+  }, [cart, dispatch]);
+
   return (
     <div>
       {/* Below component is for the notifications */}

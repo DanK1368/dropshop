@@ -17,7 +17,6 @@ import profile_pic from "../../assets/profile_pic.jpg";
 const Header = () => {
   const { isAuthenticatedUser, userInfo } = useSelector(store => store.user);
   const { showCartModal, amount } = useSelector(store => store.cart);
-  console.log(amount);
 
   const dispatch = useDispatch();
 
@@ -58,7 +57,7 @@ const Header = () => {
             <StyledShowCartBtn onClick={() => dispatch(TOGGLE_CART_MODAL())}>
               <RiShoppingCartLine color="white" size={20} />
             </StyledShowCartBtn>
-            <p>{amount}</p>
+            {amount > 0 && <p>{amount}</p>}
           </StyledCartContainer>
         </StyledProfileContainer>
       </Main>
