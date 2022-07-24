@@ -28,6 +28,7 @@ export const createNewItem = async (
     category,
     stock,
     column_name,
+    image,
   },
   dispatch
 ) => {
@@ -45,9 +46,11 @@ export const createNewItem = async (
         box_items,
         category,
         column_name,
+        image,
       },
       {
         headers: {
+          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${BEARER_TOKEN}`,
         },
       }

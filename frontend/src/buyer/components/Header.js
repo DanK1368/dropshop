@@ -8,17 +8,18 @@ import {
   StyledCartContainer,
 } from "../styles/Header";
 import CartSummary from "./CartSummary";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { TOGGLE_CART_MODAL } from "../../redux/cartSlice";
 import profile_pic from "../../assets/profile_pic.jpg";
+import { getUserProfile } from "../../redux/apiCalls";
 
 // not forget to take a look at the border-bottom
 const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { isAuthenticatedUser, userInfo } = useSelector(store => store.user);
   const { showCartModal, amount } = useSelector(store => store.cart);
-
-  const dispatch = useDispatch();
 
   return (
     <>
@@ -48,9 +49,9 @@ const Header = () => {
               <p>
                 Welcome <br /> {userInfo.first_name}
               </p>
-              <Link to="/user/profile">
+              <button onClick={() => getUserProfile(navigate, dispatch)}>
                 <img src={profile_pic} alt="" />
-              </Link>
+              </button>
             </>
           )}
           <StyledCartContainer>

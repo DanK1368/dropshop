@@ -6,12 +6,15 @@ import {
   StyledGrid,
   StyledInputContainer,
   StyledButton,
+  StlyedHeaderContainer,
+  StyledImagePreviewContainer,
 } from "../../../../styles/AddItem";
 import { createNewItem } from "../../../../../redux/productApiCalls";
 import { useDispatch } from "react-redux";
 
 const AddItem = () => {
   const dispatch = useDispatch();
+  const [selectedImage, setSelectedImage] = useState("");
   const [itemValues, setItemValues] = useState({
     name: "",
     price: "",
@@ -21,6 +24,7 @@ const AddItem = () => {
     category: "",
     stock: "",
     column_name: "",
+    image: "",
   });
 
   const handleCreateNewItem = e => {
@@ -28,12 +32,37 @@ const AddItem = () => {
     createNewItem(itemValues, dispatch);
   };
 
+  const imageChange = e => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(URL.createObjectURL(e.target.files[0]));
+    }
+  };
+
+  const removeSelectedImage = () => {
+    setSelectedImage("");
+  };
+
+  const handleChangeOfItemValues = e => {
+    setItemValues(prevState => {
+      return { ...prevState, [e.target.name]: e.target.value };
+    });
+  };
+
   return (
     <StyledBackdrop>
       <StyledContainer>
         <StyledForm onSubmit={handleCreateNewItem}>
-          <h1>Add New Item</h1>
-
+          <StlyedHeaderContainer>
+            <h1>Add New Item</h1>
+            {selectedImage && (
+              <StyledImagePreviewContainer>
+                <img src={selectedImage} alt="item preview" />
+                <button type="button" onClick={removeSelectedImage}>
+                  Remove
+                </button>
+              </StyledImagePreviewContainer>
+            )}
+          </StlyedHeaderContainer>
           <StyledGrid>
             <StyledInputContainer>
               <label htmlFor="name">Name</label>
@@ -42,11 +71,7 @@ const AddItem = () => {
                 id="name"
                 name="name"
                 value={itemValues.name}
-                onChange={e =>
-                  setItemValues(prevState => {
-                    return { ...prevState, [e.target.name]: e.target.value };
-                  })
-                }
+                onChange={handleChangeOfItemValues}
               />
             </StyledInputContainer>
             <StyledInputContainer>
@@ -56,11 +81,7 @@ const AddItem = () => {
                 name="price"
                 id="price"
                 value={itemValues.price}
-                onChange={e =>
-                  setItemValues(prevState => {
-                    return { ...prevState, [e.target.name]: e.target.value };
-                  })
-                }
+                onChange={handleChangeOfItemValues}
               />
             </StyledInputContainer>
             <StyledInputContainer>
@@ -68,11 +89,7 @@ const AddItem = () => {
               <textarea
                 name="description"
                 value={itemValues.description}
-                onChange={e =>
-                  setItemValues(prevState => {
-                    return { ...prevState, [e.target.name]: e.target.value };
-                  })
-                }
+                onChange={handleChangeOfItemValues}
                 id="description"
                 cols="30"
                 rows="10"
@@ -85,11 +102,7 @@ const AddItem = () => {
                 id="features"
                 name="features"
                 value={itemValues.features}
-                onChange={e =>
-                  setItemValues(prevState => {
-                    return { ...prevState, [e.target.name]: e.target.value };
-                  })
-                }
+                onChange={handleChangeOfItemValues}
               />
             </StyledInputContainer>
             <StyledInputContainer>
@@ -99,11 +112,7 @@ const AddItem = () => {
                 name="box_items"
                 id="box_items"
                 value={itemValues.box_items}
-                onChange={e =>
-                  setItemValues(prevState => {
-                    return { ...prevState, [e.target.name]: e.target.value };
-                  })
-                }
+                onChange={handleChangeOfItemValues}
               />
             </StyledInputContainer>
             <StyledInputContainer>
@@ -113,11 +122,7 @@ const AddItem = () => {
                 name="category"
                 id="category"
                 value={itemValues.category}
-                onChange={e =>
-                  setItemValues(prevState => {
-                    return { ...prevState, [e.target.name]: e.target.value };
-                  })
-                }
+                onChange={handleChangeOfItemValues}
               />
             </StyledInputContainer>
             <StyledInputContainer>
@@ -127,11 +132,7 @@ const AddItem = () => {
                 name="stock"
                 id="stock"
                 value={itemValues.stock}
-                onChange={e =>
-                  setItemValues(prevState => {
-                    return { ...prevState, [e.target.name]: e.target.value };
-                  })
-                }
+                onChange={handleChangeOfItemValues}
               />
             </StyledInputContainer>
             <StyledInputContainer>
@@ -141,11 +142,24 @@ const AddItem = () => {
                 name="column_name"
                 id="column_name"
                 value={itemValues.column_name}
-                onChange={e =>
+                onChange={handleChangeOfItemValues}
+              />
+            </StyledInputContainer>
+            <StyledInputContainer>
+              <label htmlFor="image">Image</label>
+              <input
+                type="file"
+                name="image"
+                id="image"
+                onChange={e => {
+                  imageChange(e);
                   setItemValues(prevState => {
-                    return { ...prevState, [e.target.name]: e.target.value };
-                  })
-                }
+                    return {
+                      ...prevState,
+                      [e.target.name]: e.target.files[0],
+                    };
+                  });
+                }}
               />
             </StyledInputContainer>
           </StyledGrid>

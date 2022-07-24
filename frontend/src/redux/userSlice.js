@@ -18,6 +18,7 @@ export const userSlice = createSlice({
     pending: false,
     error: false,
     isAuthenticatedUser: false,
+    authToken: null,
   },
 
   reducers: {
@@ -61,6 +62,17 @@ export const userSlice = createSlice({
     GET_USER_INFO: (state, action) => {
       state.userInfo = { ...action.payload };
     },
+
+    // see if local storage has access token stored, if yes update state
+    SET_AUTH_TOKEN: state => {
+      if (localStorage.getItem("authToken")) {
+        state.authToken = localStorage.getItem("authToken");
+        state.isAuthenticatedUser = true;
+      } else {
+        state.authToken = null;
+        state.isAuthenticatedUser = false;
+      }
+    },
   },
 });
 
@@ -74,5 +86,6 @@ export const {
   VALIDATE_ERROR,
   UPDATE_USER_STATUS,
   GET_USER_INFO,
+  SET_AUTH_TOKEN,
 } = userSlice.actions;
 export default userSlice.reducer;
