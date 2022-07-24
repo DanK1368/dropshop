@@ -14,13 +14,12 @@ import Wishlist from "../components/Wishlist";
 import PreviousOrders from "../components/PreviousOrders";
 import { useDispatch, useSelector } from "react-redux";
 import { UPDATE_USER_INFO } from "../../redux/userSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { updateUserProfile } from "../../redux/apiCalls";
-import { getUserProfile } from "../../redux/apiCalls";
 
 const Profile = () => {
   const { userInfo, pending } = useSelector(store => store.user);
-
+  const dispatch = useDispatch();
   // state used to update user info
   const [profileValues, setProfileValues] = useState({
     first_name: userInfo.first_name,
@@ -32,7 +31,6 @@ const Profile = () => {
     city: userInfo.city,
     country: userInfo.country,
   });
-  const dispatch = useDispatch();
 
   // this function will save any changes made by the user to their info
   const handleUpdate = e => {

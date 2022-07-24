@@ -73,6 +73,12 @@ export const userSlice = createSlice({
         state.isAuthenticatedUser = false;
       }
     },
+
+    // clear authtoken in localstorage and logout user
+    LOGOUT_USER: state => {
+      state.isAuthenticatedUser = false;
+      localStorage.removeItem("authToken");
+    },
   },
 });
 
@@ -87,5 +93,6 @@ export const {
   UPDATE_USER_STATUS,
   GET_USER_INFO,
   SET_AUTH_TOKEN,
+  LOGOUT_USER,
 } = userSlice.actions;
 export default userSlice.reducer;

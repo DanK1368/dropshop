@@ -11,6 +11,7 @@ import CartSummary from "./CartSummary";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { TOGGLE_CART_MODAL } from "../../redux/cartSlice";
+import { LOGOUT_USER } from "../../redux/userSlice";
 import profile_pic from "../../assets/profile_pic.jpg";
 import { getUserProfile } from "../../redux/apiCalls";
 
@@ -36,9 +37,9 @@ const Header = () => {
           <NavLink to="/category-headphones">HEADPHONES</NavLink>
           <NavLink to="/category-speakers">SPEAKERS</NavLink>
           <NavLink to="/category-earphones">EARPHONES</NavLink>
-          {!isAuthenticatedUser && <NavLink to="/seller">SELL</NavLink>}
+          {isAuthenticatedUser && <NavLink to="/seller">SELL</NavLink>}
           {isAuthenticatedUser ? (
-            <button>LOGOUT</button>
+            <button onClick={() => dispatch(LOGOUT_USER())}>LOGOUT</button>
           ) : (
             <NavLink to="/login">LOGIN</NavLink>
           )}
