@@ -5,8 +5,8 @@ import { SEARCH_ITEMS } from "../../../../../redux/productSlice";
 
 const SearchBar = ({ columnTitle }) => {
   const dispatch = useDispatch();
-  const [searchValue, setSearchValue] = useState("");
-  const { searchedItems } = useSelector(store => store.product);
+  const [searchValue, setSearchValue] = useState("")
+
 
   return (
     <>

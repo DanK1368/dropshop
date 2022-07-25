@@ -78,11 +78,13 @@ export const productSlice = createSlice({
     },
 
     SEARCH_ITEMS: (state, action) => {
-      state.searchedItems = state.itemInventory.filter(
-        item =>
-          item.name.toLocaleLowerCase().includes(action.payload.searchTerm) &&
-          item.column_name === action.payload.columnTitle
-      );
+      if (!action.payload.searchTerm) {
+        state.searchedItems = [];
+      } else {
+        state.searchedItems = state.itemInventory.filter(item =>
+          item.name.toLocaleLowerCase().includes(action.payload.searchTerm)
+        );
+      }
     },
 
     ADD_ITEM_TO_FEATURED_LIST: (state, action) => {
