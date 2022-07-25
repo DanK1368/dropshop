@@ -15,7 +15,7 @@ const BASE_URL = "http://127.0.0.1:8000/backend/";
 // const BASE_URL = "https://dropshop.propulsion-learn.ch/backend/"
 
 const BEARER_TOKEN =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5MDE2OTQ2LCJpYXQiOjE2NTg1ODQ5NDYsImp0aSI6ImUzMDRhNmYxNDJmMjRkYzY5YjM4OTNiMTIzZTNhN2YyIiwidXNlcl9pZCI6Mn0.o8KqxQF_DKYCDMKD3VP2cc5RNN32Ypbgi9BHCWw1Wsc";
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5MDg0NTU3LCJpYXQiOjE2NTg2NTI1NTcsImp0aSI6ImFjMDVmMmVkMDUzNDQ2YTM4ZWIwZGZjOGVhZTAwNDJkIiwidXNlcl9pZCI6Mn0.oBSdY5KcVCrBGd9GjI9BYXVcgAfooIGXH1L8zIKSys8";
 
 // Registration of new user
 export const registerUser = async (
@@ -123,8 +123,9 @@ export const loginUser = async ({ username, password }, dispatch, navigate) => {
     dispatch(VALIDATE_SUCCESS());
     if (response.status === 200) {
       dispatch(UPDATE_USER_STATUS());
+      localStorage.setItem("authToken", JSON.stringify(response.data.access));
       toast.success(`Logged in successfully!`);
-      navigate("/");
+      navigate(-1);
     } else {
       return;
     }
@@ -167,7 +168,9 @@ export const updateUserProfile = async (
       },
       {
         headers: {
-          Authorization: `Bearer ${BEARER_TOKEN}`,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("authToken")
+          )}`,
         },
       }
     );
@@ -185,17 +188,25 @@ export const updateUserProfile = async (
 };
 
 // get user profile information
-export const getUserProfile = async dispatch => {
+export const getUserProfile = async (navigate, dispatch) => {
   dispatch(VALIDATE_START());
 
   try {
     const response = await axios.get(`${BASE_URL}api/user/me/buyer/`, {
       headers: {
-        Authorization: `Bearer ${BEARER_TOKEN}`,
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("authToken")
+        )}`,
       },
     });
-    dispatch(VALIDATE_SUCCESS());
-    dispatch(GET_USER_INFO(response.data));
+
+    if (response.status === 200) {
+      dispatch(VALIDATE_SUCCESS());
+      dispatch(GET_USER_INFO(response.data));
+      navigate("/user/profile");
+    } else {
+      return;
+    }
   } catch (error) {
     console.log(error);
   }
