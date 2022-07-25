@@ -61,7 +61,7 @@ export const cartSlice = createSlice({
     // clears the entire cart of all items
     REMOVE_ALL_ITEMS: state => {
       state.cart = [];
-      toast.info("All items removed from your cart");
+      // toast.info("All items removed from your cart");
     },
 
     // removes just 1 item --> is triggered when number of items goes below zero

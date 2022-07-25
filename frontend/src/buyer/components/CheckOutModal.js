@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   StyledBackdrop,
   StyledCartContainer,
@@ -6,11 +6,22 @@ import {
   StyledProductContainer,
   StyledInnerProductContainer,
   StyledTotalAmount,
+  StyledBackToHomeBtn,
 } from "../styles/CheckOutModal";
 import OrderConfirmationIcon from "../../assets/checkout/icon-order-confirmation.svg";
-import image1 from "../../assets/product-xx59-headphones/desktop/image-product.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { REMOVE_ALL_ITEMS } from "../../redux/cartSlice";
 
 const CheckOutModal = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [showRemainingItems, setShowRemainingItems] = useState(false);
+  const { cart, total } = useSelector(store => store.cart);
+
+  const shippingCost = 9;
+  const grandTotal = total + shippingCost;
+
   return (
     <StyledBackdrop>
       <StyledCartContainer>
@@ -25,25 +36,57 @@ const CheckOutModal = () => {
         </div>
         <StyledFlexContainer>
           <StyledProductContainer>
-            <StyledInnerProductContainer>
-              <img src={image1} alt="" />
-              <div>
-                <p>XX99 MK II</p>
-                <p>$ 2,999</p>
-              </div>
-            </StyledInnerProductContainer>
+            {cart
+              .filter((item, idx) => idx === 0)
+              .map(item => (
+                <StyledInnerProductContainer key={item.id}>
+                  <img src={item.image} alt="" />
+                  <div>
+                    <p>{item.name}</p>
+                    <p>CHF {item.price.toFixed(2)}</p>
+                  </div>
+                </StyledInnerProductContainer>
+              ))}
+            {showRemainingItems &&
+              cart
+                .filter((item, idx) => idx > 0)
+                .map(item => (
+                  <StyledInnerProductContainer key={item.id}>
+                    <img src={item.image} alt="" />
+                    <div>
+                      <p>{item.name}</p>
+                      <p>CHF {item.price.toFixed(2)}</p>
+                    </div>
+                  </StyledInnerProductContainer>
+                ))}
+
             <hr />
             <div>
-              <p>and 2 other items</p>
+              {cart.length > 0 && cart.length - 1 !== 0 && (
+                <button
+                  onClick={() => setShowRemainingItems(!showRemainingItems)}
+                >
+                  {showRemainingItems
+                    ? `minimize orders`
+                    : `and ${cart.length - 1} other item/s`}
+                </button>
+              )}
             </div>
           </StyledProductContainer>
           <StyledTotalAmount>
             <p>GRAND TOTAL</p>
-            <span>$ 5,396</span>
+            <span>CHF {cart.length > 0 && grandTotal.toFixed(2)}</span>
           </StyledTotalAmount>
         </StyledFlexContainer>
 
-        <Link to="/">BACK TO HOME</Link>
+        <StyledBackToHomeBtn
+          onClick={() => {
+            dispatch(REMOVE_ALL_ITEMS());
+            navigate("/");
+          }}
+        >
+          BACK TO HOME
+        </StyledBackToHomeBtn>
       </StyledCartContainer>
     </StyledBackdrop>
   );
