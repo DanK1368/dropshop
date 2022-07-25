@@ -8,32 +8,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { listAllItems } from "../../redux/productApiCalls";
 
 const SpeakersPage = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(()=> {
-        listAllItems(dispatch);
-    }, []);
+  useEffect(() => {
+    listAllItems(dispatch);
+  }, []);
 
-    const { itemInventory } = useSelector(store => store.product);
-    const speakers = itemInventory.filter(
-        item => item.category === "Speakers"
-    );
-    return (
-        <>
-        <SecondHeader>
-            <h1><span></span><br></br>SPEAKERS</h1>
-        </SecondHeader>
-        {speakers.map((speaker, idx) => (
-        <SpeakersZX9 key={speaker.id} {...speaker} idx={idx}/>
-        ))}
-        
-        {/* <SpeakersZX7/> */}
-        <BottomComponent>
-            <ShopLinks/>
-        </BottomComponent>
-        
+  const { itemInventory } = useSelector(store => store.product);
+  const speakers = itemInventory.filter(item => item.category === "Speakers");
+  return (
+    <>
+      <SecondHeader>
+        <h1>
+          <span></span>
+          <br></br>SPEAKERS
+        </h1>
+      </SecondHeader>
+      {speakers.map((speaker, idx) => (
+        <SpeakersZX9 key={speaker.id} {...speaker} idx={idx} />
+      ))}
+
+      {/* <SpeakersZX7/> */}
+      <BottomComponent>
+        <ShopLinks />
+      </BottomComponent>
     </>
-    )
-}
+  );
+};
 
 export default SpeakersPage;
