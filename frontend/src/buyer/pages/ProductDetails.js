@@ -23,6 +23,11 @@ import image3 from "../../assets/product-xx99-mark-two-headphones/desktop/image-
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleItem } from "../../redux/productApiCalls";
 import spinner from "../../assets/spinner2.gif";
+import {
+  ADD_TO_CART,
+  INCREASE_AMOUNT_OF_ITEMS,
+  DECREASE_AMOUNT_OF_ITEMS,
+} from "../../redux/cartSlice";
 
 export const StyledOuterContainer = styled.div`
   /* background: rgba(0, 0, 0, 0.1); */
@@ -38,6 +43,7 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
   const { singleItem, pending } = useSelector(store => store.product);
+  const { amountOfItems } = useSelector(store => store.cart);
 
   useEffect(() => {
     fetchSingleItem(productId, dispatch);
@@ -84,15 +90,29 @@ const ProductDetails = () => {
                 </StyledCartContainer>
                 <StyledBtnContainer>
                   <div>
-                    <button>
+                    <button
+                      onClick={() => {
+                        if (amountOfItems === 1) {
+                          return;
+                        } else {
+                          dispatch(DECREASE_AMOUNT_OF_ITEMS());
+                        }
+                      }}
+                    >
                       <AiOutlineMinus />
                     </button>
-                    <p>1</p>
-                    <button>
+                    <p>{amountOfItems}</p>
+                    <button
+                      onClick={() => dispatch(INCREASE_AMOUNT_OF_ITEMS())}
+                    >
                       <AiOutlinePlus />
                     </button>
                   </div>
-                  <StyledAddToCartBtn>ADD TO CART</StyledAddToCartBtn>
+                  <StyledAddToCartBtn
+                    onClick={() => dispatch(ADD_TO_CART(singleItem[0]))}
+                  >
+                    ADD TO CART
+                  </StyledAddToCartBtn>
                 </StyledBtnContainer>
               </StyledProductDetails>
             </StyledProductContainer>
@@ -105,7 +125,9 @@ const ProductDetails = () => {
               <StyledBoxItems>
                 <h4>In the box</h4>
                 <ul>
-                  <li>Box Items</li>
+                  {singleItem[0].box_items.split(",").map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
                 </ul>
               </StyledBoxItems>
             </StyledFeaturesContainer>
