@@ -125,14 +125,14 @@ export const loginUser = async ({ username, password }, dispatch, navigate) => {
       dispatch(UPDATE_USER_STATUS());
       localStorage.setItem("authToken", JSON.stringify(response.data.access));
       toast.success(`Logged in successfully!`);
-      navigate(-1);
+      navigate("/user/profile");
     } else {
       return;
     }
   } catch (error) {
-    dispatch(VALIDATE_ERROR());
     if (error.response) {
       if (error.response.status === 401) {
+        dispatch(VALIDATE_ERROR());
         toast.error(`${Object.values(error.response.data)}`);
       } else {
         toast.error(
@@ -149,7 +149,7 @@ export const loginUser = async ({ username, password }, dispatch, navigate) => {
 
 // update user profile information
 export const updateUserProfile = async (
-  { first_name, last_name, phone, street, zip, city, country },
+  { first_name, last_name, phone_number, street, zip, city, country },
   dispatch
 ) => {
   dispatch(VALIDATE_START());
@@ -160,7 +160,7 @@ export const updateUserProfile = async (
       {
         first_name,
         last_name,
-        phone,
+        phone_number,
         street,
         zip,
         city,
@@ -208,6 +208,7 @@ export const getUserProfile = async (navigate, dispatch) => {
       return;
     }
   } catch (error) {
+    dispatch(VALIDATE_ERROR());
     console.log(error);
   }
 };

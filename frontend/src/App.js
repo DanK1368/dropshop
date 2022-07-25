@@ -23,6 +23,7 @@ import Marketplace from "./buyer/pages/Marketplace";
 import { useDispatch, useSelector } from "react-redux";
 import { CALCULATE_TOTALS } from "./redux/cartSlice";
 import { SET_AUTH_TOKEN } from "./redux/userSlice";
+import { getUserProfile } from "./redux/apiCalls";
 
 function App() {
   const { cart } = useSelector(store => store.cart);
@@ -35,6 +36,10 @@ function App() {
 
   useEffect(() => {
     dispatch(SET_AUTH_TOKEN());
+  }, []);
+
+  useEffect(() => {
+    getUserProfile(null, dispatch);
   }, []);
 
   return (

@@ -8,7 +8,7 @@ export const userSlice = createSlice({
       first_name: "",
       last_name: "",
       email: "daniel@gmail.com",
-      phone: "",
+      phone_number: "",
       street: "",
       zip: "",
       city: "",

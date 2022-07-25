@@ -18,7 +18,7 @@ const Checkout = () => {
     first_name: userInfo.first_name,
     last_name: userInfo.last_name,
     email: userInfo.email,
-    phone: userInfo.phone,
+    phone_number: userInfo.phone_number,
     street: userInfo.street,
     zip: userInfo.zip,
     city: userInfo.city,
@@ -80,12 +80,12 @@ const Checkout = () => {
                 />
               </StyledInputContainer>
               <StyledInputContainer>
-                <label htmlFor="name">Phone Number</label>
+                <label htmlFor="phone_number">Phone Number</label>
                 <input
                   type="text"
-                  id="phone"
-                  name="phone"
-                  value={profileValues.phone}
+                  id="phone_number"
+                  name="phone_number"
+                  value={profileValues.phone_number}
                   onChange={handleUpdateProfileValues}
                 />
               </StyledInputContainer>
