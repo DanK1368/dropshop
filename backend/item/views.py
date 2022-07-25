@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 
-from rest_framework import status
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework import status, filters
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -47,3 +47,10 @@ class ToggleFavouriteView(APIView):
             favourite_items.remove(item_id)
 
             return Response(status=status.HTTP_200_OK, data="Item removed from favourites")
+
+
+class SearchItemView(ListAPIView):
+    queryset = ItemModel.objects.all()
+    serializer_class = ItemSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
