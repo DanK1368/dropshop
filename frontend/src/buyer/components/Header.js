@@ -13,9 +13,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { TOGGLE_CART_MODAL } from "../../redux/cartSlice";
 import { LOGOUT_USER } from "../../redux/userSlice";
 import profile_pic from "../../assets/profile_pic.jpg";
+import DropDown from "./DropDown";
 import { getUserProfile } from "../../redux/apiCalls";
 
-// not forget to take a look at the border-bottom
+// TODO not forget to take a look at the border-bottom
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,9 +35,9 @@ const Header = () => {
         </div>
         <PageLinks>
           <NavLink to="/">HOME</NavLink>
-          <NavLink to="/category-headphones">HEADPHONES</NavLink>
-          <NavLink to="/category-speakers">SPEAKERS</NavLink>
-          <NavLink to="/category-earphones">EARPHONES</NavLink>
+          <NavLink to="/marketplace">SHOP</NavLink>
+          <DropDown />
+          {!isAuthenticatedUser && <NavLink to="/seller">SELL</NavLink>}
           {isAuthenticatedUser && <NavLink to="/seller">SELL</NavLink>}
           {isAuthenticatedUser ? (
             <button onClick={() => dispatch(LOGOUT_USER())}>LOGOUT</button>
