@@ -58,11 +58,13 @@ const SingleColumn = ({ title, id }) => {
           <h4>{title}</h4>
           <SearchBar columnId={id} columnTitle={title} />
           <Grid>
-            {itemInventory
-              .filter(item => item.column_name === title)
-              .map(item => (
-                <SingleItem key={item.id} {...item} />
-              ))}
+            {searchedItems.length > 0
+              ? searchedItems
+                  .filter(item => item.column_name === title)
+                  .map(item => <SingleItem key={item.id} {...item} />)
+              : itemInventory
+                  .filter(item => item.column_name === title)
+                  .map(item => <SingleItem key={item.id} {...item} />)}
           </Grid>
         </Columns>
       </StyledColumnContainer>
