@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import ZX9 from "../../assets/shared/desktop/image-category-thumbnail-speakers.png";
 import {
     StyledDescriptionBox,
@@ -8,16 +9,17 @@ import {
 import { StyledSeeProduct } from "../styles/SeeProductButton";
 
 
-const SpeakersZX9 = () => {
+const SpeakersZX9 = ({id, name, image, description, idx}) => {
+    const navigate = useNavigate();
     return (
-        <StyledWholeItem>            
-                <img src={ZX9} alt="Speakers"/>
+        <StyledWholeItem layout={idx % 4 !== 0 && "row-reverse"}>            
+                <img src={image} alt="Speakers"/>
             <StyledDescriptionBox>
                 <StyledInnerDescriptionBox>
                     <h5>NEW PRODUCT</h5>
-                    <h2>ZX9 SPEAKER</h2>
-                    <p>Upgrade your sound system with the all new ZX9 active speaker. It’s a bookshelf speaker system that offers truly wireless connectivity -- creating new possibilities for more pleasing and practical audio setups.</p>
-                    <StyledSeeProduct>SEE PRODUCT</StyledSeeProduct>
+                    <h2>{name}</h2>
+                    <p>{description}</p>
+                    <StyledSeeProduct onClick={()=> navigate(`/productdetails/${id}`)}>SEE PRODUCT</StyledSeeProduct>
                 </StyledInnerDescriptionBox>
             </StyledDescriptionBox>
         </StyledWholeItem>
