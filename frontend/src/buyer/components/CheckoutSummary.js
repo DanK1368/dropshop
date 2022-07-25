@@ -8,10 +8,14 @@ import {
 } from "../styles/CheckoutSummary";
 import image1 from "../../assets/product-xx59-headphones/desktop/image-product.jpg";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const CartSummary = () => {
-  const shippingCost = 9;
+  const navigate = useNavigate();
   const { cart, total } = useSelector(store => store.cart);
+
+  const shippingCost = 9;
+  const grandTotal = total + shippingCost;
 
   return (
     <StyledCartContainer>
@@ -45,10 +49,12 @@ const CartSummary = () => {
         </div>
         <div>
           <p>GRAND TOTAL</p>
-          <span>CHF {(total + shippingCost).toFixed(2)}</span>
+          <span>CHF {grandTotal.toFixed(2)}</span>
         </div>
       </StyledTotalAmount>
-      <StyledContinuePayBtn>CONTINUE & PAY</StyledContinuePayBtn>
+      <StyledContinuePayBtn onClick={() => navigate("/checkout/success")}>
+        CONTINUE & PAY
+      </StyledContinuePayBtn>
     </StyledCartContainer>
   );
 };

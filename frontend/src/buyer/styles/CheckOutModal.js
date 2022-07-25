@@ -21,21 +21,6 @@ export const StyledCartContainer = styled.div`
   flex-direction: column;
   padding-block: 2rem;
 
-  a {
-    padding-block: 1rem;
-    border: none;
-    background-color: #d87d4a;
-    font-size: 18px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    cursor: pointer;
-
-    &:hover {
-      background: #fbaf85;
-    }
-  }
-
   img {
     width: 50px;
     height: 50px;
@@ -48,6 +33,21 @@ export const StyledCartContainer = styled.div`
     text-transform: uppercase;
     font-weight: 500;
     line-height: 1.5;
+  }
+`;
+
+export const StyledBackToHomeBtn = styled.button`
+  padding-block: 1rem;
+  border: none;
+  background-color: #d87d4a;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background: #fbaf85;
   }
 `;
 
@@ -89,6 +89,16 @@ export const StyledProductContainer = styled.div`
     color: gray;
     margin: 0;
   }
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      color: #d87d4a;
+    }
+  }
 `;
 
 export const StyledInnerProductContainer = styled.div`
@@ -97,6 +107,7 @@ export const StyledInnerProductContainer = styled.div`
   justify-content: center;
   gap: 0.5rem;
   align-self: start;
+  padding-block: 0.4rem;
 `;
 
 export const StyledOtherItems = styled.div`

@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import BottomPicture from "./buyer/components/BottomPicture";
-import ItemForSale from "./buyer/components/ItemForSale";
-import ItemForSaleMirrored from "./buyer/components/ItemForSaleMirrored";
-import ShopLinks from "./buyer/components/ShopLinks";
 import SellerPage from "./seller/pages/SellerPage";
 import ProductDetails from "./buyer/pages/ProductDetails";
 import SharedLayout from "./buyer/pages/SharedLayout";
@@ -24,11 +20,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { CALCULATE_TOTALS } from "./redux/cartSlice";
 import { SET_AUTH_TOKEN } from "./redux/userSlice";
 import { getUserProfile } from "./redux/apiCalls";
+import CheckOutModal from "./buyer/components/CheckOutModal";
 
 function App() {
   const { cart } = useSelector(store => store.cart);
   const dispatch = useDispatch();
-  const { isAuthenticatedUser } = useSelector(store => store.user);
 
   useEffect(() => {
     dispatch(CALCULATE_TOTALS());
@@ -76,6 +72,7 @@ function App() {
         </Route>
         <Route path="checkout" element={<Layout />}>
           <Route path="details" element={<Checkout />} />
+          <Route path="success" element={<CheckOutModal />} />
         </Route>
         <Route path="user" element={<Layout />}>
           <Route path="profile" element={<Profile />} />
