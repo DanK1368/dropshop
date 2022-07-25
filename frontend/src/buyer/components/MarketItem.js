@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     StyledItemContainer,
     StyledPicture,
     StyledItemDescription,
 } from "../styles/MarketItem"
 import DefaultImage from "../../assets/shared/desktop/image-xx99-mark-one-headphones.jpg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { listAllItems } from "../../redux/productApiCalls";
 
 const MarketItem = () => {
 

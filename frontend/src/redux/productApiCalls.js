@@ -9,6 +9,7 @@ import {
   DELETE_SINGLE_ITEM,
   TOGGLE_WARNING_MESSAGE,
   ADD_ITEM_TO_FEATURED_LIST,
+  ADD_SINGLE_ITEM,
 } from "./productSlice";
 
 const BASE_URL = "http://127.0.0.1:8000/backend/";
@@ -27,6 +28,7 @@ export const createNewItem = async (
     category,
     stock,
     column_name,
+    image,
   },
   dispatch
 ) => {
@@ -44,10 +46,14 @@ export const createNewItem = async (
         box_items,
         category,
         column_name,
+        image,
       },
       {
         headers: {
-          Authorization: `Bearer ${BEARER_TOKEN}`,
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("authToken")
+          )}`,
         },
       }
     );
@@ -64,11 +70,7 @@ export const listAllItems = async dispatch => {
   dispatch(VALIDATE_START());
 
   try {
-    const response = await axios.get(`${BASE_URL}api/items/`, {
-      // headers: {
-      //   Authorization: `Bearer ${BEARER_TOKEN}`,
-      // },
-    });
+    const response = await axios.get(`${BASE_URL}api/items/`);
     dispatch(VALIDATE_SUCCESS());
     dispatch(ADD_FETCHED_ITEMS_TO_INVENTORY(response.data));
   } catch (error) {
@@ -88,7 +90,9 @@ export const updateSingleItem = async (id, column_name, dispatch) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${BEARER_TOKEN}`,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("authToken")
+          )}`,
         },
       }
     );
@@ -107,7 +111,9 @@ export const deleteSingleItem = async (id, dispatch) => {
   try {
     const response = await axios.delete(`${BASE_URL}api/items/${id}/`, {
       headers: {
-        Authorization: `Bearer ${BEARER_TOKEN}`,
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("authToken")
+        )}`,
       },
     });
 
@@ -157,7 +163,9 @@ export const updateItem = async (
       },
       {
         headers: {
-          Authorization: `Bearer ${BEARER_TOKEN}`,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("authToken")
+          )}`,
         },
       }
     );
@@ -180,11 +188,27 @@ export const fetchFeaturedItem = async (id, dispatch) => {
   try {
     const response = await axios.get(`${BASE_URL}api/items/${id}`, {
       headers: {
-        Authorization: `Bearer ${BEARER_TOKEN}`,
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("authToken")
+        )}`,
       },
     });
     dispatch(VALIDATE_SUCCESS());
     dispatch(ADD_ITEM_TO_FEATURED_LIST(response.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// retrieve a single item
+
+export const fetchSingleItem = async (id, dispatch) => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.get(`${BASE_URL}api/items/${id}`);
+    dispatch(VALIDATE_SUCCESS());
+    dispatch(ADD_SINGLE_ITEM(response.data));
   } catch (error) {
     console.log(error);
   }

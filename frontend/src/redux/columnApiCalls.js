@@ -29,7 +29,9 @@ export const createNewColumn = async ({ title }, dispatch) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${BEARER_TOKEN}`,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("authToken")
+          )}`,
         },
       }
     );
@@ -53,7 +55,9 @@ export const listAllColumns = async dispatch => {
   try {
     const response = await axios.get(`${BASE_URL}api/columns/`, {
       headers: {
-        Authorization: `Bearer ${BEARER_TOKEN}`,
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("authToken")
+        )}`,
       },
     });
     dispatch(VALIDATE_SUCCESS());
@@ -75,7 +79,9 @@ export const deleteSingleColumn = async (id, dispatch) => {
   try {
     const response = await axios.delete(`${BASE_URL}api/columns/${id}`, {
       headers: {
-        Authorization: `Bearer ${BEARER_TOKEN}`,
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("authToken")
+        )}`,
       },
     });
     dispatch(VALIDATE_SUCCESS());

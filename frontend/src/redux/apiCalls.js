@@ -15,7 +15,7 @@ const BASE_URL = "http://127.0.0.1:8000/backend/";
 // const BASE_URL = "https://dropshop.propulsion-learn.ch/backend/"
 
 const BEARER_TOKEN =
-  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU4Njc0MTA2LCJpYXQiOjE2NTgyNDIxMDYsImp0aSI6ImM2YzIzN2U4YWY3NjQ1MmNiOWUwOGNmZTU0MDE2MTFlIiwidXNlcl9pZCI6M30.8ooOoViqO8cTQMa9tfoIKwMMkiP2xsd01AcnFZdCgQs";
+  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5MDg0NTU3LCJpYXQiOjE2NTg2NTI1NTcsImp0aSI6ImFjMDVmMmVkMDUzNDQ2YTM4ZWIwZGZjOGVhZTAwNDJkIiwidXNlcl9pZCI6Mn0.oBSdY5KcVCrBGd9GjI9BYXVcgAfooIGXH1L8zIKSys8";
 
 // Registration of new user
 export const registerUser = async (
@@ -123,15 +123,16 @@ export const loginUser = async ({ username, password }, dispatch, navigate) => {
     dispatch(VALIDATE_SUCCESS());
     if (response.status === 200) {
       dispatch(UPDATE_USER_STATUS());
+      localStorage.setItem("authToken", JSON.stringify(response.data.access));
       toast.success(`Logged in successfully!`);
-      navigate("/");
+      navigate("/user/profile");
     } else {
       return;
     }
   } catch (error) {
-    dispatch(VALIDATE_ERROR());
     if (error.response) {
       if (error.response.status === 401) {
+        dispatch(VALIDATE_ERROR());
         toast.error(`${Object.values(error.response.data)}`);
       } else {
         toast.error(
@@ -148,7 +149,7 @@ export const loginUser = async ({ username, password }, dispatch, navigate) => {
 
 // update user profile information
 export const updateUserProfile = async (
-  { first_name, last_name, phone, street, zip, city, country },
+  { first_name, last_name, phone_number, street, zip, city, country },
   dispatch
 ) => {
   dispatch(VALIDATE_START());
@@ -159,7 +160,7 @@ export const updateUserProfile = async (
       {
         first_name,
         last_name,
-        phone,
+        phone_number,
         street,
         zip,
         city,
@@ -167,7 +168,9 @@ export const updateUserProfile = async (
       },
       {
         headers: {
-          Authorization: `Bearer ${BEARER_TOKEN}`,
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("authToken")
+          )}`,
         },
       }
     );
@@ -180,22 +183,32 @@ export const updateUserProfile = async (
     }
   } catch (error) {
     console.log(error);
+    toast.error("Something went wrong. Unable to save profile");
   }
 };
 
 // get user profile information
-export const getUserProfile = async dispatch => {
+export const getUserProfile = async (navigate, dispatch) => {
   dispatch(VALIDATE_START());
 
   try {
     const response = await axios.get(`${BASE_URL}api/user/me/buyer/`, {
       headers: {
-        Authorization: `Bearer ${BEARER_TOKEN}`,
+        Authorization: `Bearer ${JSON.parse(
+          localStorage.getItem("authToken")
+        )}`,
       },
     });
-    dispatch(VALIDATE_SUCCESS());
-    dispatch(GET_USER_INFO(response.data));
+
+    if (response.status === 200) {
+      dispatch(VALIDATE_SUCCESS());
+      dispatch(GET_USER_INFO(response.data));
+      navigate("/user/profile");
+    } else {
+      return;
+    }
   } catch (error) {
+    dispatch(VALIDATE_ERROR());
     console.log(error);
   }
 };
