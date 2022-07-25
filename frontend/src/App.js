@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CALCULATE_TOTALS } from "./redux/cartSlice";
 import { SET_AUTH_TOKEN } from "./redux/userSlice";
 import { getUserProfile } from "./redux/apiCalls";
+import CheckOutModal from "./buyer/components/CheckOutModal";
 
 function App() {
   const { cart } = useSelector(store => store.cart);
@@ -71,6 +72,7 @@ function App() {
         </Route>
         <Route path="checkout" element={<Layout />}>
           <Route path="details" element={<Checkout />} />
+          <Route path="success" element={<CheckOutModal />} />
         </Route>
         <Route path="user" element={<Layout />}>
           <Route path="profile" element={<Profile />} />
