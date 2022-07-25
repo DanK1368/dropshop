@@ -12,8 +12,9 @@ import { NavLink, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { TOGGLE_CART_MODAL } from "../../redux/cartSlice";
 import profile_pic from "../../assets/profile_pic.jpg";
+import DropDown from "./DropDown";
 
-// not forget to take a look at the border-bottom
+// TODO not forget to take a look at the border-bottom
 const Header = () => {
   const { isAuthenticatedUser, userInfo } = useSelector(store => store.user);
   const { showCartModal, amount } = useSelector(store => store.cart);
@@ -33,9 +34,7 @@ const Header = () => {
         </div>
         <PageLinks>
           <NavLink to="/">HOME</NavLink>
-          <NavLink to="/category-headphones">HEADPHONES</NavLink>
-          <NavLink to="/category-speakers">SPEAKERS</NavLink>
-          <NavLink to="/category-earphones">EARPHONES</NavLink>
+          <DropDown />
           {!isAuthenticatedUser && <NavLink to="/seller">SELL</NavLink>}
           {isAuthenticatedUser ? (
             <button>LOGOUT</button>
