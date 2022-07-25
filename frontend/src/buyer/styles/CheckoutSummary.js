@@ -29,19 +29,14 @@ export const StyledFlexContainer = styled.div`
 
 export const StyledProductContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.5rem;
-
-  div:nth-child(1) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-  }
+  width: 100%;
 
   p {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   p:nth-child(1) {
@@ -53,6 +48,21 @@ export const StyledProductContainer = styled.div`
     font-weight: 500;
     color: gray;
     margin: 0;
+  }
+`;
+
+export const StyledInnerContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+
+  div:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1rem;
   }
 `;
 

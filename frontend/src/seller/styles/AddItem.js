@@ -25,10 +25,44 @@ export const StyledContainer = styled.div`
 
 export const StyledForm = styled.form`
   display: grid;
-  gap: 2rem;
+  gap: 1rem;
 
   h1 {
     text-align: center;
+  }
+`;
+
+export const StlyedHeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const StyledImagePreviewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+
+  img {
+    max-width: 70px;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  button {
+    border: none;
+    background-color: #ea5555;
+    color: white;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0.2rem 0.5rem;
+
+    &:hover {
+      background-color: #ff9898;
+    }
   }
 `;
 
@@ -68,10 +102,6 @@ export const StyledInputContainer = styled.div`
 
   // description textarea field
   &:nth-child(3) {
-    grid-column: 1 / 3;
-  }
-
-  &:nth-child(8) {
     grid-column: 1 / 3;
   }
 `;

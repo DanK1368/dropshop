@@ -8,19 +8,20 @@ import {
   StyledCartContainer,
 } from "../styles/Header";
 import CartSummary from "./CartSummary";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { TOGGLE_CART_MODAL } from "../../redux/cartSlice";
+import { LOGOUT_USER } from "../../redux/userSlice";
 import profile_pic from "../../assets/profile_pic.jpg";
 import DropDown from "./DropDown";
+import { getUserProfile } from "../../redux/apiCalls";
 
 // TODO not forget to take a look at the border-bottom
 const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { isAuthenticatedUser, userInfo } = useSelector(store => store.user);
   const { showCartModal, amount } = useSelector(store => store.cart);
-  console.log(amount);
-
-  const dispatch = useDispatch();
 
   return (
     <>
@@ -36,8 +37,12 @@ const Header = () => {
           <NavLink to="/">HOME</NavLink>
           <DropDown />
           {!isAuthenticatedUser && <NavLink to="/seller">SELL</NavLink>}
+          <NavLink to="/category-headphones">HEADPHONES</NavLink>
+          <NavLink to="/category-speakers">SPEAKERS</NavLink>
+          <NavLink to="/category-earphones">EARPHONES</NavLink>
+          {isAuthenticatedUser && <NavLink to="/seller">SELL</NavLink>}
           {isAuthenticatedUser ? (
-            <button>LOGOUT</button>
+            <button onClick={() => dispatch(LOGOUT_USER())}>LOGOUT</button>
           ) : (
             <NavLink to="/login">LOGIN</NavLink>
           )}
@@ -48,16 +53,16 @@ const Header = () => {
               <p>
                 Welcome <br /> {userInfo.first_name}
               </p>
-              <Link to="/user/profile">
+              <button onClick={() => getUserProfile(navigate, dispatch)}>
                 <img src={profile_pic} alt="" />
-              </Link>
+              </button>
             </>
           )}
           <StyledCartContainer>
             <StyledShowCartBtn onClick={() => dispatch(TOGGLE_CART_MODAL())}>
               <RiShoppingCartLine color="white" size={20} />
             </StyledShowCartBtn>
-            <p>{amount}</p>
+            {amount > 0 && <p>{amount}</p>}
           </StyledCartContainer>
         </StyledProfileContainer>
       </Main>
