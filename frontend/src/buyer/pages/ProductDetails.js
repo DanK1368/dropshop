@@ -28,6 +28,8 @@ import {
   INCREASE_AMOUNT_OF_ITEMS,
   DECREASE_AMOUNT_OF_ITEMS,
 } from "../../redux/cartSlice";
+import { BsHeart } from "react-icons/bs";
+import { ADD_TO_WISHLIST } from "../../redux/wishlistSlice";
 
 export const StyledOuterContainer = styled.div`
   /* background: rgba(0, 0, 0, 0.1); */
@@ -112,6 +114,10 @@ const ProductDetails = () => {
                     onClick={() => dispatch(ADD_TO_CART(singleItem[0]))}
                   >
                     ADD TO CART
+                  </StyledAddToCartBtn>
+                  <StyledAddToCartBtn 
+                    onClick={() => dispatch(ADD_TO_WISHLIST(singleItem[0]))}>
+                    WISHLIST
                   </StyledAddToCartBtn>
                 </StyledBtnContainer>
               </StyledProductDetails>

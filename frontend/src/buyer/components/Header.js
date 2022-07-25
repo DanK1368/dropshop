@@ -1,5 +1,6 @@
 import React from "react";
 import { RiShoppingCartLine } from "react-icons/ri";
+import { BsHeart } from "react-icons/bs";
 import {
   Main,
   PageLinks,
@@ -10,6 +11,7 @@ import {
 import CartSummary from "./CartSummary";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { TOGGLE_WISHLIST_MODAL } from "../../redux/wishlistSlice";
 import { TOGGLE_CART_MODAL } from "../../redux/cartSlice";
 import { LOGOUT_USER } from "../../redux/userSlice";
 import profile_pic from "../../assets/profile_pic.jpg";
@@ -22,6 +24,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const { isAuthenticatedUser, userInfo } = useSelector(store => store.user);
   const { showCartModal, amount } = useSelector(store => store.cart);
+  //const { showwishlistModal, quantity } = useSelector(store=>store.wishlist);
 
   return (
     <>
@@ -56,7 +59,8 @@ const Header = () => {
               </button>
             </>
           )}
-          <StyledCartContainer>
+          <BsHeart/> 
+          <StyledCartContainer>                
             <StyledShowCartBtn onClick={() => dispatch(TOGGLE_CART_MODAL())}>
               <RiShoppingCartLine color="white" size={20} />
             </StyledShowCartBtn>
