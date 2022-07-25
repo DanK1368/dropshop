@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import BottomPicture from "./buyer/components/BottomPicture";
-import ItemForSale from "./buyer/components/ItemForSale";
-import ItemForSaleMirrored from "./buyer/components/ItemForSaleMirrored";
-import ShopLinks from "./buyer/components/ShopLinks";
 import SellerPage from "./seller/pages/SellerPage";
 import ProductDetails from "./buyer/pages/ProductDetails";
 import SharedLayout from "./buyer/pages/SharedLayout";
@@ -28,7 +24,6 @@ import { getUserProfile } from "./redux/apiCalls";
 function App() {
   const { cart } = useSelector(store => store.cart);
   const dispatch = useDispatch();
-  const { isAuthenticatedUser } = useSelector(store => store.user);
 
   useEffect(() => {
     dispatch(CALCULATE_TOTALS());
