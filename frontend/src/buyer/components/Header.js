@@ -35,11 +35,9 @@ const Header = () => {
         </div>
         <PageLinks>
           <NavLink to="/">HOME</NavLink>
+          <NavLink to="/marketplace">SHOP</NavLink>
           <DropDown />
           {!isAuthenticatedUser && <NavLink to="/seller">SELL</NavLink>}
-          <NavLink to="/category-headphones">HEADPHONES</NavLink>
-          <NavLink to="/category-speakers">SPEAKERS</NavLink>
-          <NavLink to="/category-earphones">EARPHONES</NavLink>
           {isAuthenticatedUser && <NavLink to="/seller">SELL</NavLink>}
           {isAuthenticatedUser ? (
             <button onClick={() => dispatch(LOGOUT_USER())}>LOGOUT</button>
