@@ -9,91 +9,60 @@ import {
     StyledRemoveAllBtn,
     StyledGifContainer,
   } from "../styles/CartSummary";
-  import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-  import emptyCartGif from "../../assets/cart.gif";
+  import { AiOutlineMinus } from "react-icons/ai";
+  import wishbox from "../../assets/wishlist.gif";
   
   import { useNavigate } from "react-router-dom";
   import { useEffect, useRef } from "react";
   import { useDispatch, useSelector } from "react-redux";
   import {
     TOGGLE_WISHLIST_MODAL,
-    INCREASE,
-    DECREASE,
     REMOVE_ALL_ITEMS,
     REMOVE_SINGLE_ITEM,
   } from "../../redux/wishlistSlice";
   
   const WishDisplay = () => {
     const ref = useRef();
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { wishlist } = useSelector(store => store.wishlist);
+    const navigate = useNavigate();
   
-    // used to navigate to the checkout on button click, and close the modal after
-    const handleNavigate = () => {
-      navigate("/checkout/details");
-      dispatch(TOGGLE_WISHLIST_MODAL());
-    };
-  
-    // Function to close the modal when we click outside the cart summary
-    useOnClickOutside(ref, () => dispatch(TOGGLE_CART_MODAL()));
+    // Function to close the modal when we click outside the WishListdisplay
+    useOnClickOutside(ref, () => dispatch(TOGGLE_WISHLIST_MODAL()));
   
     return (
       <StyledBackdrop>
         <StyledCartContainer ref={ref}>
           <StyledFlexContainer>
-            <h3>CART ({cart.length})</h3>
+            <h3>WISHLIST ({wishlist.length})</h3>
             <StyledRemoveAllBtn onClick={() => dispatch(REMOVE_ALL_ITEMS())}>
               Remove all
             </StyledRemoveAllBtn>
           </StyledFlexContainer>
   
-          {!cart.length ? (
+          {!wishlist.length ? (
             <StyledGifContainer>
-              <img src={emptyCartGif} alt="" />
+              <img src={wishbox} alt="" />
             </StyledGifContainer>
           ) : (
-            cart.map(item => (
-              <StyledFlexContainer key={item.id}>
-                <StyledProductContainer>
+            wishlist.map(item => (
+              <StyledFlexContainer key={item.id}> 
+                <StyledProductContainer onClick={() => {navigate(`/productdetails/${item.id}`); dispatch(TOGGLE_WISHLIST_MODAL())} }>
                   <img src={item.image} alt="" />
                   <div>
                     <p>{item.name}</p>
                     <p>$ {item.price.toFixed(2)}</p>
                   </div>
                 </StyledProductContainer>
-                <StyledBtnContainer>
-                  <button
-                    onClick={() => {
-                      if (item.amount === 1) {
-                        dispatch(REMOVE_SINGLE_ITEM(item.id));
-                        return;
-                      } else {
-                        dispatch(DECREASE(item.id));
-                      }
-                    }}
-                  >
-                    <AiOutlineMinus />
-                  </button>
-                  <p>{item.amount} </p>
-                  <button onClick={() => dispatch(INCREASE(item.id))}>
-                    <AiOutlinePlus />
-                  </button>
-                </StyledBtnContainer>
               </StyledFlexContainer>
+              
             ))
           )}
-  
-          <StyledTotalAmount>
-            <p>TOTAL</p>
-            <span>$ {total.toFixed(2)}</span>
-          </StyledTotalAmount>
-          <StyledCheckOutBtn onClick={handleNavigate}>CHECKOUT</StyledCheckOutBtn>
         </StyledCartContainer>
       </StyledBackdrop>
     );
   };
-  export default CartSummary;
+  export default WishDisplay;
   
   // Hook --> this will close the PopUp when we click outside
   function useOnClickOutside(ref, handler) {

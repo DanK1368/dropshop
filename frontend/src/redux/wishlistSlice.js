@@ -6,7 +6,7 @@ export const wishSlice = createSlice({
   initialState: {
     showwishlistModal: false,
     wishlist: [], 
-    quantity: [],
+    quantity: 0,
     quantityOfItems: 1,
   },
 
@@ -48,7 +48,7 @@ export const wishSlice = createSlice({
     // clears the entire cart of all items
     REMOVE_ALL_ITEMS: state => {
       state.wishlist = [];
-      toast.info("All items removed from your wishlist");
+      //toast.info("All items removed from your wishlist");
     },
 
     // removes just 1 item --> is triggered when number of items goes below zero
@@ -56,7 +56,7 @@ export const wishSlice = createSlice({
       state.wishlist = state.wishlist.filter(item => item.id !== action.payload);
       toast.info("Item removed from your wishlist");
     },
-
+    
   },
 });
 

@@ -12,7 +12,7 @@ import {
   ADD_SINGLE_ITEM,
 } from "./productSlice";
 
-// const BASE_URL = "http://127.0.0.1:8000/backend/";
+//const BASE_URL = "http://127.0.0.1:8000/backend/";
 const BASE_URL = "https://dropshop.propulsion-learn.ch/backend/";
 
 const BEARER_TOKEN =

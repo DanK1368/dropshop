@@ -9,6 +9,7 @@ import {
   StyledCartContainer,
 } from "../styles/Header";
 import CartSummary from "./CartSummary";
+import WishDisplay from "./WishL";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { TOGGLE_WISHLIST_MODAL } from "../../redux/wishlistSlice";
@@ -24,7 +25,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const { isAuthenticatedUser, userInfo } = useSelector(store => store.user);
   const { showCartModal, amount } = useSelector(store => store.cart);
-  //const { showwishlistModal, quantity } = useSelector(store=>store.wishlist);
+  const { showwishlistModal, quantity } = useSelector(store=>store.wishlist);
 
   return (
     <>
@@ -59,7 +60,10 @@ const Header = () => {
               </button>
             </>
           )}
-          <BsHeart/> 
+          <StyledShowCartBtn onClick={() => dispatch(TOGGLE_WISHLIST_MODAL())}>
+            <BsHeart color="white" size={20}/>
+          </StyledShowCartBtn> 
+          {/* {<WishDisplay/>} */}
           <StyledCartContainer>                
             <StyledShowCartBtn onClick={() => dispatch(TOGGLE_CART_MODAL())}>
               <RiShoppingCartLine color="white" size={20} />
@@ -68,6 +72,7 @@ const Header = () => {
           </StyledCartContainer>
         </StyledProfileContainer>
       </Main>
+      {showwishlistModal && <WishDisplay/>}
       {showCartModal && <CartSummary />}
     </>
   );

@@ -46,10 +46,13 @@ const ProductDetails = () => {
   const { productId } = useParams();
   const { singleItem, pending } = useSelector(store => store.product);
   const { amountOfItems } = useSelector(store => store.cart);
+  const { wishlist } = useSelector(store=> store.wishlist)
+  
+  
 
   useEffect(() => {
     fetchSingleItem(productId, dispatch);
-  }, []);
+  }, [productId]); // IF SOMETHING BREAKS DELETE PRODUCTID!!!!
 
   const [pics, setPics] = useState([
     {
@@ -65,6 +68,11 @@ const ProductDetails = () => {
       imageUrl: image3,
     },
   ]);
+  // function not working as should- button still visible
+  const updateWishButton = wishlist.findIndex(
+    item => item.id === productId
+  );
+  console.log(updateWishButton);
 
   return (
     <section>
@@ -115,10 +123,14 @@ const ProductDetails = () => {
                   >
                     ADD TO CART
                   </StyledAddToCartBtn>
-                  <StyledAddToCartBtn 
+                  {/* it is not hidding the button after clicking it, as wished */}
+                  {updateWishButton !== -1 ?
+                    null:
+                    <StyledAddToCartBtn 
                     onClick={() => dispatch(ADD_TO_WISHLIST(singleItem[0]))}>
                     WISHLIST
                   </StyledAddToCartBtn>
+                  } 
                 </StyledBtnContainer>
               </StyledProductDetails>
             </StyledProductContainer>

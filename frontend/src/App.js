@@ -21,10 +21,13 @@ import { CALCULATE_TOTALS } from "./redux/cartSlice";
 import { SET_AUTH_TOKEN } from "./redux/userSlice";
 import { getUserProfile } from "./redux/apiCalls";
 import CheckOutModal from "./buyer/components/CheckOutModal";
+import { ADD_TO_WISHLIST } from "./redux/wishlistSlice";
 
 function App() {
   const { cart } = useSelector(store => store.cart);
   const dispatch = useDispatch();
+
+
 
   useEffect(() => {
     dispatch(CALCULATE_TOTALS());
