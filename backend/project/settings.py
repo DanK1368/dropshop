@@ -157,8 +157,8 @@ STATIC_URL = 'static-files/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static-files')
 print('static root', STATIC_ROOT)
 
-MEDIA_URL = 'media-files/' if DEBUG else 'https://dropshop.propulsion-learn.ch/media-files/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media-files') if DEBUG else 'media-files/'
+MEDIA_URL = 'http://localhost:8000/media-files/' if DEBUG else 'https://dropshop.propulsion-learn.ch/media-files/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media-files') if DEBUG else '/media-files/'
 print('media root', MEDIA_ROOT)
 
 
