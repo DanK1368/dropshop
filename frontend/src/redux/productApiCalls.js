@@ -182,6 +182,37 @@ export const updateItem = async (
   }
 };
 
+// apply discount to single item
+export const applyDiscountToItem = async (id, price, column_name, dispatch) => {
+  dispatch(VALIDATE_START());
+
+  try {
+    const response = await axios.patch(
+      `${BASE_URL}api/items/${id}/`,
+      {
+        price,
+        column_name,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("authToken")
+          )}`,
+        },
+      }
+    );
+    if (response.status === 200) {
+      dispatch(VALIDATE_SUCCESS());
+      toast.success("Discount successfully applied");
+    } else {
+      return;
+    }
+  } catch (error) {
+    dispatch(VALIDATE_ERROR());
+    toast.error("Oops! Something went wrong");
+  }
+};
+
 // fetch a single item ( featured item )
 export const fetchFeaturedItem = async (id, dispatch) => {
   dispatch(VALIDATE_START());
