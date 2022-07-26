@@ -25,8 +25,6 @@ const Checkout = () => {
     country: userInfo.country,
   });
 
-  console.log(profileValues);
-
   const handleUpdateProfileValues = e => {
     setProfileValues(prevState => {
       return { ...prevState, [e.target.name]: e.target.value };
