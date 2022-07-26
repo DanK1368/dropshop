@@ -17,10 +17,16 @@ import ShopLinks from "../components/ShopLinks";
 import Speaker from "../../assets/shared/desktop/image-category-thumbnail-speakers.png";
 import ZX7Speaker from "../../assets/home/desktop/image-speaker-zx7.jpg";
 import Earphones from "../../assets/home/desktop/image-earphones-yx1.jpg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { listAllItems } from "../../redux/productApiCalls";
 
 const Home = () => {
-  const { featuredItems } = useSelector(state => state.product);
+  const { featuredItems, itemInventory } = useSelector(state => state.product);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    listAllItems(dispatch)
+  }, [])
 
   return (
     <Main>
