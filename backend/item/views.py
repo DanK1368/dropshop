@@ -52,5 +52,6 @@ class ToggleFavouriteView(APIView):
 class SearchItemView(ListAPIView):
     queryset = ItemModel.objects.all()
     serializer_class = ItemSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter]
     search_fields = ['name']
