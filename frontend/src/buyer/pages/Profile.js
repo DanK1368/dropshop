@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { UPDATE_USER_INFO } from "../../redux/userSlice";
 import { useState } from "react";
 import { updateUserProfile } from "../../redux/apiCalls";
+import WishDisplay from "../components/WishL";
 
 const Profile = () => {
   const { userInfo, pending } = useSelector(store => store.user);
@@ -209,7 +210,6 @@ const Profile = () => {
           </StyledForm>
 
           <StyledRightContainer>
-            <Wishlist />
             <PreviousOrders />
           </StyledRightContainer>
         </StyledOuterContainer>

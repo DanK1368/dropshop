@@ -27,6 +27,8 @@ function App() {
   const { cart } = useSelector(store => store.cart);
   const dispatch = useDispatch();
 
+
+
   useEffect(() => {
     dispatch(CALCULATE_TOTALS());
   }, [cart, dispatch]);

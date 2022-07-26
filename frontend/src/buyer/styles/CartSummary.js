@@ -62,12 +62,17 @@ export const StyledFlexContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-block: 0.7rem;
+  color:black;
+  
 `;
 
-export const StyledProductContainer = styled.div`
+export const StyledProductContainer = styled.button`
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
 
   p:nth-child(1) {
     font-weight: 500;

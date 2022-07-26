@@ -28,6 +28,8 @@ import {
   INCREASE_AMOUNT_OF_ITEMS,
   DECREASE_AMOUNT_OF_ITEMS,
 } from "../../redux/cartSlice";
+import { BsHeart } from "react-icons/bs";
+import { ADD_TO_WISHLIST } from "../../redux/wishlistSlice";
 
 export const StyledOuterContainer = styled.div`
   /* background: rgba(0, 0, 0, 0.1); */
@@ -44,10 +46,13 @@ const ProductDetails = () => {
   const { productId } = useParams();
   const { singleItem, pending } = useSelector(store => store.product);
   const { amountOfItems } = useSelector(store => store.cart);
+  const { wishlist } = useSelector(store=> store.wishlist)
+  
+  
 
   useEffect(() => {
     fetchSingleItem(productId, dispatch);
-  }, []);
+  }, [productId]); // IF SOMETHING BREAKS DELETE PRODUCTID!!!!
 
   const [pics, setPics] = useState([
     {
@@ -63,6 +68,11 @@ const ProductDetails = () => {
       imageUrl: image3,
     },
   ]);
+  // function not working as should- button still visible
+  const updateWishButton = wishlist.findIndex(
+    item => item.id === productId
+  );
+  console.log(updateWishButton);
 
   return (
     <section>
@@ -113,6 +123,14 @@ const ProductDetails = () => {
                   >
                     ADD TO CART
                   </StyledAddToCartBtn>
+                  {/* it is not hidding the button after clicking it, as wished */}
+                  {updateWishButton !== -1 ?
+                    null:
+                    <StyledAddToCartBtn 
+                    onClick={() => dispatch(ADD_TO_WISHLIST(singleItem[0]))}>
+                    WISHLIST
+                  </StyledAddToCartBtn>
+                  } 
                 </StyledBtnContainer>
               </StyledProductDetails>
             </StyledProductContainer>

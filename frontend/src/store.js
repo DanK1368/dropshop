@@ -3,6 +3,7 @@ import productReducer from "./redux/productSlice";
 import cartReducer from "./redux/cartSlice";
 import userReducer from "./redux/userSlice";
 import columnReducer from "./redux/columnSlice";
+import wishListReducer from "./redux/wishlistSlice";
 
 export default configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
     cart: cartReducer,
     user: userReducer,
     columns: columnReducer,
+    wishlist: wishListReducer,
   },
 });
