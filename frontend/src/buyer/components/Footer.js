@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Main,
   MiniHeader,
@@ -22,10 +23,10 @@ const Footer = () => {
           </h2>
         </div>
         <Links>
-          <p>HOME</p>
-          <p>HEADPHONES</p>
-          <p>SPEAKERS</p>
-          <p>EARPHONES</p>
+          <Link to="/">HOME</Link>
+          <Link to="/category-headphones">HEADPHONES</Link>
+          <Link to="/category-speakers">SPEAKERS</Link>
+          <Link to="/category-earphones">EARPHONES</Link>
         </Links>
       </MiniHeader>
       <Bottom>
