@@ -8,9 +8,7 @@ import DefaultImage from "../../assets/shared/desktop/image-xx99-mark-one-headph
 import { useDispatch, useSelector } from "react-redux";
 import { listAllItems } from "../../redux/productApiCalls";
 
-const MarketItem = () => {
-
-    const { dummyInventory } = useSelector(state => state.product);
+const MarketItem = ({ image, name, price }) => {
 
     return (
 
@@ -18,14 +16,14 @@ const MarketItem = () => {
 
             <StyledPicture>
 
-                <img src={ DefaultImage }/>
+                <img src={image }/>
 
             </StyledPicture>
 
             <StyledItemDescription>
 
-                <h3>{dummyInventory[0].category.name}</h3>
-                <p>{dummyInventory[0].price}</p>
+                <h3>{name}</h3>
+                <p>CHF {price.toFixed(2)}</p>
 
             </StyledItemDescription>
 
