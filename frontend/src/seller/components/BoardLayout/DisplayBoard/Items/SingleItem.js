@@ -3,6 +3,7 @@ import {
   StyledCard,
   StyledCardContainer,
   StyledDeleteBtn,
+  StyledItemInfoContainer,
 } from "../../../../styles/SingleItem";
 import { useDrag } from "react-dnd";
 import { TiDelete } from "react-icons/ti";
@@ -26,6 +27,7 @@ const SingleItem = ({ id, name, price, stock, image }) => {
     type: "productItem",
     item: {
       id: id,
+      price: price,
     },
     collect: monitor => ({
       isDragging: !!monitor.isDragging(),
@@ -40,12 +42,16 @@ const SingleItem = ({ id, name, price, stock, image }) => {
             <TiDelete size={25} color="#EA5555" />
           </StyledDeleteBtn>
           <div>
-            <img src={image} alt="" />
-          </div>
-          <h2>{name}</h2>
-          <div>
-            <p>Price: $ {price}</p>
-            <p>Stock: {stock} </p>
+            <div>
+              <img src={image} alt="" />
+            </div>
+            <StyledItemInfoContainer>
+              <h2>{name}</h2>
+              <div>
+                <p>Price: $ {price}</p>
+                <p>Stock: {stock} </p>
+              </div>
+            </StyledItemInfoContainer>
           </div>
 
           <StyledBtnContainer>

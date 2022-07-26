@@ -7,11 +7,13 @@ import {
   StyledInnerContainer,
 } from "../styles/CheckoutSummary";
 import image1 from "../../assets/product-xx59-headphones/desktop/image-product.jpg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ADD_SOLD_ITEMS } from "../../redux/productSlice";
 
 const CartSummary = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { cart, total } = useSelector(store => store.cart);
 
   const shippingCost = 9;
@@ -52,7 +54,12 @@ const CartSummary = () => {
           <span>CHF {grandTotal.toFixed(2)}</span>
         </div>
       </StyledTotalAmount>
-      <StyledContinuePayBtn onClick={() => navigate("/checkout/success")}>
+      <StyledContinuePayBtn
+        onClick={() => {
+          dispatch(ADD_SOLD_ITEMS(cart));
+          navigate("/checkout/success");
+        }}
+      >
         CONTINUE & PAY
       </StyledContinuePayBtn>
     </StyledCartContainer>

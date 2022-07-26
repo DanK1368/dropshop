@@ -19,7 +19,9 @@ const HeadphonesPage = () => {
 
   // we are filtering the entire inventory to display items of a specific category
   const headphones = itemInventory.filter(
-    item => item.category === "Headphones"
+    item =>
+      item.category === "Headphones" &&
+      (item.column_name === "Online" || item.column_name === "Discount")
   );
 
   return (
