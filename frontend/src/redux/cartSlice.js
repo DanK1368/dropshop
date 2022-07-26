@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
         item => item.id === action.payload.id
       );
       if (checkIndex !== -1) {
-        // if exist, we need to crate a key in the obj. called amount and increase it by 1
+        // if exist, we need to create a key in the obj. called amount and increase it by 1
         // since the obj, does not have such key by default
         state.cart[checkIndex].amount = state.amountOfItems;
         state.cart[checkIndex].amount++;

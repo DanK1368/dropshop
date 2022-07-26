@@ -5,8 +5,12 @@ import {
 } from "../styles/Wishlist";
 import image1 from "../../assets/product-xx59-headphones/desktop/image-product.jpg";
 import { FaStar } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { listAllItems } from "../../redux/productApiCalls";
 
 const Wishlist = () => {
+  
   return (
     <StyledCartContainer>
       <StyledFlexContainer>
