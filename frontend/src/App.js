@@ -21,6 +21,7 @@ import { CALCULATE_TOTALS } from "./redux/cartSlice";
 import { SET_AUTH_TOKEN } from "./redux/userSlice";
 import { getUserProfile } from "./redux/apiCalls";
 import CheckOutModal from "./buyer/components/CheckOutModal";
+import ScrollToTop from "./buyer/components/ScrollToTop";
 
 function App() {
   const { cart } = useSelector(store => store.cart);
@@ -52,6 +53,7 @@ function App() {
         draggable
         pauseOnHover
       />
+      <ScrollToTop />
       <Routes>
         {/* Seller Side Below  */}
         <Route path="seller" element={<SellerPage />} />
