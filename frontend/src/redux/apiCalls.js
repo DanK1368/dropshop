@@ -11,8 +11,8 @@ import {
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const BASE_URL = "http://127.0.0.1:8000/backend/";
-// const BASE_URL = "https://dropshop.propulsion-learn.ch/backend/"
+//const BASE_URL = "http://127.0.0.1:8000/backend/";
+ const BASE_URL = "https://dropshop.propulsion-learn.ch/backend/"
 
 const BEARER_TOKEN =
   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU5MDg0NTU3LCJpYXQiOjE2NTg2NTI1NTcsImp0aSI6ImFjMDVmMmVkMDUzNDQ2YTM4ZWIwZGZjOGVhZTAwNDJkIiwidXNlcl9pZCI6Mn0.oBSdY5KcVCrBGd9GjI9BYXVcgAfooIGXH1L8zIKSys8";
