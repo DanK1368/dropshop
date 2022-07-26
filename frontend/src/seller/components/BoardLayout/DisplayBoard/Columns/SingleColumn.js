@@ -1,7 +1,10 @@
 import React from "react";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
-import { updateSingleItem } from "../../../../../redux/productApiCalls";
+import {
+  applyDiscountToItem,
+  updateSingleItem,
+} from "../../../../../redux/productApiCalls";
 import { ADD_ITEM_TO_COLUMN } from "../../../../../redux/productSlice";
 import {
   Columns,
@@ -25,6 +28,12 @@ const SingleColumn = ({ title, id }) => {
     drop: item => {
       addDraggedItemToColumn(item.id);
       updateSingleItem(item.id, title, dispatch);
+
+      // apply discount if item enters the discount column ( 20 % )
+      if (title === "Discount") {
+        let discountedPrice = item.price * 0.8;
+        applyDiscountToItem(item.id, discountedPrice, title, dispatch);
+      }
     },
 
     collect: monitor => ({
@@ -55,7 +64,10 @@ const SingleColumn = ({ title, id }) => {
           <TiDelete size={25} color="#EA5555" />
         </StyledDeleteBtn> */}
         <Columns ref={drop}>
-          <h4>{title}</h4>
+          <h4>
+            {title} {title === "Discount" && "20 %"}
+          </h4>
+
           <SearchBar columnId={id} columnTitle={title} />
           <Grid>
             {searchedItems.length > 0

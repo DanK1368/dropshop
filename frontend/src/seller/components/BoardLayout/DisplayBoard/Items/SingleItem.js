@@ -27,6 +27,7 @@ const SingleItem = ({ id, name, price, stock, image }) => {
     type: "productItem",
     item: {
       id: id,
+      price: price,
     },
     collect: monitor => ({
       isDragging: !!monitor.isDragging(),
