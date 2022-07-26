@@ -12,7 +12,11 @@ const EarphonesPage = () => {
   }, []);
 
   const { itemInventory } = useSelector(store => store.product);
-  const earphones = itemInventory.filter(item => item.category === "Earphones");
+  const earphones = itemInventory.filter(
+    item =>
+      item.category === "Earphones" &&
+      (item.column_name === "Online" || item.column_name === "Discount")
+  );
 
   return (
     <>
