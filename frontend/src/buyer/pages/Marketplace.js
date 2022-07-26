@@ -15,7 +15,8 @@ import { useNavigate } from "react-router-dom";
 const Marketplace = ({ id, image, name, price }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {itemInventory} = useSelector(store => store.product)
+    const {itemInventory, searchedItemsMarket} = useSelector(store => store.product)
+    console.log(searchedItemsMarket)
     
     useEffect(() => {
         listAllItems(dispatch);
@@ -26,10 +27,15 @@ const Marketplace = ({ id, image, name, price }) => {
      <>
      <SearchBar />
         <Grid>
-            {itemInventory.map(item => (
-                
+            {searchedItemsMarket.length === 0 ? 
+            itemInventory.map(item => (
                 <MarketItem key={item.id} {...item} />
-            ))}
+            )) : 
+            searchedItemsMarket.map(item => (
+                <MarketItem key={item.id} {...item} />
+            ))
+            }
+
         </Grid>
     </>
     );
