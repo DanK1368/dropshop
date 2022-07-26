@@ -8,6 +8,7 @@ export const productSlice = createSlice({
     itemInventory: [],
     searchedItems: [],
     featuredItems: [],
+    soldItems: [],
     singleItem: [],
     dummyInventory: [
       {
@@ -78,11 +79,13 @@ export const productSlice = createSlice({
     },
 
     SEARCH_ITEMS: (state, action) => {
-      state.searchedItems = state.itemInventory.filter(
-        item =>
-          item.name.toLocaleLowerCase().includes(action.payload.searchTerm) &&
-          item.column_name === action.payload.columnTitle
-      );
+      if (!action.payload.searchTerm) {
+        state.searchedItems = [];
+      } else {
+        state.searchedItems = state.itemInventory.filter(item =>
+          item.name.toLocaleLowerCase().includes(action.payload.searchTerm)
+        );
+      }
     },
 
     ADD_ITEM_TO_FEATURED_LIST: (state, action) => {
@@ -91,6 +94,10 @@ export const productSlice = createSlice({
 
     ADD_SINGLE_ITEM: (state, action) => {
       state.singleItem = [action.payload];
+    },
+
+    ADD_SOLD_ITEMS: (state, action) => {
+      state.soldItems = [...state.soldItems, ...action.payload];
     },
   },
 });
@@ -107,5 +114,6 @@ export const {
   SEARCH_ITEMS,
   ADD_ITEM_TO_FEATURED_LIST,
   ADD_SINGLE_ITEM,
+  ADD_SOLD_ITEMS,
 } = productSlice.actions;
 export default productSlice.reducer;

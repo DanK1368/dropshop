@@ -13,9 +13,7 @@ import {
 import { toast } from "react-toastify";
 
 // const BASE_URL = "http://127.0.0.1:8000/backend/";
-const BASE_URL = "https://dropshop.propulsion-learn.ch/backend/"
-
-
+const BASE_URL = "https://dropshop.propulsion-learn.ch/backend/";
 
 const BEARER_TOKEN =
   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU4NzQ2NTY1LCJpYXQiOjE2NTgzMTQ1NjUsImp0aSI6IjE3NjYyMjllZGVlYjRlNDdiZmYyODQxZjM4YmJiMDljIiwidXNlcl9pZCI6MX0.LraGGEluEC7Qb4v405g0o37-ZxRA0G_fcwYY1IS4-bY";

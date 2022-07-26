@@ -1,10 +1,7 @@
 import React from "react";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  applyDiscountToItem,
-  updateSingleItem,
-} from "../../../../../redux/productApiCalls";
+import { updateSingleItem } from "../../../../../redux/productApiCalls";
 import { ADD_ITEM_TO_COLUMN } from "../../../../../redux/productSlice";
 import {
   Columns,
@@ -17,10 +14,12 @@ import { TOGGLE_WARNING_MESSAGE } from "../../../../../redux/columnSlice";
 import SearchBar from "../Items/SearchBar";
 import { TiDelete } from "react-icons/ti";
 
-const SingleColumn = ({ title, id }) => {
+const ItemsSoldColumn = ({ title, id }) => {
   const dispatch = useDispatch();
   const { showWarning } = useSelector(store => store.columns);
-  const { itemInventory, searchedItems } = useSelector(store => store.product);
+  const { itemInventory, searchedItems, soldItems } = useSelector(
+    store => store.product
+  );
 
   // function that handles the drop feature of drag-and-drop
   const [{ isOver }, drop] = useDrop(() => ({
@@ -28,12 +27,6 @@ const SingleColumn = ({ title, id }) => {
     drop: item => {
       addDraggedItemToColumn(item.id);
       updateSingleItem(item.id, title, dispatch);
-
-      // apply discount if item enters the discount column ( 20 % )
-      if (title === "Discount") {
-        let discountedPrice = item.price * 0.8;
-        applyDiscountToItem(item.id, discountedPrice, title, dispatch);
-      }
     },
 
     collect: monitor => ({
@@ -64,19 +57,12 @@ const SingleColumn = ({ title, id }) => {
           <TiDelete size={25} color="#EA5555" />
         </StyledDeleteBtn> */}
         <Columns ref={drop}>
-          <h4>
-            {title} {title === "Discount" && "20 %"}
-          </h4>
-
+          <h4>Items Sold</h4>
           <SearchBar columnId={id} columnTitle={title} />
           <Grid>
-            {searchedItems.length > 0
-              ? searchedItems
-                  .filter(item => item.column_name === title)
-                  .map(item => <SingleItem key={item.id} {...item} />)
-              : itemInventory
-                  .filter(item => item.column_name === title)
-                  .map(item => <SingleItem key={item.id} {...item} />)}
+            {soldItems.map(item => (
+              <SingleItem key={item.id} {...item} />
+            ))}
           </Grid>
         </Columns>
       </StyledColumnContainer>
@@ -85,4 +71,4 @@ const SingleColumn = ({ title, id }) => {
   );
 };
 
-export default SingleColumn;
+export default ItemsSoldColumn;

@@ -19,24 +19,36 @@ export const StyledCard = styled.article`
   position: relative;
 
   img {
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     object-fit: cover;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
   }
 
   h2 {
     text-align: center;
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 12px;
+    margin: 0;
   }
 
   div {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    column-gap: 1rem;
   }
+`;
+
+export const StyledItemInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const StyledDeleteBtn = styled.button`
@@ -63,11 +75,17 @@ export const StyledBtnContainer = styled.div`
     color: white;
     width: 100%;
     border-radius: 9999px;
-    padding: 0.2rem 0.5rem;
+    padding: 0.1rem 0.3rem;
     cursor: pointer;
+    font-size: 12px;
 
     &:hover {
       background: #a9a4ffc5;
+    }
+
+    &:focus-within {
+      background-color: #bafe3bff;
+      color: black;
     }
   }
 `;
