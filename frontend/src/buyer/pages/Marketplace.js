@@ -5,40 +5,38 @@ import SearchBar from "../components/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { listAllItems } from "../../redux/productApiCalls";
 import {
-    StyledItemContainer,
-    StyledPicture,
-    StyledItemDescription,
+  StyledItemContainer,
+  StyledPicture,
+  StyledItemDescription,
 } from "../styles/MarketItem";
 import { useNavigate } from "react-router-dom";
 
-
 const Marketplace = ({ id, image, name, price }) => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const {itemInventory, searchedItemsMarket} = useSelector(store => store.product)
-    console.log(searchedItemsMarket)
-    
-    useEffect(() => {
-        listAllItems(dispatch);
-    }, [])
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { itemInventory, searchedItemsMarket } = useSelector(
+    store => store.product
+  );
+  const itemsToDisplay = itemInventory.filter(
+    item => item.column_name === "Online"
+  );
 
-    return (
+  useEffect(() => {
+    listAllItems(dispatch);
+  }, []);
 
-     <>
-     <SearchBar />
-        <Grid>
-            {searchedItemsMarket.length === 0 ? 
-            itemInventory.map(item => (
-                <MarketItem key={item.id} {...item} />
-            )) : 
-            searchedItemsMarket.map(item => (
-                <MarketItem key={item.id} {...item} />
-            ))
-            }
-
-        </Grid>
+  return (
+    <>
+      <SearchBar />
+      <Grid>
+        {searchedItemsMarket.length === 0
+          ? itemsToDisplay.map(item => <MarketItem key={item.id} {...item} />)
+          : searchedItemsMarket.map(item => (
+              <MarketItem key={item.id} {...item} />
+            ))}
+      </Grid>
     </>
-    );
+  );
 };
 
 export default Marketplace;
