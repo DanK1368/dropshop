@@ -73,9 +73,8 @@ export const StyledBtnContainer = styled.div`
     background: #a8a4ff;
     border: none;
     color: white;
-    width: 100%;
     border-radius: 9999px;
-    padding: 0.1rem 0.3rem;
+    padding: 0.5rem 0.7rem;
     cursor: pointer;
     font-size: 12px;
 
