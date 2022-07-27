@@ -2,11 +2,14 @@ import styled from "styled-components";
 
 export const StyledWholeItem = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-direction: ${({ layout }) => layout || "row"};
   margin-bottom: 10%;
 
   img {
-    width: 50%;
+    max-width: 300px;
+    object-fit: cover;
     border-radius: 10px;
     background: #f1f1f1;
     padding-top: 20px;

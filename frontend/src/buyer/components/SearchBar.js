@@ -5,20 +5,26 @@ import { searchItems } from "../../redux/productApiCalls";
 import { useDispatch } from "react-redux";
 
 const SearchBar = () => {
-    const dispatch = useDispatch()
-    const [searchValue, setSearchValue] = useState("")
+  const dispatch = useDispatch();
+  const [searchValue, setSearchValue] = useState("");
 
-    const handleSearch=(e)=>{
-        e.preventDefault();
-        searchItems(searchValue, dispatch)
-    }
+  const handleSearch = e => {
+    e.preventDefault();
+    searchItems(searchValue, dispatch);
+  };
 
-    return (
-        <SearchBarContainer>
-            <input type="text" placeholder="Search.." name="search" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} ></input>
-            <button onClick={(e) => handleSearch(e)}>Submit</button>
-        </SearchBarContainer>
-    )
-}
+  return (
+    <SearchBarContainer>
+      <input
+        type="text"
+        placeholder="Search.."
+        name="search"
+        value={searchValue}
+        onChange={e => setSearchValue(e.target.value)}
+      ></input>
+      <button onClick={e => handleSearch(e)}>Search</button>
+    </SearchBarContainer>
+  );
+};
 
-export default SearchBar
+export default SearchBar;

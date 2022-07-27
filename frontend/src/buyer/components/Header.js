@@ -25,7 +25,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const { isAuthenticatedUser, userInfo } = useSelector(store => store.user);
   const { showCartModal, amount } = useSelector(store => store.cart);
-  const { showwishlistModal, quantity } = useSelector(store=>store.wishlist);
+  const { showwishlistModal, quantity } = useSelector(store => store.wishlist);
 
   return (
     <>
@@ -41,8 +41,7 @@ const Header = () => {
           <NavLink to="/">HOME</NavLink>
           <NavLink to="/marketplace">SHOP</NavLink>
           <DropDown />
-          {!isAuthenticatedUser && <NavLink to="/seller">SELL</NavLink>}
-          {isAuthenticatedUser && <NavLink to="/seller">SELL</NavLink>}
+          {isAuthenticatedUser && <NavLink to="/seller">DASHBOARD</NavLink>}
           {isAuthenticatedUser ? (
             <button onClick={() => dispatch(LOGOUT_USER())}>LOGOUT</button>
           ) : (
@@ -61,10 +60,10 @@ const Header = () => {
             </>
           )}
           <StyledShowCartBtn onClick={() => dispatch(TOGGLE_WISHLIST_MODAL())}>
-            <BsHeart color="white" size={20}/>
-          </StyledShowCartBtn> 
+            <BsHeart color="white" size={20} />
+          </StyledShowCartBtn>
           {/* {<WishDisplay/>} */}
-          <StyledCartContainer>                
+          <StyledCartContainer>
             <StyledShowCartBtn onClick={() => dispatch(TOGGLE_CART_MODAL())}>
               <RiShoppingCartLine color="white" size={20} />
             </StyledShowCartBtn>
@@ -72,7 +71,7 @@ const Header = () => {
           </StyledCartContainer>
         </StyledProfileContainer>
       </Main>
-      {showwishlistModal && <WishDisplay/>}
+      {showwishlistModal && <WishDisplay />}
       {showCartModal && <CartSummary />}
     </>
   );
