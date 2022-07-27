@@ -62,7 +62,6 @@ export const createNewItem = async (
     dispatch(VALIDATE_SUCCESS());
     listAllColumns(dispatch);
   } catch (error) {
-    console.log(error);
     dispatch(VALIDATE_ERROR());
   }
 };
@@ -76,7 +75,8 @@ export const listAllItems = async dispatch => {
     dispatch(VALIDATE_SUCCESS());
     dispatch(ADD_FETCHED_ITEMS_TO_INVENTORY(response.data));
   } catch (error) {
-    console.log(error);
+    dispatch(VALIDATE_ERROR());
+    toast.error("Oops! Something went wrong");
   }
 };
 
@@ -99,10 +99,8 @@ export const updateSingleItem = async (id, column_name, dispatch) => {
       }
     );
     dispatch(VALIDATE_SUCCESS());
-    console.log(response);
   } catch (error) {
     dispatch(VALIDATE_ERROR());
-    console.log(error);
   }
 };
 
@@ -247,15 +245,15 @@ export const fetchSingleItem = async (id, dispatch) => {
   }
 };
 
-
 export const searchItems = async (searchWord, dispatch) => {
   dispatch(VALIDATE_START());
 
   try {
-    const response = await axios.get(`${BASE_URL}api/items/search?search=${searchWord}`);
+    const response = await axios.get(
+      `${BASE_URL}api/items/search?search=${searchWord}`
+    );
     dispatch(VALIDATE_SUCCESS());
     dispatch(ADD_SEARCHED_MARKET_ITEMS(response.data));
-
   } catch (error) {
     console.log(error);
   }

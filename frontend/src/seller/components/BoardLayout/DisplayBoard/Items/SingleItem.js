@@ -20,6 +20,7 @@ const SingleItem = ({ id, name, price, stock, image }) => {
 
   const handleFetchFeaturedItem = () => {
     fetchFeaturedItem(id, dispatch);
+    localStorage.setItem("featuredItemId", JSON.stringify(id));
   };
   const { showWarning } = useSelector(state => state.product);
 
