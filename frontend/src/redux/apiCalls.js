@@ -175,14 +175,12 @@ export const updateUserProfile = async (
       }
     );
     dispatch(VALIDATE_SUCCESS());
-    console.log(response.data);
     if (response.status === 200) {
       toast.success(`Profile updated successfully!`);
     } else {
       return;
     }
   } catch (error) {
-    console.log(error);
     toast.error("Something went wrong. Unable to save profile");
   }
 };
@@ -209,6 +207,5 @@ export const getUserProfile = async (navigate, dispatch) => {
     }
   } catch (error) {
     dispatch(VALIDATE_ERROR());
-    console.log(error);
   }
 };

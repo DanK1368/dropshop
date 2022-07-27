@@ -18,15 +18,22 @@ import Speaker from "../../assets/shared/desktop/image-category-thumbnail-speake
 import ZX7Speaker from "../../assets/home/desktop/image-speaker-zx7.jpg";
 import Earphones from "../../assets/home/desktop/image-earphones-yx1.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { listAllItems } from "../../redux/productApiCalls";
+import { fetchFeaturedItem, listAllItems } from "../../redux/productApiCalls";
 
 const Home = () => {
   const { featuredItems, itemInventory } = useSelector(state => state.product);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    listAllItems(dispatch)
-  }, [])
+    listAllItems(dispatch);
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchFeaturedItem(
+      JSON.parse(localStorage.getItem("featuredItemId")),
+      dispatch
+    );
+  }, [featuredItems, dispatch]);
 
   return (
     <Main>
