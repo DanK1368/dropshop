@@ -210,7 +210,7 @@ const Profile = () => {
           </StyledForm>
 
           <StyledRightContainer>
-            <PreviousOrders />
+            {/* <PreviousOrders /> */}
           </StyledRightContainer>
         </StyledOuterContainer>
       )}
