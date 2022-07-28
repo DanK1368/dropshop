@@ -19,10 +19,12 @@ import ZX7Speaker from "../../assets/home/desktop/image-speaker-zx7.jpg";
 import Earphones from "../../assets/home/desktop/image-earphones-yx1.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFeaturedItem, listAllItems } from "../../redux/productApiCalls";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { featuredItems, itemInventory } = useSelector(state => state.product);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     listAllItems(dispatch);
@@ -45,7 +47,7 @@ const Home = () => {
               <h1>{item.name}</h1>
               <h4>{item.description}</h4>
 
-              <StyledSeeProduct>SEE PRODUCT</StyledSeeProduct>
+              <StyledSeeProduct onClick={()=> navigate(`/productdetails/${item.id}`)}>SEE PRODUCT</StyledSeeProduct>
             </div>
             <div>
               <img src={item.image} alt="headphones picture" />
