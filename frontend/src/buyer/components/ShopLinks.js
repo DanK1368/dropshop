@@ -24,7 +24,7 @@ const ShopLinks = () => {
       </StyledHeadphones>
       <StyledSpeakers>
         <img src={Earphones} alt="Speaker Icon" />
-        <h4>SPEAKERS</h4>
+        <h4>EARPHONES</h4>
         <Link to="/category-speakers">
           SHOP
           <HiChevronRight size={20} color="#d87d4a" />
@@ -32,7 +32,7 @@ const ShopLinks = () => {
       </StyledSpeakers>
       <StyledEarphones>
         <img src={Speakers} alt="Earphone Icon" />
-        <h4>EARPHONES</h4>
+        <h4>SPEAKERS</h4>
         <Link to="/category-earphones">
           SHOP
           <HiChevronRight size={20} color="#d87d4a" />

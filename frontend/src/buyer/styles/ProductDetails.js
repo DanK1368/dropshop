@@ -66,6 +66,24 @@ export const StyledCartContainer = styled.div`
   }
 `;
 
+export const StyledPriceContainer = styled.div`
+  .originalPrice {
+    text-decoration: line-through;
+    font-weight: 100;
+  }
+
+  .discountedPrice {
+    font-weight: 800;
+    font-size: 18px;
+    color: #d87d4a;
+  }
+
+  h5 {
+    margin: 0;
+    padding-top: 10px;
+  }
+`;
+
 export const StyledBtnContainer = styled.div`
   display: flex;
   justify-content: flex-start;
