@@ -69,8 +69,12 @@ export const StyledProfileContainer = styled.div`
   img {
     width: 50px;
     height: 50px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 50%;
+    background:white;
+    padding: 0px 2px;
+    padding-bottom:5px;
+    
 
     &:hover {
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);

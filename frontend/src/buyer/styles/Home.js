@@ -110,6 +110,7 @@ export const TableSpeaker = styled.div`
   margin-top: 40px;
   img {
     border-radius: 5px;
+    width:100%;
   }
   h1 {
     position: absolute;
@@ -136,6 +137,7 @@ export const EarphonesProd = styled.div`
 
   img {
     border-radius: 5px;
+    width:100%;
   }
   button {
     width: 27%;
@@ -146,11 +148,12 @@ export const EarphonesProd = styled.div`
   }
 `;
 export const EarphonesText = styled.div`
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   padding-top: 50px;
   background: #f1f1f1;
   padding-left: 50px;
   border-radius: 5px;
+  
 `;
