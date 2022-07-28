@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TOGGLE_WISHLIST_MODAL } from "../../redux/wishlistSlice";
 import { TOGGLE_CART_MODAL } from "../../redux/cartSlice";
 import { LOGOUT_USER } from "../../redux/userSlice";
-import profile_pic from "../../assets/profile_pic.jpg";
+import profile_pic from "../../assets/dropShop.png";
 import DropDown from "./DropDown";
 import { getUserProfile } from "../../redux/apiCalls";
 

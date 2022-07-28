@@ -13,6 +13,7 @@ export const SecondHeader = styled.div`
   flex-direction: row;
   justify-content: center;
   margin-bottom: 20%;
+  z-index: 15;
 
   h1 {
     width: 100%;
