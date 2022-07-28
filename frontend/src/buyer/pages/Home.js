@@ -19,6 +19,7 @@ import ZX7Speaker from "../../assets/home/desktop/image-speaker-zx7.jpg";
 import Earphones from "../../assets/home/desktop/image-earphones-yx1.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFeaturedItem, listAllItems } from "../../redux/productApiCalls";
+import { InView } from "react-intersection-observer";
 
 const Home = () => {
   const { featuredItems, itemInventory } = useSelector(state => state.product);
@@ -39,18 +40,28 @@ const Home = () => {
     <Main>
       {featuredItems.length > 0 ? (
         featuredItems.map(item => (
-          <StyledFeaturedProduct key={item.id}>
-            <div>
-              <p>NEW PRODUCT</p>
-              <h1>{item.name}</h1>
-              <h4>{item.description}</h4>
+          <InView threshold={0.25}>
+            {({ ref, inView }) => (
+              <StyledFeaturedProduct
+                ref={ref}
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 1 }}
+                key={item.id}
+              >
+                <div>
+                  <p>NEW PRODUCT</p>
+                  <h1>{item.name}</h1>
+                  <h4>{item.description}</h4>
 
-              <StyledSeeProduct>SEE PRODUCT</StyledSeeProduct>
-            </div>
-            <div>
-              <img src={item.image} alt="headphones picture" />
-            </div>
-          </StyledFeaturedProduct>
+                  <StyledSeeProduct>SEE PRODUCT</StyledSeeProduct>
+                </div>
+                <div>
+                  <img src={item.image} alt="headphones picture" />
+                </div>
+              </StyledFeaturedProduct>
+            )}
+          </InView>
         ))
       ) : (
         <ProductDescription>

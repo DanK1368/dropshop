@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const Main = styled.section`
   display: flex;
@@ -17,7 +18,7 @@ export const ProductDescription = styled.div`
   }
 `;
 
-export const StyledFeaturedProduct = styled.div`
+export const StyledFeaturedProduct = styled(motion.div)`
   color: black;
   margin-bottom: 4rem;
   background-color: #f1f1f1;
