@@ -148,7 +148,7 @@ export const EarphonesProd = styled.div`
   }
 `;
 export const EarphonesText = styled.div`
-  width: 100%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   padding-top: 50px;
