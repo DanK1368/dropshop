@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const StyledAllLinks = styled.div`
+export const StyledAllLinks = styled(motion.div)`
   display: flex;
   justify-content: space-around;
   width: 100%;
   margin: 40px 0;
+  padding-top: 10rem;
 `;
 export const StyledHeadphones = styled.div`
   display: flex;

@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const Main = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
-export const ProductDescription = styled.div`
+export const ProductDescription = styled(motion.div)`
   display: flex;
   flex-direction: row;
   margin-bottom: 70px;
@@ -17,7 +18,7 @@ export const ProductDescription = styled.div`
   }
 `;
 
-export const StyledFeaturedProduct = styled.div`
+export const StyledFeaturedProduct = styled(motion.div)`
   color: black;
   margin-bottom: 4rem;
   background-color: #f1f1f1;
@@ -71,7 +72,7 @@ export const MiddleImages = styled.div`
   flex-direction: column;
 `;
 
-export const SpeakerImg = styled.div`
+export const SpeakerImg = styled(motion.div)`
   width: 100%;
   height: 100%;
   display: flex;
@@ -104,13 +105,13 @@ export const Text = styled.div`
     border: none;
   }
 `;
-export const TableSpeaker = styled.div`
+export const TableSpeaker = styled(motion.div)`
   width: 100%;
   height: 100%;
   margin-top: 40px;
   img {
     border-radius: 5px;
-    width:100%;
+    width: 100%;
   }
   h1 {
     position: absolute;
@@ -127,7 +128,7 @@ export const TableSpeaker = styled.div`
     border: 1px solid black;
   }
 `;
-export const EarphonesProd = styled.div`
+export const EarphonesProd = styled(motion.div)`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -137,7 +138,7 @@ export const EarphonesProd = styled.div`
 
   img {
     border-radius: 5px;
-    width:100%;
+    width: 100%;
   }
   button {
     width: 27%;
@@ -155,5 +156,4 @@ export const EarphonesText = styled.div`
   background: #f1f1f1;
   padding-left: 50px;
   border-radius: 5px;
-  
 `;
