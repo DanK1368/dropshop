@@ -15,6 +15,7 @@ import {
   StyledPictureGrid,
   StyledPrice,
   StyledTitel,
+  StyledPriceContainer,
 } from "../styles/ProductDetails";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import image1 from "../../assets/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg";
@@ -46,9 +47,9 @@ const ProductDetails = () => {
   const { productId } = useParams();
   const { singleItem, pending } = useSelector(store => store.product);
   const { amountOfItems } = useSelector(store => store.cart);
-  const { wishlist } = useSelector(store=> store.wishlist)
-  
-  
+  const { wishlist } = useSelector(store => store.wishlist);
+
+  console.log(singleItem);
 
   useEffect(() => {
     fetchSingleItem(productId, dispatch);
@@ -69,9 +70,7 @@ const ProductDetails = () => {
     },
   ]);
   // function not working as should- button still visible
-  const updateWishButton = wishlist.findIndex(
-    item => item.id === productId
-  );
+  const updateWishButton = wishlist.findIndex(item => item.id === productId);
   console.log(updateWishButton);
 
   return (
@@ -93,10 +92,21 @@ const ProductDetails = () => {
                 <StyledCartContainer>
                   <h3>{singleItem[0].name}</h3>
                   <p>{singleItem[0].description}</p>
-                  <div>
-                    <p>CHF {singleItem[0].price.toFixed(2)} </p>
+                  <StyledPriceContainer>
+                    <p>
+                      {singleItem[0].column_name === "Discount" && (
+                        <span className="originalPrice">CHF 300.00</span>
+                      )}{" "}
+                      <br />
+                      {singleItem[0].column_name === "Discount" && (
+                        <h5>20% OFF</h5>
+                      )}
+                      <span className="discountedPrice">
+                        CHF {singleItem[0].price.toFixed(2)}{" "}
+                      </span>
+                    </p>
                     <p>Stock {singleItem[0].stock}</p>
-                  </div>
+                  </StyledPriceContainer>
                 </StyledCartContainer>
                 <StyledBtnContainer>
                   <div>
@@ -124,13 +134,13 @@ const ProductDetails = () => {
                     ADD TO CART
                   </StyledAddToCartBtn>
                   {/* it is not hidding the button after clicking it, as wished */}
-                  {updateWishButton !== -1 ?
-                    null:
-                    <StyledAddToCartBtn 
-                    onClick={() => dispatch(ADD_TO_WISHLIST(singleItem[0]))}>
-                    WISHLIST
-                  </StyledAddToCartBtn>
-                  } 
+                  {updateWishButton !== -1 ? null : (
+                    <StyledAddToCartBtn
+                      onClick={() => dispatch(ADD_TO_WISHLIST(singleItem[0]))}
+                    >
+                      WISHLIST
+                    </StyledAddToCartBtn>
+                  )}
                 </StyledBtnContainer>
               </StyledProductDetails>
             </StyledProductContainer>
