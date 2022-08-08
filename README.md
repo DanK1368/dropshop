@@ -30,5 +30,9 @@ Live site:[ https://dropshop.propulsion-learn.ch/](https://dropshop.propulsion-l
 - Docker with Nginx
 - Gitlab
 
-#### Team:
-Daniel Kött, Melissa Guimarães, Julian Bräuninger, Sandeep Dharnia, Alexander Bender
+#### Team: (To view the LinkedIn Profile, click on the name)
+ - [Daniel Kött](https://www.linkedin.com/in/daniel-koett/)
+ - [Melissa Guimarães](https://www.linkedin.com/in/melissa-guimaraes/)
+ - [Julian Bräuninger](https://www.linkedin.com/in/julian-braeuninger/)
+ - [Sandeep Dharnia](https://www.linkedin.com/in/sandeep-dharnia/)
+ - [Alexander Bender](https://www.linkedin.com/in/alexanderbender2022/)
