@@ -19,16 +19,19 @@ Live site:[ https://dropshop.propulsion-learn.ch/](https://dropshop.propulsion-l
 
 ### Tech Stack used:
 
-#### Front-End: 
+#### Front-End:
+- JavaScript
 - React.js
-- Stlyed Components
+- Styled Components
 
 #### Back-End:
+- Python
+- Django
 - Django REST Framework
 
 #### Deployment & CI/CD:
 - Docker with Nginx
-- Gitlab
+- GitLab
 
 #### Team: (To view the LinkedIn Profile, click on the name)
  - [Daniel Kött](https://www.linkedin.com/in/daniel-koett/)
