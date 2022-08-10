@@ -28,13 +28,11 @@ Live site:[ https://dropshop.propulsion-learn.ch/](https://dropshop.propulsion-l
 - Python
 - Django
 - Django REST Framework
+- PostgreSQL
 
 #### Deployment & CI/CD:
 - Docker with Nginx
 - GitLab
-
-#### Database:
-- PostgreSQL
 
 #### Team: (To view the LinkedIn Profile, click on the name)
  - [Daniel Kött](https://www.linkedin.com/in/daniel-koett/)
