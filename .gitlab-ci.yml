@@ -60,4 +60,4 @@ deploy:
 #    - docker volume rm dropshop_build
 #    - docker-compose -f docker-compose.deploy.yml up -d
 #    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/drop-shop.git
-    - git push -f heroku HEAD:main
+    - git push -f heroku HEAD:refs/heads/master
