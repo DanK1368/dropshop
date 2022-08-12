@@ -60,5 +60,7 @@ deploy:
 #    - docker volume rm dropshop_build
 #    - docker-compose -f docker-compose.deploy.yml up -d
 #    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/drop-shop.git
+    - apt-get update -yq
+    - apt-get install -y ruby-dev
     - gem install dpl
-    - dpl --provider=heroku --app=drop-shop --api-key=$HEROKU_API_KEY
+    - dpl --provider=heroku --app=drop-shop --api_key=$HEROKU_API_KEY
